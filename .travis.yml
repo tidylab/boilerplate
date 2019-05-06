@@ -1,6 +1,8 @@
 ####################
 ## Configurations ##
 ####################
+# Be strict when checking the package?
+warnings_are_errors: false
 language: r
 r: 3.5.2
 r_packages:
@@ -9,8 +11,9 @@ sudo: false
 latex: false
 fortran: true
 cache: packages
-# Be strict when checking the package?
-warnings_are_errors: false
+stages:
+  - info
+  - Build
 
 
 #######################
@@ -18,13 +21,13 @@ warnings_are_errors: false
 #######################
 jobs:
   include:
-    - state: "Info"
-    name: "System Information"
-    script: Rscript --vanilla -e 'print(Sys.getenv())'
-    name: "Installed Packages"
-    script: Rscript --vanilla -e 'print(unname(installed.packages()[,c("Package", "Version")]))'
+    - stage: "Info"
+      name: "System Information"
+      script: Rscript --vanilla -e 'print(Sys.getenv())'
+      name: "Installed Packages"
+      script: Rscript --vanilla -e 'print(unname(installed.packages()[,c("Package", "Version")]))'
     - stage: "Build"
-    name: "Build and Check"
-    script:
-      - R CMD build . --no-build-vignettes --no-manual
-      - R CMD check $(ls -1t *.tar.gz | head -n 1) --no-manual
+      name: "Build and Check"
+      script:
+        - R CMD build . --no-build-vignettes --no-manual
+        - R CMD check $(ls -1t *.tar.gz | head -n 1) --no-manual
