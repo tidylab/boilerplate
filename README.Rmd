@@ -17,8 +17,8 @@ project_name <-  gsub(".Rcheck$", "", basename(path_project))
 travis_url <- paste0("https://travis-ci.org/tidylab/", project_name)
 pipeline_url <- paste0(travis_url, ".svg?branch=master")
 
-codecov_url <- paste0("https://travis-ci.org/tidylab/", project_name)
-covr_url <- paste0(codecov_url, "/branch/master/graph/badge.svg")
+codecov_url <- paste0("https://codecov.io/github/tidylab/", project_name, "?branch=master")
+covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/master/graph/badge.svg")
 ```
 
 
