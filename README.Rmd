@@ -1,0 +1,24 @@
+---
+output: github_document
+---
+
+```{r, echo = FALSE}
+#######################
+## Get Project Paths ##
+#######################
+path_project <- getwd()
+while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
+project_name <-  gsub(".Rcheck$", "", basename(path_project))
+
+
+####################
+## Construct URLs ##
+####################
+travis_url <- "https://travis-ci.org/tidylab"
+project_url <- paste0(travis_url, project_name)
+## Badges
+pipeline_url <- paste0(project_url, ".svg?branch=master")
+```
+
+
+[![Travis build status](`r pipeline_url`)](`r project_url`)
