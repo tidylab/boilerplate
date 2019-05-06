@@ -25,9 +25,7 @@ after_success:
 jobs:
   include:
     - stage: "Info"
-      name: "System Information"
       script: Rscript --vanilla -e 'print(Sys.getenv())'
-      name: "Installed Packages"
       script: Rscript --vanilla -e 'print(unname(installed.packages()[,c("Package", "Version")]))'
     - stage: "Build"
       name: "Build and Check"
