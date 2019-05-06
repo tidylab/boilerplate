@@ -10,6 +10,7 @@ latex: false
 fortran: true
 cache: packages
 stages:
+  - info
   - build
   #- test-suite
   #- code-quality
@@ -23,6 +24,11 @@ warnings_are_errors: false
 #######################
 jobs:
   include:
+    - state: "Info"
+    name: "System Information"
+    script: Rscript --vanilla -e 'print(Sys.getenv())'
+    name: "Installed Packages"
+    script: Rscript --vanilla -e 'print(unname(installed.packages()[,c("Package", "Version")]))'
     - stage: "Build"
     name: "Build and Check"
     script:
