@@ -2,6 +2,9 @@
 .Rhistory
 .Rapp.history
 
+# roxygen2
+/man/
+
 # Session Data files
 .RData
 
@@ -34,3 +37,10 @@ vignettes/*.pdf
 
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
+.Rproj.user
+temp/
+
+# Windows files
+desktop.ini
+
+

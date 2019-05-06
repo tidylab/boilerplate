@@ -1,0 +1,16 @@
+^\.Rprofile$
+.*\.ini$
+^inst/templates/package$
+^\.gitlab-ci$
+^figures$
+^sync\.ffs_db$
+^README\.Rmd$
+^LICENSE\.md$
+^roxygen2_template\.R$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^\.gitlab-ci/*
+^temp$
+^data-raw$
+^public$
