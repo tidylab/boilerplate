@@ -1,3 +1,4 @@
+^codecov\.yml$
 ^\.Rprofile$
 .*\.ini$
 ^inst/templates/package$
