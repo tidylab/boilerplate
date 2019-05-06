@@ -1,5 +1,30 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
+####################
+## Configurations ##
+####################
+language: r
+r: 3.5.2
+r_packages:
+  - tidyverse
 sudo: false
+latex: false
+fortran: true
 cache: packages
+stages:
+  - build
+  #- test-suite
+  #- code-quality
+  #- deploy
+# Be strict when checking the package?
+warnings_are_errors: false
+
+
+#######################
+## Build the Package ##
+#######################
+jobs:
+  include:
+    - stage: "Build"
+    name: "Build and Check"
+    script:
+      - R CMD build . --no-build-vignettes --no-manual
+      - R CMD check $(ls -1t *.tar.gz | head -n 1) --no-manual
