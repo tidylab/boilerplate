@@ -1,2 +1,2 @@
 
-[![Travis build status](https://travis-ci.org/tidylabtidylab.boilerplate.svg?branch=master)](https://travis-ci.org/tidylabtidylab.boilerplate)
+[![Travis build status](https://travis-ci.org/tidylab/tidylab.boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/tidylab.boilerplate)

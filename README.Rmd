@@ -15,7 +15,7 @@ project_name <-  gsub(".Rcheck$", "", basename(path_project))
 ## Construct URLs ##
 ####################
 travis_url <- "https://travis-ci.org/tidylab"
-project_url <- paste0(travis_url, project_name)
+project_url <- paste0(travis_url, "/", project_name)
 ## Badges
 pipeline_url <- paste0(project_url, ".svg?branch=master")
 ```
