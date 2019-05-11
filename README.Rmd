@@ -4,11 +4,19 @@ output: github_document
 
 ```{r, echo = FALSE}
 #######################
-## Get Project Paths ##
+## Get Package Paths ##
 #######################
 path_project <- getwd()
 while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
 project_name <-  gsub(".Rcheck$", "", basename(path_project))
+
+
+############################# 
+## Get Package DESCRIPTION ##
+#############################
+library(desc)
+target <- file.path(path_project, "DESCRIPTION")
+desc_obj <- description$new(target)
 
 
 ####################
@@ -21,6 +29,21 @@ codecov_url <- paste0("https://codecov.io/github/tidylab/", project_name, "?bran
 covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/master/graph/badge.svg")
 ```
 
-
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
 [![Code coverage status](`r covr_url`)](`r codecov_url`)
+
+<!-- Package Title -->
+
+# ``r project_name``
+
+`r desc_obj$get_field("Title")`
+
+---
+
+![Research factory](https://i.imgur.com/RLEQkhe.png)
+
+<!-- Package Description -->
+
+## Description
+
+`r desc_obj$get_field("Description")`
