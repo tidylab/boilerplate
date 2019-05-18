@@ -13,7 +13,6 @@ latex: false
 fortran: true
 cache: packages
 stages:
-  - info
   - Build
 before_script:
   - Rscript -e 'Sys.getenv()'
@@ -26,11 +25,7 @@ after_success:
 #######################
 jobs:
   include:
-    - stage: "Info"
-      script: Rscript --vanilla -e 'print(Sys.getenv())'
-      script: Rscript --vanilla -e 'print(unname(installed.packages()[,c("Package", "Version")]))'
     - stage: "Build"
-      name: "Build and Check"
+      name: "build_and_check"
       script:
-        - R CMD build . --no-build-vignettes --no-manual
-        - R CMD check $(ls -1t *.tar.gz | head -n 1) --no-manual
+        - Rscript --vanilla .githab-ci/$TRAVIS_JOB_NAME.R
