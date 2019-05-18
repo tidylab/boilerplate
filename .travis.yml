@@ -15,6 +15,8 @@ cache: packages
 stages:
   - info
   - Build
+before_install:
+  - travis env list
 after_success:
   - Rscript -e 'library(covr); codecov()'
 
