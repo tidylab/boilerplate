@@ -7,9 +7,9 @@ context("unit test for load_functions")
 # case 1 -----------------------------------------------------------------------
 test_that("load_functions works given a folder with invalid functions", {
     # Create a temporary folder
-    path_project <- getwd()
-    while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-    path_temp <- file.path(path_project, "temp", "R")
+    path_temp <- getwd()
+    while (length(grep("test", path_temp))>0) path_temp <- dirname(path_temp)
+    path_temp <- file.path(path_temp, "temp", "R")
     unlink(path_temp, recursive = TRUE)
     dir.create(path_temp, showWarnings = FALSE, recursive = TRUE)
 
@@ -36,9 +36,9 @@ test_that("load_functions works given a folder with invalid functions", {
 # case 2 -----------------------------------------------------------------------
 test_that("load_functions works given a folder with valid functions", {
     # Create a temporary folder
-    path_project <- getwd()
-    while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-    path_temp <- file.path(path_project, "temp", "R")
+    path_temp <- getwd()
+    while (length(grep("test", path_temp))>0) path_temp <- dirname(path_temp)
+    path_temp <- file.path(path_temp, "temp", "R")
     unlink(path_temp, recursive = TRUE)
     dir.create(path_temp, showWarnings = FALSE, recursive = TRUE)
 
@@ -77,9 +77,9 @@ test_that("load_functions works given a folder with valid functions", {
 # case 3 -----------------------------------------------------------------------
 test_that("load_functions works given a folder without files (empty folder)", {
     # Create a temporary folder
-    path_project <- getwd()
-    while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-    path_temp <- file.path(path_project, "temp", "R")
+    path_temp <- getwd()
+    while (length(grep("test", path_temp))>0) path_temp <- dirname(path_temp)
+    path_temp <- file.path(path_temp, "temp", "R")
     unlink(path_temp, recursive = TRUE)
     dir.create(path_temp, showWarnings = FALSE, recursive = TRUE)
 
@@ -88,13 +88,4 @@ test_that("load_functions works given a folder without files (empty folder)", {
 
     # Clean up: Delete the temporary folder
     unlink(path_temp, recursive = TRUE)
-})
-
-# cleanup -----------------------------------------------------------------
-teardown({
-    ## Delete the temporary folder
-    path_project <- getwd()
-    while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-    path_temp <- file.path(path_project, "temp", "R")
-    unlink(path_temp, recursive = TRUE, force = TRUE)
 })

@@ -17,7 +17,7 @@ path_temp <- file.path(path_project, "temp")
 suppressPackageStartupMessages({
     library(testthat, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
     library(magrittr, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
-    library(package_name, character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
+    try(library(package_name, character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE))
 })
 
 
