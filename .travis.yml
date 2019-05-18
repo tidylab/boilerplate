@@ -15,8 +15,8 @@ cache: packages
 stages:
   - info
   - Build
-before_install:
-  - Rscript -e 'print(Sys.getenv())'
+before_script:
+  - Rscript -e 'Sys.getenv()'
 after_success:
   - Rscript -e 'library(covr); codecov()'
 
