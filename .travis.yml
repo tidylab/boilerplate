@@ -1,0 +1,36 @@
+####################
+## Configurations ##
+####################
+# Be strict when checking the package?
+warnings_are_errors: false
+language: r
+r: 3.5.2
+r_packages:
+  - tidyverse
+  - covr
+sudo: false
+latex: false
+fortran: true
+cache: packages
+stages:
+  - info
+  - Build
+before_install:
+  - Rscript -e 'print(Sys.getenv())'
+after_success:
+  - Rscript -e 'library(covr); codecov()'
+
+
+#######################
+## Build the Package ##
+#######################
+jobs:
+  include:
+    - stage: "Info"
+      script: Rscript --vanilla -e 'print(Sys.getenv())'
+      script: Rscript --vanilla -e 'print(unname(installed.packages()[,c("Package", "Version")]))'
+    - stage: "Build"
+      name: "Build and Check"
+      script:
+        - R CMD build . --no-build-vignettes --no-manual
+        - R CMD check $(ls -1t *.tar.gz | head -n 1) --no-manual
