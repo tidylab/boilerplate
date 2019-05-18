@@ -26,6 +26,6 @@ after_success:
 jobs:
   include:
     - stage: "Build"
-      name: "build_and_check"
+      name: "Build and Check"
       script:
-        - Rscript --vanilla .githab-ci/$TRAVIS_JOB_NAME.R
+        - Rscript --vanilla .githab-ci/build_and_check.R
