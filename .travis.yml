@@ -27,5 +27,5 @@ jobs:
   include:
     - stage: "Build"
       name: "Build and Check"
-      script:
-        - Rscript --vanilla .githab-ci/build_and_check.R
+      script: Rscript --vanilla .githab-ci/build_and_check.R
+
