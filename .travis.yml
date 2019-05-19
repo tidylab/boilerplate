@@ -43,4 +43,4 @@ jobs:
       script: Rscript --vanilla .github-ci/test-suite.R
     - stage: "Report"
       name: "coverage-report"
-      script: Rscript -e 'covr::codecov()'
+      script: Rscript --vanilla .github-ci/reports.R
