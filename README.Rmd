@@ -27,9 +27,12 @@ pipeline_url <- paste0(travis_url, ".svg?branch=master")
 
 codecov_url <- paste0("https://codecov.io/github/tidylab/", project_name, "?branch=master")
 covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/master/graph/badge.svg")
+
+
 ```
 
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
+[![Build status](https://ci.appveyor.com/api/projects/status/ek5tuuy06k53lbk6/branch/master?svg=true)](https://ci.appveyor.com/project/harell/tidylab-boilerplate/branch/master)
 [![Code coverage status](`r covr_url`)](`r codecov_url`)
 
 <!-- Package Title -->

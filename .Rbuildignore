@@ -1,3 +1,5 @@
+^\.github-ci$
+^\.gitattributes$
 ^appveyor\.yml$
 ^codecov\.yml$
 ^\.Rprofile$
