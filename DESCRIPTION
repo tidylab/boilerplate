@@ -3,7 +3,7 @@ Type: Package
 Title: Boilerplate for 'tidylab' Packages
 URL: https://github.com/tidylab/tidylab.boilerplate/issues
 BugReports: https://gitlab.harmonic.co.nz/rmonicverse/rmonic.boilerplate/issues
-Version: 0.19.19
+Version: 0.19.20
 Authors@R: c(
             person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre"))
             )

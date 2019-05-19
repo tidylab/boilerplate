@@ -17,9 +17,9 @@ cache: packages
 stages:
   - Build
   - Test-Suite
+  - Report
 before_script: Rscript -e 'Sys.getenv()'
-after_success: Rscript -e 'covr::codecov()'
-
+after_success: Rscript -e 'print("Silence is Golden")'
 
 #######################
 ## Build the Package ##
@@ -41,3 +41,6 @@ jobs:
     - stage: "Test-Suite"
       name: "coverage-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
+    - stage: "Report"
+      name: "coverage-report"
+      script: Rscript -e 'covr::codecov()'
