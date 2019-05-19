@@ -18,7 +18,7 @@ stages:
   - Build
   - Test-Suite
 before_script: Rscript -e 'Sys.getenv()'
-after_success: Rscript -e 'library(covr); codecov()'
+after_success: Rscript -e 'covr::codecov()'
 
 
 #######################
@@ -31,4 +31,13 @@ jobs:
       script: Rscript --vanilla .github-ci/build-and-check.R
     - stage: "Test-Suite"
       name: "testthat"
+      script: Rscript --vanilla .github-ci/test-suite.R
+    - stage: "Test-Suite"
+      name: "component-tests"
+      script: Rscript --vanilla .github-ci/test-suite.R
+    - stage: "Test-Suite"
+      name: "integration-tests"
+      script: Rscript --vanilla .github-ci/test-suite.R
+    - stage: "Test-Suite"
+      name: "coverage-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
