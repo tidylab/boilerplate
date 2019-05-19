@@ -13,6 +13,11 @@ install:
 cache:
   - C:\RLibrary
 
+environment:
+  R_VERSION: 3.5.2
+  R_BUILD_ARGS: --vanilla --no-build-vignettes --no-manual
+  R_CHECK_ARGS: --vanilla --no-build-vignettes --no-manual
+
 # Adapt as necessary starting from here
 
 build_script:
