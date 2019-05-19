@@ -17,7 +17,6 @@ cache: packages
 stages:
   - Build
   - Test-Suite
-install: Rscript --vanilla .github-ci/install-local.R
 before_script: Rscript -e 'Sys.getenv()'
 after_success: Rscript -e 'library(covr); codecov()'
 
