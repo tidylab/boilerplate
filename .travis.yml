@@ -17,10 +17,7 @@ cache: packages
 stages:
   - Build
   - name: Test-Suite
-    branches:
-      only:
-      - master
-      - develop
+    if: branch = master OR branch = develop
   - name: Report
     if: branch = master
 before_script: Rscript -e 'Sys.getenv()'
