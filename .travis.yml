@@ -36,7 +36,6 @@ jobs:
     - stage: "Test-Suite"
       name: "component-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
-      if: branch = master
     - stage: "Test-Suite"
       name: "integration-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
