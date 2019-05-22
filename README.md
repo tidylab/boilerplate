@@ -46,6 +46,7 @@ reduces unnecessary variance between packages configurations.
 6.  Render `README.Rmd` by clicking the **Knit** button.
 7.  Setup CI/CD on [Travis](https://travis-ci.org/tidylab).
 
+
 ## Installation
 
 `tidylab.boilerplate` is part of `tidylab`. The easiest way to install
