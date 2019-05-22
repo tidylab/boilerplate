@@ -16,7 +16,11 @@ fortran: true
 cache: packages
 stages:
   - Build
-  - Test-Suite
+  - name: Test-Suite
+    branches:
+      only:
+      - master
+      - develop
   - name: Report
     if: branch = master
 before_script: Rscript -e 'Sys.getenv()'
@@ -36,10 +40,6 @@ jobs:
     - stage: "Test-Suite"
       name: "component-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
-      branches:
-        only:
-        - master
-        - develop
     - stage: "Test-Suite"
       name: "integration-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
