@@ -17,7 +17,8 @@ cache: packages
 stages:
   - Build
   - Test-Suite
-  - Report
+  - name: Report
+    if: branch = master
 before_script: Rscript -e 'Sys.getenv()'
 after_success: Rscript -e 'message("Silence is Golden")'
 
@@ -35,6 +36,10 @@ jobs:
     - stage: "Test-Suite"
       name: "component-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
+      branches:
+        only:
+        - master
+        - develop
     - stage: "Test-Suite"
       name: "integration-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
@@ -44,6 +49,3 @@ jobs:
     - stage: "Report"
       name: "coverage-report"
       script: Rscript --vanilla .github-ci/reports.R
-      branches:
-        only:
-        - master
