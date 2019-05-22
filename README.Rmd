@@ -32,7 +32,6 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
 
 <!-- badges: start -->
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
-[![Build status](https://ci.appveyor.com/api/projects/status/ek5tuuy06k53lbk6/branch/master?svg=true)](https://ci.appveyor.com/project/harell/tidylab-boilerplate/branch/master)
 [![Code coverage status](`r covr_url`)](`r codecov_url`)
 <!-- badges: end -->
 
@@ -64,6 +63,7 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
     4. **Description** modify the package decription.
 5. In `README.Rmd` delete the **Useage** Section.
 6. Render `README.Rmd` by clicking the **Knit** button.
+7. Setup CI/CD on [Travis](https://travis-ci.org/tidylab).
 
 ## Installation
 

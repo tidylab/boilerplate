@@ -5,8 +5,6 @@
 
 [![Travis build
 status](https://travis-ci.org/tidylab/tidylab.boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/tidylab.boilerplate)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/ek5tuuy06k53lbk6/branch/master?svg=true)](https://ci.appveyor.com/project/harell/tidylab-boilerplate/branch/master)
 [![Code coverage
 status](https://codecov.io/gh/tidylab/tidylab.boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/tidylab.boilerplate?branch=master)
 <!-- badges: end -->
@@ -46,6 +44,7 @@ reduces unnecessary variance between packages configurations.
     5.  **Description** modify the package decription.
 5.  In `README.Rmd` delete the **Useage** Section.
 6.  Render `README.Rmd` by clicking the **Knit** button.
+7.  Setup CI/CD on [Travis](https://travis-ci.org/tidylab).
 
 ## Installation
 
