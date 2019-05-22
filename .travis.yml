@@ -18,7 +18,6 @@ stages:
   - Build
   - Test-Suite
   - Report
-    if: branch = master
 before_script: Rscript -e 'Sys.getenv()'
 after_success: Rscript -e 'message("Silence is Golden")'
 
@@ -45,3 +44,6 @@ jobs:
     - stage: "Report"
       name: "coverage-report"
       script: Rscript --vanilla .github-ci/reports.R
+      branches:
+        only:
+        - master
