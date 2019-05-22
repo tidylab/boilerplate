@@ -48,6 +48,13 @@ message(rep("#",40), "\n## Running Integration Tests\n", rep("#",40))
 test_dir(file.path(path_project, "tests", "integration-tests"))
 
 
+####################
+## Coverage Tests ##
+####################
+message(rep("#",40), "\n## Running Coverage Tests\n", rep("#",40))
+test_dir(file.path(path_project, "tests", "coverage-tests"))
+
+
 #############
 ## Cleanup ##
 #############
