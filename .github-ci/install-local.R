@@ -26,7 +26,7 @@
 }
 
 .install.packages <- function(package){
-    if(!require(package, character.only = TRUE))
+    if(isFALSE(package %in% rownames(utils::installed.packages())))
         utils::install.packages(package,
                                 repos = "https://cloud.r-project.org",
                                 dependencies = TRUE,
