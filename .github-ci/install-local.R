@@ -26,6 +26,3 @@
 
 # Install local package --------------------------------------------------------
 .install_local_package()
-
-
-

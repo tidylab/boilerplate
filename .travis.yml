@@ -1,7 +1,4 @@
-####################
-## Configurations ##
-####################
-# Be strict when checking the package?
+# Configurations ---------------------------------------------------------------
 warnings_are_errors: false
 language: r
 r: 3.5.3
@@ -20,12 +17,10 @@ stages:
   - name: Report
     if: branch = master
 before_install: Rscript -e 'Sys.getenv()'
-before_script: Rscript --no-init-file .github-ci/install_local.R
+before_script: Rscript --no-init-file .github-ci/install-local.R
 after_success: Rscript -e 'message("Silence is Golden")'
 
-#######################
-## Build the Package ##
-#######################
+# Jobs -------------------------------------------------------------------------
 jobs:
   include:
     - stage: "Build"
