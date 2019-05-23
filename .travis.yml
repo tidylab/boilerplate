@@ -40,7 +40,6 @@ jobs:
     - stage: "Test-Suite"
       name: "coverage-tests"
       script: Rscript --vanilla .github-ci/test-suite.R
-      if: branch = master OR branch = develop
     - stage: "Report"
       name: "coverage-report"
       script: Rscript --vanilla .github-ci/reports.R
