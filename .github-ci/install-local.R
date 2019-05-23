@@ -1,4 +1,11 @@
 # Helper functions -------------------------------------------------------------
+.install_development_packages <- function(){
+    .library("tidyverse")
+    .library("devtools")
+    .library("testthat")
+    .library("covr")
+}
+
 .install_local_package <- function(){
     .library("devtools")
     devtools::install_local(
@@ -25,4 +32,5 @@
 }
 
 # Install local package --------------------------------------------------------
+.install_development_packages()
 .install_local_package()
