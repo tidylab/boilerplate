@@ -4,7 +4,7 @@
 # Be strict when checking the package?
 warnings_are_errors: false
 language: r
-r: 3.5.2
+r: 3.5.3
 r_packages:
   - tidyverse
   - devtools
