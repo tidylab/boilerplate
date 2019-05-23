@@ -5,7 +5,7 @@
         path = ".",
         dependencies = TRUE,
         upgrade = FALSE,
-        force = TRUE,
+        force = FALSE,
         build = FALSE,
         build_opts = "--no-multiarch --with-keep.source --no-build-vignettes",
         Ncpus = parallel::detectCores(),
