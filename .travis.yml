@@ -19,7 +19,8 @@ stages:
   - Test-Suite
   - name: Report
     if: branch = master
-before_script: Rscript -e 'Sys.getenv()'
+before_install: Rscript -e 'Sys.getenv()'
+before_script: Rscript --vanilla .github-ci/install_local.R
 after_success: Rscript -e 'message("Silence is Golden")'
 
 #######################
