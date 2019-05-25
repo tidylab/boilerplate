@@ -18,11 +18,8 @@
 #' }
 #'
 foo <- function(name, age){
-    is_a_non_empty_string <- function(x) is.character(x) & length(x) == 1 & nchar(x) > 0
-    is_a_positive_number <- function(x) is.numeric(x) & length(x) >= 1 & x >= 0
-
-    stopifnot(isFALSE(missing(name)), is_a_non_empty_string(name),
-              isFALSE(missing(age)), is_a_positive_number(age))
+    .assert_is_a_non_missing_nor_empty_string(name)
+    .assert_is_positive_and_finite(age)
 
     age <- format(age, scientific = FALSE)
     msg <- paste(name, 'is', age, 'years old')
