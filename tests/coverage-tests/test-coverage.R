@@ -6,14 +6,8 @@ test_that("unless stated otherwise, all scripts must surpass the code coverage t
     ###########
     ## Setup ##
     ###########
-    .getwd <- function(){
-        path_project <- getwd()
-        while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-        return(path_project)
-    }
-
     ## Run code coverage
-    covr_obj <- covr::package_coverage(path = .getwd(), quiet = TRUE)
+    covr_obj <- covr::package_coverage(path = .get_projet_dir(), quiet = TRUE)
     covr_list <- covr::coverage_to_list(covr_obj)
 
     ###########
