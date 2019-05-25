@@ -50,5 +50,6 @@
 }
 
 # Install local package --------------------------------------------------------
+.uninstall_local_package()
 .install_development_packages()
 .install_local_package()

@@ -43,6 +43,7 @@
 }
 
 .run_coverage_tests <- function(){
+    if(Sys.getenv("CONTINUOUS_INTEGRATION") != "") return(invisible())
     .title("Running Coverage Tests")
     test_dir(file.path(.getwd(), "tests", "coverage-tests"))
 }
