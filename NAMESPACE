@@ -2,5 +2,4 @@
 
 export("%>%")
 export(foo)
-export(load_functions)
 importFrom(magrittr,"%>%")
