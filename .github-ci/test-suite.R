@@ -12,7 +12,7 @@
 # Setup ------------------------------------------------------------------------
 Sys.setenv(NOT_CRAN = "true")
 job_name <- tolower(Sys.getenv("TRAVIS_JOB_NAME"))
-message(rep("#",40), "\n", "## Test Suite: ", job_name, "\n", rep("#",40))
+message("\n", rep("#",40), "\n", "## Test Suite: ", job_name, "\n", rep("#",40))
 path_tests <- file.path(.getwd(), "tests", job_name)
 
 # Run tests --------------------------------------------------------------------

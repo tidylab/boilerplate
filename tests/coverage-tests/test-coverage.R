@@ -19,7 +19,7 @@ test_that("unless stated otherwise, all scripts must surpass the code coverage t
     for(e in seq_along(covr_list$filecoverage)){
         script_name <- names(covr_list[["filecoverage"]])[e]
         script_coverage <- unname(covr_list[["filecoverage"]][e])
-        expect_gte(script_coverage, 75, label = script_name)
+        expect_gte(script_coverage, 75, label = paste0("\n", script_name))
     }
 
     print(covr_list)
