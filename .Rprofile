@@ -10,8 +10,6 @@ suppressPackageStartupMessages(
 message("Preloaded ", sum(pkgs_flags), " out of ", length(pkgs), " packages See \".Rprofile\" for more details.")
 rm(pkgs, pkgs_flags)
 
-
-
 # Conflict Resolution ----------------------------------------------------------
 if("conflicted" %in% rownames(utils::installed.packages())){
     suppressPackageStartupMessages(suppressMessages(library("conflicted")))

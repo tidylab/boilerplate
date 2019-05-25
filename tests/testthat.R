@@ -59,7 +59,10 @@
     if(Sys.getenv("CONTINUOUS_INTEGRATION") != "") return(invisible())
 
     .title("Running Coverage Tests")
-    invisible(callr::r(function(pkg) devtools::document(pkg), list(pkg = target)))
+
+    command <- 'invisible(callr::r(function(pkg) devtools::document(pkg), list(pkg = target)))'
+    if(interactive()) eval(parse(text=command))
+
     test_dir(file.path(target, "tests", "coverage-tests"))
 }
 
