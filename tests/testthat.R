@@ -45,6 +45,7 @@
 .run_coverage_tests <- function(){
     if(Sys.getenv("CONTINUOUS_INTEGRATION") != "") return(invisible())
     .title("Running Coverage Tests")
+    invisible(callr::r(function(pkg) devtools::document(pkg), list(pkg = .getwd())))
     test_dir(file.path(.getwd(), "tests", "coverage-tests"))
 }
 

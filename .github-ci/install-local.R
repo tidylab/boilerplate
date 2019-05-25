@@ -11,6 +11,7 @@
     .install.packages("devtools")
     .install.packages("testthat")
     .install.packages("covr")
+    .install.packages("callr")
 }
 
 .install_local_package <- function(){
