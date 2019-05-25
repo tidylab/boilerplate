@@ -3,7 +3,7 @@ Type: Package
 Title: Boilerplate for 'tidylab' Packages
 URL: https://github.com/tidylab/tidylab.boilerplate
 BugReports: https://github.com/tidylab/tidylab.boilerplate/issues
-Version: 0.19.20
+Version: 0.19.21
 Authors@R: c(
             person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre"))
             )
