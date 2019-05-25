@@ -1,62 +1,83 @@
-#######################
-## Get Project Paths ##
-#######################
-## Remove the word "test" from the package path
-path_project <- getwd()
-while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-## Get package name
-package_name <-  gsub(".Rcheck$", "", basename(path_project))
-## Create other package paths
-path_functions <- file.path(path_project, "R")
-path_temp <- file.path(path_project, "temp")
+# Helper Functions -------------------------------------------------------------
+.load_packages <- function(){
+    suppressPackageStartupMessages({
+        library(testthat, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
+        library(magrittr, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
+        try(library(.get_package_name(), character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE))
+    })
+}
 
+.load_functions <- function(){
+    R_dir_path <- file.path(.getwd(), "R")
+    scripts_paths <- list.files(R_dir_path, ".R", full.names = TRUE)
 
-###########################
-## Load Project Packages ##
-###########################
-suppressPackageStartupMessages({
-    library(testthat, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
-    library(magrittr, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
-    try(library(package_name, character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE))
-})
+    if(length(scripts_paths) >= 0)
+        invisible(sapply(scripts_paths, source))
 
+    return(invisible())
+}
 
-############################
-## Load Package Functions ##
-############################
-load_functions(path_functions)
+.load_helper_functions <- function(){
+    tests_dir_path <- file.path(.getwd(), "tests")
+    scripts_paths <- list.files(tests_dir_path, "helpers-xyz.R",
+                                full.names = TRUE, recursive = TRUE)
+    if(length(scripts_paths) >= 0)
+        invisible(sapply(scripts_paths, source))
 
+    return(invisible())
+}
 
-################
-## Unit Tests ##
-################
-message(rep("#",40), "\n## Running Unit Tests\n", rep("#",40))
-test_dir(file.path(path_project, "tests", "testthat"))
+.run_unit_tests <- function(){
+    .title("Running Unit Tests")
+    test_dir(file.path(.getwd(), "tests", "testthat"))
+}
 
+.run_component_tests <- function(){
+    .title("Running Component Tests")
+    test_dir(file.path(.getwd(), "tests", "component-tests"))
+}
 
-#####################
-## Component Tests ##
-#####################
-message(rep("#",40), "\n## Running Component Tests\n", rep("#",40))
-test_dir(file.path(path_project, "tests", "component-tests"))
+.run_integration_tests <- function(){
+    .title("Running Integration Tests")
+    test_dir(file.path(.getwd(), "tests", "integration-tests"))
+}
 
+.run_coverage_tests <- function(){
+    if(Sys.getenv("CONTINUOUS_INTEGRATION") != "") return(invisible())
+    .title("Running Coverage Tests")
+    test_dir(file.path(.getwd(), "tests", "coverage-tests"))
+}
 
-#######################
-## Integration Tests ##
-#######################
-message(rep("#",40), "\n## Running Integration Tests\n", rep("#",40))
-test_dir(file.path(path_project, "tests", "integration-tests"))
+.cleanup <- function(){
+    path_temp <- file.path(.getwd(), 'temp')
+    unlink(path_temp, recursive = TRUE, force = TRUE)
+}
 
+.get_package_name <- function(){
+    return(gsub(".Rcheck$", "", basename(.getwd())))
+}
 
-####################
-## Coverage Tests ##
-####################
-message(rep("#",40), "\n## Running Coverage Tests\n", rep("#",40))
-test_dir(file.path(path_project, "tests", "coverage-tests"))
+.getwd <- function(){
+    path_project <- getwd()
+    while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
+    return(path_project)
+}
 
+.title <- function(string){
+    seperator <- paste0(rep("#", 80), collapse = "")
+    message(paste0(c(seperator, paste("##", string), seperator), collapse = "\n"))
+}
 
-#############
-## Cleanup ##
-#############
-unlink(path_temp, recursive = TRUE, force = TRUE)
-suppressWarnings(rm(path_project, path_functions, path_temp))
+# Programming Logic ------------------------------------------------------------
+cat("\014")
+
+.load_packages()
+.load_functions()
+.load_helper_functions()
+
+.run_unit_tests()
+.run_component_tests()
+.run_integration_tests()
+.run_coverage_tests()
+
+.cleanup()
