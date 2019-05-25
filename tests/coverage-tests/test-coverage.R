@@ -7,7 +7,9 @@ test_that("unless stated otherwise, all scripts must surpass the code coverage t
     ## Setup ##
     ###########
     ## Run code coverage
-    covr_obj <- covr::package_coverage(path = .get_projet_dir(), quiet = TRUE)
+    covr_obj <- covr::package_coverage(path = .get_projet_dir(),
+                                       type = c("tests", "examples"),
+                                       quiet = TRUE)
     covr_list <- covr::coverage_to_list(covr_obj)
 
     ###########
