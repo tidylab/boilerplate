@@ -1,4 +1,13 @@
 # Helper Functions -------------------------------------------------------------
+.setup <- function(){
+    try({
+        cat("\014")
+        save_all()
+    }, silent = TRUE)
+
+    return(invisible())
+}
+
 .load_packages <- function(){
     suppressPackageStartupMessages({
         library(testthat, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
@@ -43,15 +52,29 @@
 }
 
 .run_coverage_tests <- function(){
+    working_directory <- getwd()
+    target <- .getwd()
+    on.exit(working_directory)
+
     if(Sys.getenv("CONTINUOUS_INTEGRATION") != "") return(invisible())
+
     .title("Running Coverage Tests")
-    invisible(callr::r(function(pkg) devtools::document(pkg), list(pkg = .getwd())))
-    test_dir(file.path(.getwd(), "tests", "coverage-tests"))
+    invisible(callr::r(function(pkg) devtools::document(pkg), list(pkg = target)))
+    test_dir(file.path(target, "tests", "coverage-tests"))
 }
 
 .cleanup <- function(){
     path_temp <- file.path(.getwd(), 'temp')
     unlink(path_temp, recursive = TRUE, force = TRUE)
+}
+
+save_all <- function()
+{
+    command <- '
+    if (rstudioapi::hasFun("documentSaveAll")) {
+        rstudioapi::documentSaveAll()
+    }'
+    eval(parse(text=command))
 }
 
 .get_package_name <- function(){
@@ -70,7 +93,7 @@
 }
 
 # Programming Logic ------------------------------------------------------------
-cat("\014")
+.setup()
 
 .load_packages()
 .load_functions()
