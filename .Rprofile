@@ -23,6 +23,4 @@ if("conflicted" %in% rownames(utils::installed.packages())){
         conflict_prefer("select", "dplyr")
         conflict_prefer("filter", "dplyr")
     })
-    ## Show conflicts on startup
-    #if(getOption("session.counter.call") == 0) conflicted::conflict_scout()
 }

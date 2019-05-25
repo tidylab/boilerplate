@@ -1,10 +1,12 @@
 # Helper functions -------------------------------------------------------------
 .uninstall_local_package <- function(){
+    message("\n","Uninstalling previous package version")
     try(remove.packages(.get_package_name()), silent = TRUE)
     return(invisible())
 }
 
 .install_development_packages <- function(){
+    message("\n","Installing development tools")
     .install.packages("tidyverse")
     .install.packages("devtools")
     .install.packages("testthat")
@@ -12,6 +14,7 @@
 }
 
 .install_local_package <- function(){
+    message("\n","Installing the current package version")
     .library("devtools")
     devtools::install_local(
         path = ".",
