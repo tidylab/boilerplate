@@ -45,7 +45,7 @@ reduces unnecessary variance between packages configurations.
 5.  In `README.Rmd` delete the **Useage** Section.
 6.  Render `README.Rmd` by clicking the **Knit** button.
 7.  Setup CI/CD on [Travis](https://travis-ci.org/tidylab).
-
+8.  Cover the project on [codecov](https://codecov.io/github/tidylab).
 
 ## Installation
 
