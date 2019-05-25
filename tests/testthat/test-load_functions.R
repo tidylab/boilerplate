@@ -6,12 +6,8 @@ context("unit test for load_functions")
 #'
 # case 1 -----------------------------------------------------------------------
 test_that("load_functions works given a folder with invalid functions", {
-    # Create a temporary folder
-    path_temp <- getwd()
-    while (length(grep("test", path_temp))>0) path_temp <- dirname(path_temp)
-    path_temp <- file.path(path_temp, "temp", "R")
-    unlink(path_temp, recursive = TRUE)
-    dir.create(path_temp, showWarnings = FALSE, recursive = TRUE)
+    path_temp <- .get_temp_dir()
+    .delete_and_create_dir(path_temp)
 
     # Create invalid functions
     ## Empty file
@@ -35,14 +31,8 @@ test_that("load_functions works given a folder with invalid functions", {
 
 # case 2 -----------------------------------------------------------------------
 test_that("load_functions works given a folder with valid functions", {
-    # Create a temporary folder
-    path_temp <- getwd()
-    while (length(grep("test", path_temp))>0) path_temp <- dirname(path_temp)
-    path_temp <- file.path(path_temp, "temp", "R")
-    unlink(path_temp, recursive = TRUE)
-    dir.create(path_temp, showWarnings = FALSE, recursive = TRUE)
-
-    # Unload foo, bar and .baz
+    path_temp <- .get_temp_dir()
+    .delete_and_create_dir(path_temp)
     suppressWarnings(rm(foo, bar, .baz))
 
     # Create dummy functions named "foo.R" and "bar.r"
@@ -76,12 +66,8 @@ test_that("load_functions works given a folder with valid functions", {
 
 # case 3 -----------------------------------------------------------------------
 test_that("load_functions works given a folder without files (empty folder)", {
-    # Create a temporary folder
-    path_temp <- getwd()
-    while (length(grep("test", path_temp))>0) path_temp <- dirname(path_temp)
-    path_temp <- file.path(path_temp, "temp", "R")
-    unlink(path_temp, recursive = TRUE)
-    dir.create(path_temp, showWarnings = FALSE, recursive = TRUE)
+    path_temp <- .get_temp_dir()
+    .delete_and_create_dir(path_temp)
 
     # Execute function on an empty folder
     expect_null(load_functions(path = path_temp, envir = environment()))
