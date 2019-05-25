@@ -19,6 +19,7 @@ jobs:
     - stage: "Build"
       name: "build-and-Check"
       script: Rscript --vanilla .github-ci/build-and-check.R
+      if: branch = master OR branch = develop
     - stage: "Test-Suite"
       name: "testthat"
       script: Rscript --vanilla .github-ci/test-suite.R
