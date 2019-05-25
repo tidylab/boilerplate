@@ -1,6 +1,4 @@
-####################################
-## Load Package Development Tools ##
-####################################
+# Load Package Development Tools -----------------------------------------------
 pkgs <- list("devtools", "testthat", "usethis", "tidyverse", "desc")
 suppressPackageStartupMessages(
     suppressWarnings(
@@ -13,9 +11,8 @@ message("Preloaded ", sum(pkgs_flags), " out of ", length(pkgs), " packages See 
 rm(pkgs, pkgs_flags)
 
 
-#########################
-## Conflict Resolution ##
-#########################
+
+# Conflict Resolution ----------------------------------------------------------
 if("conflicted" %in% rownames(utils::installed.packages())){
     suppressPackageStartupMessages(suppressMessages(library("conflicted")))
     ## Resolve conflicts - persistently prefer one function over another
@@ -23,4 +20,25 @@ if("conflicted" %in% rownames(utils::installed.packages())){
         conflict_prefer("select", "dplyr")
         conflict_prefer("filter", "dplyr")
     })
+}
+
+# Package Description Object ---------------------------------------------------
+.First <- function(){
+    try({
+        DESCRIPTION <<- desc::description$new()
+        options(DESCRIPTION = DESCRIPTION$clone())
+    }, silent = TRUE)
+}
+
+.Last <- function(){
+    try({
+        if(!isTRUE(all.equal(DESCRIPTION, .Options$DESCRIPTION))){
+            ans <- select.list(
+                choices = c("Yes", "No"),
+                title = "The package description file has changed. Do you want to save those changes?"
+            )
+            if(ans == "Yes")
+                DESCRIPTION$write()
+        }
+    }, silent = TRUE)
 }
