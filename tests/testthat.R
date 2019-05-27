@@ -56,7 +56,7 @@
     target <- .getwd()
     on.exit(working_directory)
 
-    if(Sys.getenv("CONTINUOUS_INTEGRATION") != "") return(invisible())
+    if(Sys.getenv("CI") != "") return(invisible())
 
     .title("Running Coverage Tests")
 
