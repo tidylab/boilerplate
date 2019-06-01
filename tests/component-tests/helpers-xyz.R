@@ -1,3 +1,12 @@
+# Predicates -------------------------------------------------------------------
+.are_disjoint_sets <- function(x, y){
+    return(length(intersect(x, y)) == 0)
+}
+
+.is_subset <- function(x, y){
+    return(length(setdiff(x, y)) == 0)
+}
+
 # Expectations -----------------------------------------------------------------
 expect_dir_exists_and_not_empty <- function(path){
     expect_dir_exists(path)

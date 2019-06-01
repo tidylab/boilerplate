@@ -52,7 +52,6 @@
     on.exit(setwd(working_directory))
     target <- .getwd()
 
-    if(Sys.getenv("CI") != "") return(invisible())
     if(is_testing()) return(invisible())
 
     .title("Running Coverage Tests")
