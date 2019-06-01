@@ -3,7 +3,7 @@ Type: Package
 Title: Boilerplate for 'tidylab' Packages
 URL: https://github.com/tidylab/tidylab.boilerplate
 BugReports: https://github.com/tidylab/tidylab.boilerplate/issues
-Version: 0.19.21
+Version: 0.19.22
 Authors@R: c(
             person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre"))
             )
@@ -18,9 +18,8 @@ Roxygen: list(markdown = TRUE)
 Language: en-GB
 Depends: R (>= 3.5)
 Imports: 
-    assertive (>= 0.3-5),
     magrittr (>= 1.5)
 Suggests: 
     testthat (>= 2.0.1),
-    covr (>= 3.2.1),
-    desc (>= 1.2.0)
+    desc (>= 1.2.0),
+    covr

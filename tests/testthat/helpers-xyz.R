@@ -1,8 +1,29 @@
-#  Expectations -----------------------------------------------------------
-expect_dir_exists <- function(object) expect_true(dir.exists(object))
-expect_file_exists <- function(object) expect_true(file.exists(object))
+# Predicates -------------------------------------------------------------------
+.are_disjoint_sets <- function(x, y){
+    return(length(intersect(x, y)) == 0)
+}
 
-# Misc --------------------------------------------------------------------
+.is_subset <- function(x, y){
+    return(length(setdiff(x, y)) == 0)
+}
+
+# Expectations -----------------------------------------------------------------
+expect_dir_exists_and_not_empty <- function(path){
+    expect_dir_exists(path)
+    expect_gte(length(list.files(path, pattern = ".*.R$")), 1)
+}
+expect_dir_exists <- function(path) expect_true(dir.exists(path))
+expect_dir_does_not_exist <- function(path) expect_false(dir.exists(path))
+expect_file_exists <- function(path) expect_true(file.exists(path))
+expect_no_md_files <- function(path) expect_length(list.files(path, recursive = TRUE, all.files = TRUE, pattern = ".*.md"), 0)
+expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(text, readLines(target))))
+
+# Setup and Teardown -----------------------------------------------------------
+.reset_project_env <- function() try(rm(list = ls(envir = .project), envir = .project), silent = TRUE)
+.create_temp_folder <- function() dir.create(.get_temp_dir(), showWarnings = FALSE, recursive = TRUE)
+.delete_temp_folder <- function() unlink(.get_temp_dir(), recursive = TRUE, force = TRUE)
+
+# Misc -------------------------------------------------------------------------
 .delete_and_create_dir <- function(path){
     stopifnot(path != .get_projet_dir())
     unlink(path, recursive = TRUE)

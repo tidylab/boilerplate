@@ -10,6 +10,7 @@
     .install.packages("tidyverse")
     .install.packages("devtools")
     .install.packages("testthat")
+    .install.packages("assertive")
     .install.packages("covr")
     .install.packages("callr")
 }
