@@ -1,10 +1,6 @@
 # Helper Functions -------------------------------------------------------------
 .setup <- function(){
-    try({
-        cat("\014")
-        save_all()
-    }, silent = TRUE)
-
+    try(save_all(), silent = TRUE)
     return(invisible())
 }
 
@@ -21,7 +17,7 @@
     scripts_paths <- list.files(R_dir_path, ".R", full.names = TRUE)
 
     if(length(scripts_paths) >= 0)
-        invisible(sapply(scripts_paths, source))
+        invisible(sapply(scripts_paths, base::source))
 
     return(invisible())
 }
@@ -31,7 +27,7 @@
     scripts_paths <- list.files(tests_dir_path, "helpers-xyz.R",
                                 full.names = TRUE, recursive = TRUE)
     if(length(scripts_paths) >= 0)
-        invisible(sapply(scripts_paths, source))
+        invisible(sapply(scripts_paths, base::source))
 
     return(invisible())
 }
@@ -53,10 +49,11 @@
 
 .run_coverage_tests <- function(){
     working_directory <- getwd()
+    on.exit(setwd(working_directory))
     target <- .getwd()
-    on.exit(working_directory)
 
     if(Sys.getenv("CI") != "") return(invisible())
+    if(is_testing()) return(invisible())
 
     .title("Running Coverage Tests")
 
