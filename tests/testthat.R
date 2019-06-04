@@ -7,7 +7,6 @@
 .load_packages <- function(){
     suppressPackageStartupMessages({
         library(testthat, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
-        library(magrittr, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
         try(library(.get_package_name(), character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE))
     })
 }
