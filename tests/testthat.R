@@ -1,10 +1,6 @@
 # Helper Functions -------------------------------------------------------------
 .setup <- function(){
     try(devtools::save_all(), silent = TRUE)
-    # suppressMessages({
-    #     capture.output(devtools::document())
-    #     capture.output(devtools::load_all(export_all = FALSE))
-    # })
     return(invisible())
 }
 
