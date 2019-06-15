@@ -1,13 +1,12 @@
 # Helper Functions -------------------------------------------------------------
 .setup <- function(){
-    try(save_all(), silent = TRUE)
+    try(devtools::save_all(), silent = TRUE)
     return(invisible())
 }
 
 .load_packages <- function(){
     suppressPackageStartupMessages({
         library(testthat, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
-        library(magrittr, character.only = FALSE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE)
         try(library(.get_package_name(), character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE, verbose = FALSE))
     })
 }
@@ -48,23 +47,17 @@
 }
 
 .run_coverage_tests <- function(){
-    working_directory <- getwd()
-    on.exit(setwd(working_directory))
-    target <- .getwd()
-
-    if(is_testing()) return(invisible())
-
+    if(identical(Sys.getenv("TESTTHAT"), "true")) return(invisible())
+    if(identical(Sys.getenv("DEVTOOLS_LOAD"), "true")) return(invisible())
+    .unload_all()
     .title("Running Coverage Tests")
-
-    command <- 'invisible(callr::r(function(pkg) devtools::document(pkg), list(pkg = target)))'
-    if(interactive()) eval(parse(text=command))
-
-    test_dir(file.path(target, "tests", "coverage-tests"))
+    test_dir(file.path(.getwd(), "tests", "coverage-tests"))
 }
 
 .cleanup <- function(){
     path_temp <- file.path(.getwd(), 'temp')
     unlink(path_temp, recursive = TRUE, force = TRUE)
+    .unload_all()
 }
 
 save_all <- function()
@@ -91,6 +84,14 @@ save_all <- function()
     message(paste0(c(seperator, paste("##", string), seperator), collapse = "\n"))
 }
 
+.unload_all <- function(){
+    package_name <- devtools::dev_packages()
+    package_name <- ifelse(length(package_name) == 0, basename(.getwd()), package_name)
+    try(detach(paste("package", package_name, sep = ":"), character.only = TRUE), silent = TRUE)
+    try(detach("devtools_shims", unload = TRUE), silent = TRUE)
+    return(invisible())
+}
+
 # Programming Logic ------------------------------------------------------------
 .setup()
 
@@ -104,3 +105,4 @@ save_all <- function()
 .run_coverage_tests()
 
 .cleanup()
+
