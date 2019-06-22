@@ -19,7 +19,6 @@ expect_no_md_files <- function(path) expect_length(list.files(path, recursive = 
 expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(text, readLines(target))))
 
 # Setup and Teardown -----------------------------------------------------------
-.reset_project_env <- function() try(rm(list = ls(envir = .project), envir = .project), silent = TRUE)
 .create_temp_folder <- function() dir.create(.get_temp_dir(), showWarnings = FALSE, recursive = TRUE)
 .delete_temp_folder <- function() unlink(.get_temp_dir(), recursive = TRUE, force = TRUE)
 
@@ -43,3 +42,20 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
     return(proj_path)
 }
 
+# Project Environment ----------------------------------------------------------
+.delete_temp_project_env <- function() {
+    try(get("assign")(x = ".project", value = NULL, envir = .GlobalEnv), silent = TRUE)
+    try(detach(".project", character.only = TRUE), silent = TRUE)
+    suppressWarnings(rm(.project))
+
+    return(invisible())
+}
+
+.create_temp_project_env <- function() {
+    .delete_temp_project_env()
+
+    get("assign")(x = ".project", value = new.env(), envir = .GlobalEnv)
+    get("attach")(.project, name = ".project")
+
+    return(invisible())
+}

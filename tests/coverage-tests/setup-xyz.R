@@ -10,3 +10,7 @@ if(!"covr" %in% rownames(utils::installed.packages()))
                      repos = "https://cloud.r-project.org",
                      dependencies = TRUE,
                      Ncpus = parallel::detectCores())
+
+.create_temp_folder()
+.delete_temp_project_env()
+

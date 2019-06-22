@@ -14,6 +14,10 @@ stages:
 before_install: Rscript -e 'Sys.getenv()'
 before_script: Rscript --no-init-file .github-ci/install-local.R
 after_success: Rscript -e 'message("Silence is Golden")'
+notifications:
+  email:
+    on_success: never # default: change
+    on_failure: always # default: always
 
 # Jobs -------------------------------------------------------------------------
 jobs:
