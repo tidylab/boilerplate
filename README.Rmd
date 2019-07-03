@@ -73,19 +73,10 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
 
 ## Installation
 
-``r package_name`` is part of `tidylab`. The easiest way to
-install it, is by installing `tidylab`:
 
-```
-# Install all tidylab packages
-# install.packages("devtools")
-devtools::install_github("tidylab/tidylab")
-```
+You can install ``r package_name`` by using:
 
-Alternativly, you can install only ``r package_name`` by using:
-
-```
-# Install only `r package_name`
-# install.packages("devtools")
+```{r, eval=FALSE}
+install.packages("devtools")
 devtools::install_github("tidylab/`r package_name`")
 ```
