@@ -1,12 +1,12 @@
 
-# `tidylab.boilerplate`
+# `boilerplate`
 
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/tidylab/tidylab.boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/tidylab.boilerplate)
+status](https://travis-ci.org/tidylab/boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/boilerplate)
 [![Code coverage
-status](https://codecov.io/gh/tidylab/tidylab.boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/tidylab.boilerplate?branch=master)
+status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate?branch=master)
 <!-- badges: end -->
 
 Boilerplate for ‘tidylab’ Packages
@@ -22,7 +22,7 @@ Boilerplate for ‘tidylab’ Packages
 As tidylab expands, new complexities arise. Using this boilerplate
 reduces unnecessary variance between packages configurations.
 
-<!--- Only relevant for the tidylab.boilerplate package -->
+<!--- Only relevant for the {boilerplate} package -->
 
 ## Useage
 
@@ -31,9 +31,8 @@ reduces unnecessary variance between packages configurations.
     [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/)
     approach in your development cycle.
 3.  Create a new release named `inception`.
-4.  Copy `tidylab.boilerplate` content to the new reposetory.
-5.  Change the `tidylab.boilerplate.Rproj` file to
-    `<package-name>.Rproj`.
+4.  Copy `boilerplate` content to the new reposetory.
+5.  Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
 6.  Open the `DESCRIPTION` file, and edit the following fields:
     1.  **Package** modify the package name while using the `tidylab.`
         prefix.
@@ -53,15 +52,9 @@ reduces unnecessary variance between packages configurations.
 
 ## Installation
 
-`tidylab.boilerplate` is part of `tidylab`. The easiest way to install
-it, is by installing `tidylab`:
+You can install `boilerplate` by using:
 
-    # Install all tidylab packages
-    # install.packages("devtools")
-    devtools::install_github("tidylab/tidylab")
-
-Alternativly, you can install only `tidylab.boilerplate` by using:
-
-    # Install only tidylab.boilerplate
-    # install.packages("devtools")
-    devtools::install_github("tidylab/tidylab.boilerplate")
+``` r
+install.packages("devtools")
+devtools::install_github("tidylab/`r package_name`")
+```
