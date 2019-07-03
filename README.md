@@ -22,7 +22,7 @@ Boilerplate for ‘tidylab’ Packages
 As tidylab expands, new complexities arise. Using this boilerplate
 reduces unnecessary variance between packages configurations.
 
-<!--- Only relevant for the tidylab.boilerplate package -->
+<!--- Only relevant for the {boilerplate} package -->
 
 ## Useage
 
@@ -32,8 +32,7 @@ reduces unnecessary variance between packages configurations.
     approach in your development cycle.
 3.  Create a new release named `inception`.
 4.  Copy `boilerplate` content to the new reposetory.
-5.  Change the `tidylab.boilerplate.Rproj` file to
-    `<package-name>.Rproj`.
+5.  Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
 6.  Open the `DESCRIPTION` file, and edit the following fields:
     1.  **Package** modify the package name while using the `tidylab.`
         prefix.

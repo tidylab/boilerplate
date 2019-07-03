@@ -48,7 +48,7 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
 
 `r desc_obj$get_field("Description")`
 
-<!--- Only relevant for the tidylab.boilerplate package -->
+<!--- Only relevant for the {boilerplate} package -->
 
 ## Useage
 
@@ -56,7 +56,7 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
 2. Use the [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/) approach in your development cycle. 
 3. Create a new release named `inception`.
 4. Copy ``r project_name`` content to the new reposetory.
-5. Change the `tidylab.boilerplate.Rproj` file to `<package-name>.Rproj`.
+5. Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
 6. Open the `DESCRIPTION` file, and edit the following fields:
     1. **Package** modify the package name while using the `tidylab.` prefix.
     2. **Title** modify the package title; use uppercase words with no period ('.').
