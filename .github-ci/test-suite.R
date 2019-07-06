@@ -1,13 +1,4 @@
-# Helper functions -------------------------------------------------------------
-.get_package_name <- function(){
-    return(gsub(".Rcheck$", "", basename(.getwd())))
-}
-
-.getwd <- function(){
-    path_project <- getwd()
-    while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-    return(path_project)
-}
+source(file.path(getwd(), ".github-ci", "helper-functions.R"))
 
 # Setup ------------------------------------------------------------------------
 Sys.setenv(NOT_CRAN = "true")
