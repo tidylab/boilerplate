@@ -57,7 +57,7 @@ jobs:
     - stage: "build"
       name: "build"
       script: R -q -e 'tic::script()'
-      #if: branch = master OR branch = develop
+      if: branch = master OR branch = develop
     - stage: "test"
       name: "testthat"
       script: R -q -e 'tic::script()'

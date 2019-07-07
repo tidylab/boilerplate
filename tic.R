@@ -1,5 +1,5 @@
 library(tic)
-sapply(list.files("./.tic", full.names = TRUE), source)
+invisible(sapply(list.files("./.tic", full.names = TRUE), source))
 
 # Stage: Before Install --------------------------------------------------------
 get_stage("before_install") %>%
