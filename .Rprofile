@@ -1,5 +1,5 @@
 # Load Package Development Tools -----------------------------------------------
-pkgs <- list("devtools", "testthat", "usethis", "tidyverse", "desc")
+pkgs <- list("devtools", "testthat", "usethis", "tidyverse", "desc", "tic")
 suppressPackageStartupMessages(
     suppressWarnings(
         invisible(

@@ -1,45 +1,77 @@
-# Configurations ---------------------------------------------------------------
-warnings_are_errors: false
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+# Default configuration for use with tic package
+# tic documentation to get started: https://ropenscilabs.github.io/tic/
+# Usually you shouldn't need to change the first part of the file
+
+# DO NOT CHANGE THE CODE BELOW
+before_install:
+  - R -q -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
+  - R -q -e 'if (getRversion() < "3.2" && !requireNamespace("curl")) install.packages("curl")'
+  - R -q -e 'remotes::install_github("ropenscilabs/tic", upgrade = "always"); print(tic::dsl_load()); tic::prepare_all_stages()'
+  - R -q -e 'tic::before_install()'
+install: R -q -e 'tic::install()'
+after_install: R -q -e 'tic::after_install()'
+before_script: R -q -e 'tic::before_script()'
+script: R -q -e 'tic::script()'
+after_success: R -q -e 'tic::after_success()'
+after_failure: R -q -e 'tic::after_failure()'
+before_deploy: R -q -e 'tic::before_deploy()'
+deploy:
+  provider: script
+  script: R -q -e 'tic::deploy()'
+  on:
+    all_branches: true
+after_deploy: R -q -e 'tic::after_deploy()'
+after_script: R -q -e 'tic::after_script()'
+# DO NOT CHANGE THE CODE ABOVE
+
+# Custom parts:
+
+# Header
 language: r
 r: 3.5.3
 sudo: false
+dist: xenial
+cache: packages
 latex: false
 fortran: true
-cache: packages
-stages:
-  - Build
-  - Test-Suite
-  - name: Report
-    if: branch = master
-before_install: Rscript -e 'Sys.getenv()'
-before_script: Rscript --no-init-file .github-ci/install-local.R
-after_success: Rscript -e 'message("Silence is Golden")'
-notifications:
-  email:
-    on_success: never # default: change
-    on_failure: always # default: always
 
-# Jobs -------------------------------------------------------------------------
+#env
+env:
+  global:
+  - MAKEFLAGS="-j 2"
+
+#services
+services:
+
+#stages
+stages:
+  - build
+  - test
+  - name: report
+    if: branch = master
+
+#jobs
 jobs:
   include:
-    - stage: "Build"
-      name: "build-and-Check"
-      script: Rscript --vanilla .github-ci/build-and-check.R
+    - stage: "build"
+      name: "build"
+      script: R -q -e 'tic::script()'
       if: branch = master OR branch = develop
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "testthat"
-      script: Rscript --vanilla .github-ci/test-suite.R
-    - stage: "Test-Suite"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
       name: "component-tests"
-      script: Rscript --vanilla .github-ci/test-suite.R
+      script: R -q -e 'tic::script()'
       if: branch = master OR branch = develop
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "integration-tests"
-      script: Rscript --vanilla .github-ci/test-suite.R
+      script: R -q -e 'tic::script()'
       if: branch = master OR branch = develop
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "coverage-tests"
-      script: Rscript --vanilla .github-ci/test-suite.R
-    - stage: "Report"
+      script: R -q -e 'tic::script()'
+    - stage: "report"
       name: "coverage-report"
-      script: Rscript --vanilla .github-ci/reports.R
+      script: R -q -e 'tic::script()'

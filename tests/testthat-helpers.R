@@ -32,8 +32,6 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
 
 .run_component_tests <- function(){
     .title("Running Component Tests")
-    if(.is_testing()) return(invisible())
-    if(.is_developing()) return(invisible())
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "component-tests"))
 }
 
@@ -99,6 +97,10 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
 
 .is_developing <- function(){
     identical(Sys.getenv("DEVTOOLS_LOAD"), "true")
+}
+
+.is_integrating <- function(){
+    identical(Sys.getenv("CI"), "true")
 }
 
 .is_not_on_cran <- function(){
