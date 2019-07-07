@@ -10,25 +10,22 @@ TestSuite <- R6::R6Class(
 
     public = list(
 
-        initialize <- function(job_name){
+        initialize = function(job_name){
             private$job_name <- job_name
         },
 
         run = function() {
-
-            package_name <- desc::description$new()$get_field("Package")
-
-            library(package_name, character.only = TRUE)
-
-            testthat::test_dir(file.path(private$path_tests, private$job_name),
+            library(private$package_name, character.only = TRUE)
+            testthat::test_dir(private$get_path_to_tests(),
                                show_report = TRUE,
                                stop_on_failure = TRUE,
-                               package = package_name)
+                               package = private$package_name)
         }
     ),
     private = list(
-        path_tests = file.path(getwd(), "tests"),
-        job_name = character()
+        get_path_to_tests = function() file.path(getwd(), "tests", private$job_name),
+        job_name = character(),
+        package_name = desc::description$new()$get_field("Package")
     )
 )
 
