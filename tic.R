@@ -1,5 +1,6 @@
 library(tic)
 source(file.path(getwd(), ".tic", "helpers-tic.R"))
+source(file.path(getwd(), ".tic", "InstallLocal"))
 source(file.path(getwd(), ".tic", "BuildAndCheck.R"))
 source(file.path(getwd(), ".tic", "TestSuite.R"))
 source(file.path(getwd(), ".tic", "Report.R"))
@@ -11,6 +12,13 @@ get_stage("before_install") %>%
     add_step(step_install_cran("testthat")) %>%
     add_step(step_install_cran("desc")) %>%
     add_step(step_install_cran("covr"))
+
+# Stage: Install
+get_stage("install") %>%
+    add_step(step_install_cran("devtools")) %>%
+    add_step(step_install_cran("roxygen2")) %>%
+    add_step(step_install_cran("desc")) %>%
+    add_step(step_install_local_package())
 
 # Stage: Before Script ---------------------------------------------------------
 get_stage("before_script") %>%
