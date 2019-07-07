@@ -26,18 +26,19 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
 }
 
 .run_unit_tests <- function(){
+    if(.is_testing()) return(invisible())
     .title("Running Unit Tests")
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "testthat"))
 }
 
 .run_component_tests <- function(){
-    .title("Running Component Tests")
     if(.is_testing()) return(invisible())
-    if(.is_developing()) return(invisible())
+    .title("Running Component Tests")
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "component-tests"))
 }
 
 .run_integration_tests <- function(){
+    if(.is_testing()) return(invisible())
     .title("Running Integration Tests")
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "integration-tests"))
 }
