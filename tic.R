@@ -8,7 +8,8 @@ get_stage("before_script") %>%
     add_step(step_run_code(devtools::document()))
 
 # Stage: Script ----------------------------------------------------------------
-get_stage("script") %>%
+if(ci_get_job_name() %in% c("testthat", "component-tests", "integration-tests", "coverage-tests"))
+    get_stage("script") %>%
     add_step(step_install_cran("desc")) %>%
     add_step(step_install_cran("testthat")) %>%
     add_step(step_run_test_suite(job_name = ci_get_job_name()))

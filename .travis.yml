@@ -46,32 +46,32 @@ services:
 
 #stages
 stages:
-  - Build
-  - Test-Suite
-  - name: Report
+  - build
+  - test
+  - name: report
     if: branch = master
 
 #jobs
 jobs:
   include:
-    - stage: "Build"
-      name: "build-and-Check"
+    - stage: "build"
+      name: "build"
       script: R -q -e 'tic::script()'
       if: branch = master OR branch = develop
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "testthat"
       script: R -q -e 'tic::script()'
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "component-tests"
       script: R -q -e 'tic::script()'
       if: branch = master OR branch = develop
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "integration-tests"
       script: R -q -e 'tic::script()'
       if: branch = master OR branch = develop
-    - stage: "Test-Suite"
+    - stage: "test"
       name: "coverage-tests"
       script: R -q -e 'tic::script()'
-    - stage: "Report"
+    - stage: "report"
       name: "coverage-report"
       script: R -q -e 'tic::script()'
