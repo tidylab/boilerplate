@@ -29,10 +29,12 @@ after_script: R -q -e 'tic::after_script()'
 
 # Header
 language: r
+r: 3.5.3
 sudo: false
 dist: xenial
 cache: packages
 latex: false
+fortran: true
 
 #env
 env:
