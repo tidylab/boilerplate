@@ -15,6 +15,7 @@ TestSuite <- R6::R6Class(
         },
 
         run = function() {
+            message("\n", rep("#",40), "\n", "## Test Suite: ",  private$job_name, "\n", rep("#",40))
             library(private$package_name, character.only = TRUE)
             testthat::test_dir(private$get_path_to_tests(),
                                show_report = TRUE,
