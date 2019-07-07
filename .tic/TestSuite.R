@@ -1,4 +1,11 @@
-TestSuite <- R6Class(
+#' Step: Run Test-Suite
+#'
+#' Run one of "testthat", "component-tests", "integration-tests" or
+#' "coverage-tests".
+#'
+#' @family steps
+#' @export
+TestSuite <- R6::R6Class(
     "TestSuite", inherit = TicStep,
 
     public = list(
