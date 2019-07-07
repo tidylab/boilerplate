@@ -1,3 +1,4 @@
+library(tic)
 source(file.path(getwd(), ".tic", "helpers-tic.R"))
 source(file.path(getwd(), ".tic", "BuildAndCheck.R"))
 source(file.path(getwd(), ".tic", "TestSuite.R"))
