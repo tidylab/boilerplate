@@ -43,3 +43,35 @@ env:
 
 #services
 services:
+
+#stages
+stages:
+  - Build
+  - Test-Suite
+  - name: Report
+    if: branch = master
+
+#jobs
+jobs:
+  include:
+    - stage: "Build"
+      name: "build-and-Check"
+      script: R -q -e 'tic::script()'
+      if: branch = master OR branch = develop
+    - stage: "Test-Suite"
+      name: "testthat"
+      script: R -q -e 'tic::script()'
+    - stage: "Test-Suite"
+      name: "component-tests"
+      script: R -q -e 'tic::script()'
+      if: branch = master OR branch = develop
+    - stage: "Test-Suite"
+      name: "integration-tests"
+      script: R -q -e 'tic::script()'
+      if: branch = master OR branch = develop
+    - stage: "Test-Suite"
+      name: "coverage-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "Report"
+      name: "coverage-report"
+      script: R -q -e 'tic::script()'
