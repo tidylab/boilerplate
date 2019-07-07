@@ -14,7 +14,7 @@ Report <- R6::R6Class(
         },
 
         run = function() {
-            message("\n", rep("#",40), "\n", "## Test Suite: ",  private$job_name, "\n", rep("#",40))
+            message("\n", rep("#",40), "\n", "## Render Report: ",  private$job_name, "\n", rep("#",40))
             library(private$package_name, character.only = TRUE)
             switch (private$job_name,
                     "coverage-report" = private$codecov()
