@@ -1,0 +1,22 @@
+TestSuite <- R6Class(
+    "TestSuite", inherit = TicStep,
+
+    public = list(
+        run = function() {
+            ci_get_job_name <- function() tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
+
+            package_name <- desc::description$new()$get_field("Package")
+
+            library(package_name, character.only = TRUE)
+
+            testthat::test_dir(file.path(getwd(), "tests", ci_get_job_name()),
+                               show_report = TRUE,
+                               stop_on_failure = TRUE,
+                               package = package_name)
+        }
+    )
+)
+
+step_run_test_suite <- function(){
+    TestSuite$new()
+}
