@@ -26,19 +26,16 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
 }
 
 .run_unit_tests <- function(){
-    if(.is_testing()) return(invisible())
     .title("Running Unit Tests")
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "testthat"))
 }
 
 .run_component_tests <- function(){
-    if(.is_testing()) return(invisible())
     .title("Running Component Tests")
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "component-tests"))
 }
 
 .run_integration_tests <- function(){
-    if(.is_testing()) return(invisible())
     .title("Running Integration Tests")
     testthat::test_dir(file.path(.get_projet_dir(), "tests", "integration-tests"))
 }
@@ -100,6 +97,10 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
 
 .is_developing <- function(){
     identical(Sys.getenv("DEVTOOLS_LOAD"), "true")
+}
+
+.is_integrating <- function(){
+    identical(Sys.getenv("CI"), "true")
 }
 
 .is_not_on_cran <- function(){

@@ -1,6 +1,5 @@
 # Stage: Before Script ---------------------------------------------------------
 get_stage("before_script") %>%
-    add_step(step_run_code(Sys.setenv(TESTTHAT = "true"))) %>%
     add_step(step_install_cran("devtools")) %>%
     add_step(step_install_cran("roxygen2")) %>%
     add_step(step_run_code(devtools::document()))
@@ -19,5 +18,5 @@ get_stage("script") %>%
 
 
 
-do_package_checks()
+# do_package_checks()
 
