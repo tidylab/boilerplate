@@ -23,7 +23,7 @@ if(ci_get_job_name() %in% c("build")){
 } else if(ci_get_job_name() %in% c("coverage-report")){
     get_stage("script") %>%
         add_step(step_install_cran("covr")) %>%
-        add_step(step_build_and_check(job_name = ci_get_job_name()))
+        add_step(step_render_report(job_name = ci_get_job_name()))
 }
 
 
