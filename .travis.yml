@@ -48,8 +48,9 @@ services:
 stages:
   - build
   - test
-  - name: report
-    if: branch = master
+  - report
+  #- name: report
+  #  if: branch = master
 
 #jobs
 jobs:
@@ -57,18 +58,18 @@ jobs:
     - stage: "build"
       name: "build"
       script: R -q -e 'tic::script()'
-      if: branch = master OR branch = develop
+      #if: branch = master OR branch = develop
     - stage: "test"
       name: "testthat"
       script: R -q -e 'tic::script()'
     - stage: "test"
       name: "component-tests"
       script: R -q -e 'tic::script()'
-      if: branch = master OR branch = develop
+      #if: branch = master OR branch = develop
     - stage: "test"
       name: "integration-tests"
       script: R -q -e 'tic::script()'
-      if: branch = master OR branch = develop
+      #if: branch = master OR branch = develop
     - stage: "test"
       name: "coverage-tests"
       script: R -q -e 'tic::script()'
