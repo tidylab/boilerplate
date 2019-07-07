@@ -3,7 +3,8 @@ source(file.path(getwd(), ".tic", "helper-functions.R"))
 # Stage: Before Script ---------------------------------------------------------
 get_stage("before_script") %>%
     add_step(step_install_cran("devtools")) %>%
-    add_step(step_run_code("devtools::document()"))
+    add_step(step_install_cran("roxygen2")) %>%
+    add_step(step_run_code(devtools::document()))
 
 
 

@@ -1,21 +1,18 @@
-^\.github-ci$
+# Files ------------------------------------------------------------------------
+^\.Rprofile$
+.*\.ini$
 ^\.gitattributes$
 ^appveyor\.yml$
 ^codecov\.yml$
-^\.Rprofile$
-.*\.ini$
-^inst/templates/package$
-^\.gitlab-ci$
-^figures$
-^sync\.ffs_db$
+^\.travis\.yml$
+^tic\.R$
 ^README\.Rmd$
 ^LICENSE\.md$
-^roxygen2_template\.R$
 ^.*\.Rproj$
-^\.Rproj\.user$
-^\.travis\.yml$
-^\.gitlab-ci/*
-^temp$
-^data-raw$
-^public$
-^tic\.R$
+
+# Folders ----------------------------------------------------------------------
+^\.tic/*
+^\.Rproj\.user/*
+^temp/*
+^data-raw/*
+^public/*
