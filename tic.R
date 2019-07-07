@@ -1,6 +1,6 @@
 library(tic)
 source(file.path(getwd(), ".tic", "helpers-tic.R"))
-source(file.path(getwd(), ".tic", "InstallLocal"))
+source(file.path(getwd(), ".tic", "InstallLocal.R"))
 source(file.path(getwd(), ".tic", "BuildAndCheck.R"))
 source(file.path(getwd(), ".tic", "TestSuite.R"))
 source(file.path(getwd(), ".tic", "Report.R"))
