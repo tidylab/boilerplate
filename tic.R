@@ -4,6 +4,14 @@ source(file.path(getwd(), ".tic", "BuildAndCheck.R"))
 source(file.path(getwd(), ".tic", "TestSuite.R"))
 source(file.path(getwd(), ".tic", "Report.R"))
 
+# Stage: Before Install --------------------------------------------------------
+get_stage("before_install") %>%
+    add_step(step_install_cran("tidyverse")) %>%
+    add_step(step_install_cran("devtools")) %>%
+    add_step(step_install_cran("testthat")) %>%
+    add_step(step_install_cran("desc")) %>%
+    add_step(step_install_cran("covr"))
+
 # Stage: Before Script ---------------------------------------------------------
 get_stage("before_script") %>%
     add_step(step_install_cran("devtools")) %>%
