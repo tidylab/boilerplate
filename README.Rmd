@@ -2,6 +2,10 @@
 output: github_document
 ---
 
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", out.width = "100%")
+```
+
 ```{r, echo = FALSE}
 #######################
 ## Get Project Paths ##
@@ -47,7 +51,9 @@ covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph
 
 ---
 
-![Research factory](https://i.imgur.com/RLEQkhe.png)
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
+```
 
 <!-- Package Description -->
 

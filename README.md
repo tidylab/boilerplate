@@ -9,11 +9,12 @@ status](https://travis-ci.org/tidylab/boilerplate.svg?branch=master)](https://tr
 status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate/?branch=master)
 <!-- badges: end -->
 
-Boilerplate for ‘tidylab’ Packages
+Boilerplate for ‘tidylab’
+Packages
 
 -----
 
-![Research factory](https://i.imgur.com/RLEQkhe.png)
+<img src="https://i.imgur.com/RLEQkhe.png" width="100%" style="display: block; margin: auto;" />
 
 <!-- Package Description -->
 
