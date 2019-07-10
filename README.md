@@ -6,7 +6,7 @@
 [![Travis build
 status](https://travis-ci.org/tidylab/boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/boilerplate)
 [![Code coverage
-status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate?branch=master)
+status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate/?branch=master)
 <!-- badges: end -->
 
 Boilerplate for ‘tidylab’ Packages
@@ -54,7 +54,5 @@ reduces unnecessary variance between packages configurations.
 
 You can install `boilerplate` by using:
 
-``` r
-install.packages("devtools")
-devtools::install_github("tidylab/`r package_name`")
-```
+    install.packages("devtools")
+    devtools::install_github("tidylab/boilerplate")

@@ -4,11 +4,10 @@ output: github_document
 
 ```{r, echo = FALSE}
 #######################
-## Get Package Paths ##
+## Get Project Paths ##
 #######################
 path_project <- getwd()
 while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
-project_name <-  gsub(".Rcheck$", "", basename(path_project))
 
 ############################# 
 ## Get Package DESCRIPTION ##
@@ -16,19 +15,27 @@ project_name <-  gsub(".Rcheck$", "", basename(path_project))
 library(desc)
 target <- file.path(path_project, "DESCRIPTION")
 desc_obj <- description$new(target)
-package_name <- desc_obj$get_field("Package")
+
+##########################
+## Set System Variables ##
+##########################
+package_url <- desc_obj$get_field("BugReports") %>% stringr::str_remove("/issues$")
+package_name <- stringr::str_extract_all(package_url, "[^/]+(?://[^/]*)*")[[1]][3]
+package_repo <- stringr::str_extract_all(package_url, "[^/]+(?://[^/]*)*")[[1]][2:3] %>% paste0(collapse ="/")
+Sys.setenv(CI_PROJECT_NAME = package_name)
+Sys.setenv(CI_PROJECT_URL = package_url)
 
 ####################
 ## Construct URLs ##
 ####################
-travis_url <- paste0("https://travis-ci.org/tidylab/", project_name)
+travis_url <- paste0("https://travis-ci.org/", package_repo)
 pipeline_url <- paste0(travis_url, ".svg?branch=master")
 
-codecov_url <- paste0("https://codecov.io/github/tidylab/", project_name, "?branch=master")
-covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/master/graph/badge.svg")
+codecov_url <- paste0("https://codecov.io/github/", package_repo, "/", "?branch=master")
+covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph/badge.svg")
 ```
 
-# ``r project_name``
+# ``r package_name``
 
 <!-- badges: start -->
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
@@ -55,7 +62,7 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
 1. Create a new repo on GitHub.
 2. Use the [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/) approach in your development cycle. 
 3. Create a new release named `inception`.
-4. Copy ``r project_name`` content to the new reposetory.
+4. Copy ``r package_name`` content to the new reposetory.
 5. Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
 6. Open the `DESCRIPTION` file, and edit the following fields:
     1. **Package** modify the package name while using the `tidylab.` prefix.
@@ -76,7 +83,7 @@ covr_url <- paste0("https://codecov.io/gh/tidylab/", project_name, "/branch/mast
 
 You can install ``r package_name`` by using:
 
-```{r, eval=FALSE}
+```
 install.packages("devtools")
-devtools::install_github("tidylab/`r package_name`")
+devtools::install_github("`r package_repo`")
 ```
