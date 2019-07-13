@@ -7,6 +7,7 @@
 status](https://travis-ci.org/tidylab/boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/boilerplate)
 [![Code coverage
 status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate/?branch=master)
+<!-- [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tidylab/boilerplate/master?urlpath=rstudio) -->
 <!-- badges: end -->
 
 Boilerplate for ‘tidylab’
@@ -14,7 +15,7 @@ Packages
 
 -----
 
-<img src="https://i.imgur.com/RLEQkhe.png" width="100%" style="display: block; margin: auto;" />
+<img src="https://i.imgur.com/RLEQkhe.png" width="75%" style="display: block; margin: auto;" />
 
 <!-- Package Description -->
 
@@ -47,9 +48,15 @@ reduces unnecessary variance between packages configurations.
 7.  In `README.Rmd` delete the **Useage** Section.
 8.  Render `README.Rmd` by clicking the **Knit** button.
 9.  Push changed on the `inception` branch.
-10. Setup CI/CD by running`usethis::use_travis()`.
-11. Revert changes made on `.travis.yml`.
-12. Cover the project on [codecov](https://codecov.io/github/tidylab).
+10. Go to [Travis website](https://travis-ci.org/account/repositories),
+    add the project and enable its integration.
+11. Decide if you would need binder – an RStudio Server that lets you
+    demonstrate the package. If you do then:
+
+<!-- end list -->
+
+  - Uncomment *build-binder* under *.travis.yml*; and
+  - Uncomment *Launch Rstudio Binder* from README.Rmd.
 
 ## Installation
 
