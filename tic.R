@@ -9,7 +9,7 @@ get_stage("before_install") %>%
     add_step(step_install_cran("testthat")) %>%
     add_step(step_install_cran("desc")) %>%
     add_step(step_install_cran("covr")) %>%
-    add_step(step_install_github("karthik/holepunch"))
+    add_step(step_install_github("karthik/holepunch", dependencies = TRUE, upgrade = "never"))
 
 # Stage: Install
 get_stage("install") %>%
