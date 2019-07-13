@@ -8,6 +8,14 @@ expect_dir_does_not_exist <- function(path) expect_false(dir.exists(path))
 expect_file_exists <- function(path) expect_true(file.exists(path))
 expect_no_md_files <- function(path) expect_length(list.files(path, recursive = TRUE, all.files = TRUE, pattern = ".*.md"), 0)
 expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(text, readLines(target))))
+expect_subset <- function(x, y) expect_true(.is_subset(x ,y))
+expect_disjoint_sets <- function(x, y) expect_true(.are_disjoint_sets(x, y))
+expect_equal_sets <- function(x, y) expect_true(.are_set_equal(x, y), label = "Sets are not equal")
+expect_class <- function(object, class) expect_true(any(base::class(object) %in% class), label = paste("object is a", base::class(object), "not", class))
+expect_no_duplicates <- function(x) expect_true(.has_no_duplicates(x))
+expect_an_empty_data.frame <- function(x){expect_class(x, "data.frame"); expect_equal(nrow(x), 0, label = paste("data.frame is not-empty; "))}
+expect_a_non_empty_data.frame <- function(x){expect_class(x, "data.frame"); expect_gt(nrow(x), 0, label = paste("data.frame is empty; "))}
+expect_table_has_col_names <- function(object, col_names) expect_subset(col_names, colnames(object))
 
 # Setup and Teardown -----------------------------------------------------------
 .create_temp_folder <- function() dir.create(.get_temp_dir(), showWarnings = FALSE, recursive = TRUE)
@@ -20,8 +28,10 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
     if(.is_testing()) return(invisible())
     if(.is_developing()) return(invisible())
 
-    try(devtools::document(pkg = .get_projet_dir()), silent = TRUE)
-    try(devtools::load_all(path = .get_projet_dir()), silent = TRUE)
+    try({
+        devtools::document(pkg = .get_projet_dir())
+        devtools::load_all(path = .get_projet_dir(), export_all = FALSE)
+    })
     invisible()
 }
 
@@ -83,6 +93,10 @@ expect_text_appears_in_document <- function(target, text) expect_true(any(grepl(
 }
 
 # Predicates -------------------------------------------------------------------
+.are_set_equal <- function(x, y){
+    return(setequal(x %>% distinct(), y %>% distinct()))
+}
+
 .are_disjoint_sets <- function(x, y){
     return(length(intersect(x, y)) == 0)
 }
