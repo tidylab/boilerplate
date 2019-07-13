@@ -7,14 +7,14 @@ get_stage("before_install") %>%
     add_step(step_install_cran("devtools")) %>%
     add_step(step_install_cran("testthat")) %>%
     add_step(step_install_cran("desc")) %>%
-    add_step(step_install_cran("covr")) %>%
-    add_step(step_install_cran("config"))
+    add_step(step_install_cran("covr"))
 
 # Stage: Install
 get_stage("install") %>%
     add_step(step_install_cran("devtools")) %>%
     add_step(step_install_cran("roxygen2")) %>%
     add_step(step_install_cran("desc")) %>%
+    add_step(step_install_deps()) %>%
     add_step(step_install_local_package())
 
 # Stage: Before Script ---------------------------------------------------------
