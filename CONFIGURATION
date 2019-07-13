@@ -6,7 +6,14 @@ default:
   conflicted:
     - !expr conflicted::conflict_prefer("filter", "dplyr", quiet = TRUE)
     - !expr conflicted::conflict_prefer("select", "dplyr", quiet = TRUE)
-  path_project: !expr getwd()
+    - !expr eval(parse(text = '.project <<- new.env()'))
+  path_project:   !expr getwd()
+  path_analysis:  !expr file.path(getwd(), "inst", "analysis")
+  path_data:      !expr file.path(getwd(), "inst", "extdata")
+  path_docs:      !expr file.path(getwd(), "inst", "docs")
+  path_models:    !expr file.path(getwd(), "inst", "models")
+  path_functions: !expr file.path(getwd(), "R")
+  path_tests:     !expr file.path(getwd(), "tests")
 
 development:
   packages:
