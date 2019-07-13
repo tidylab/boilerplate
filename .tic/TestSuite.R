@@ -31,5 +31,7 @@ TestSuite <- R6::R6Class(
 )
 
 step_run_test_suite <- function(job_name){
-    TestSuite$new(job_name)
+    choices <- list.dirs(file.path(getwd(), "tests"), full.names = FALSE, recursive = FALSE)
+    try(TestSuite$new(match.arg(tolower(job_name), choices)), silent = TRUE)
+    return(invisible())
 }
