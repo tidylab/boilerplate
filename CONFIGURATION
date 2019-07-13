@@ -1,0 +1,18 @@
+default:
+  startup:
+    - !expr options(tidyverse.quiet = TRUE)
+    - !expr devtools::document()
+    - !expr devtools::load_all(export_all = FALSE, helpers = FALSE)
+  conflicted:
+    - !expr conflicted::conflict_prefer("filter", "dplyr", quiet = TRUE)
+    - !expr conflicted::conflict_prefer("select", "dplyr", quiet = TRUE)
+  path_project: !expr getwd()
+
+development:
+  packages:
+    - !expr require(devtools, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(usethis, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(testthat, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(tidyverse, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(desc, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(tic, warn.conflicts = FALSE, quietly = TRUE)
