@@ -15,6 +15,7 @@ TestSuite <- R6::R6Class(
         },
 
         run = function() {
+            if(private$is_job_name_known(private$job_name) == FALSE) return(invisible())
             message("\n", rep("#",40), "\n", "## Test Suite: ",  private$job_name, "\n", rep("#",40))
             library(private$package_name, character.only = TRUE)
             testthat::test_dir(private$get_path_to_tests(),
@@ -24,14 +25,17 @@ TestSuite <- R6::R6Class(
         }
     ),
     private = list(
-        get_path_to_tests = function() file.path(getwd(), "tests", private$job_name),
+        is_job_name_known = function(job_name){
+            job_name %in% list.dirs(file.path(getwd(), "tests"), full.names = FALSE, recursive = FALSE)
+        },
+        get_path_to_tests = function(){
+            file.path(getwd(), "tests", private$job_name)
+        },
         job_name = character(),
         package_name = desc::description$new()$get_field("Package")
     )
 )
 
 step_run_test_suite <- function(job_name){
-    choices <- list.dirs(file.path(getwd(), "tests"), full.names = FALSE, recursive = FALSE)
-    try(TestSuite$new(match.arg(tolower(job_name), choices)), silent = TRUE)
-    return(invisible())
+    TestSuite$new(job_name)
 }

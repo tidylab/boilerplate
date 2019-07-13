@@ -14,6 +14,7 @@ Report <- R6::R6Class(
         },
 
         run = function() {
+            if(private$is_job_name_known(private$job_name) == FALSE) return(invisible())
             message("\n", rep("#",40), "\n", "## Render Report: ",  private$job_name, "\n", rep("#",40))
             library(private$package_name, character.only = TRUE)
             switch (private$job_name,
@@ -22,7 +23,11 @@ Report <- R6::R6Class(
             )
         }
     ),
+
     private = list(
+        is_job_name_known = function(job_name){
+            job_name %in% c("coverage-report", "build-binder")
+        },
         codecov = function() {
             Sys.setenv(TESTTHAT = "true")
             covr::codecov()
