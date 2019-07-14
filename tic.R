@@ -3,6 +3,7 @@ invisible(sapply(list.files("./.tic", full.names = TRUE), source))
 
 # Stage: Before Install --------------------------------------------------------
 get_stage("before_install") %>%
+    add_step(step_install_cran("config")) %>%
     add_step(step_install_cran("tidyverse")) %>%
     add_step(step_install_cran("remotes")) %>%
     add_step(step_install_cran("devtools")) %>%
