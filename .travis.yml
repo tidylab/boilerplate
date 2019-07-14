@@ -47,10 +47,9 @@ services:
 #stages
 stages:
   - build
-  - name: test
-    if: branch = nothing
+  - test
   - name: report
-    if: branch = master OR hotfix/bug_at_master
+    if: branch = master
 
 #jobs
 jobs:
