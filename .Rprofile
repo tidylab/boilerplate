@@ -1,6 +1,6 @@
 Sys.setenv(R_CONFIG_ACTIVE = "development")
 
-.project <- config::get(file = "CONFIGURATION")
+invisible(config::get(file = "CONFIGURATION"))
 
 .First <- function(){}
 .Last <- function(){}
