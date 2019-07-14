@@ -91,9 +91,7 @@ demonstrate the package. If you do then:
   * Uncomment *build-binder* under *.travis.yml*; and
   * Uncomment *Launch Rstudio Binder* from README.Rmd.
 
-
 ## Installation
-
 
 You can install ``r package_name`` by using:
 
