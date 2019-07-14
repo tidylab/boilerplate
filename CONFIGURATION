@@ -1,0 +1,27 @@
+default:
+  startup:
+    - !expr options(tidyverse.quiet = TRUE)
+    - !expr devtools::document()
+    - !expr devtools::load_all(export_all = FALSE, helpers = FALSE)
+  conflicted:
+    - !expr conflicted::conflict_prefer("filter", "dplyr", quiet = TRUE)
+    - !expr conflicted::conflict_prefer("select", "dplyr", quiet = TRUE)
+    - !expr eval(parse(text = '.project <<- new.env()'))
+  paths:
+    - !expr options(path_project   = getwd())
+    - !expr options(path_inst      = file.path(.Options$path_project, "inst"))
+    - !expr options(path_analysis  = file.path(.Options$path_inst, "analysis"))
+    - !expr options(path_data      = file.path(.Options$path_inst, "data"))
+    - !expr options(path_docs      = file.path(.Options$path_inst, "docs"))
+    - !expr options(path_functions = file.path(.Options$path_project, "R"))
+    - !expr options(path_models    = file.path(.Options$path_inst, "models"))
+    - !expr options(path_tests     = file.path(.Options$path_project, "tests"))
+
+development:
+  packages:
+    - !expr require(devtools, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(usethis, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(testthat, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(tidyverse, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(desc, warn.conflicts = FALSE, quietly = TRUE)
+    - !expr require(tic, warn.conflicts = FALSE, quietly = TRUE)

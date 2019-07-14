@@ -6,12 +6,13 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE, fig.align = "center", out.width = "100%")
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
 #######################
 ## Get Project Paths ##
 #######################
 path_project <- getwd()
 while (length(grep("test", path_project))>0) path_project <- dirname(path_project)
+devtools::load_all(path_project)
 
 ############################# 
 ## Get Package DESCRIPTION ##
@@ -34,9 +35,12 @@ Sys.setenv(CI_PROJECT_URL = package_url)
 ####################
 travis_url <- paste0("https://travis-ci.org/", package_repo)
 pipeline_url <- paste0(travis_url, ".svg?branch=master")
+mybinder_url <- "http://mybinder.org/badge.svg"
+
 
 codecov_url <- paste0("https://codecov.io/github/", package_repo, "/", "?branch=master")
 covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph/badge.svg")
+binder_url <- paste0("https://mybinder.org/v2/gh/", package_repo, "/master?urlpath=rstudio")
 ```
 
 # ``r package_name``
@@ -44,6 +48,7 @@ covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph
 <!-- badges: start -->
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
 [![Code coverage status](`r covr_url`)](`r codecov_url`)
+<!-- [![Launch Rstudio Binder](`r mybinder_url`)](`r binder_url`) -->
 <!-- badges: end -->
 
 
@@ -51,7 +56,7 @@ covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph
 
 ---
 
-```{r, echo = FALSE, out.width = "100%"}
+```{r, echo = FALSE, out.width = "75%"}
 knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 ```
 
@@ -79,9 +84,12 @@ knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 7. In `README.Rmd` delete the **Useage** Section.
 8. Render `README.Rmd` by clicking the **Knit** button.
 9. Push changed on the `inception` branch.
-10. Setup CI/CD  by running`usethis::use_travis()`.
-11. Revert changes made on `.travis.yml`.
-12. Cover the project on [codecov](https://codecov.io/github/tidylab).
+10. Go to [Travis website](https://travis-ci.org/account/repositories), add the
+project and enable its integration.
+11. Decide if you would need binder -- an RStudio Server that lets you
+demonstrate the package. If you do then:
+  * Uncomment *build-binder* under *.travis.yml*; and
+  * Uncomment *Launch Rstudio Binder* from README.Rmd.
 
 
 ## Installation
