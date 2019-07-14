@@ -6,7 +6,6 @@ default:
   conflicted:
     - !expr conflicted::conflict_prefer("filter", "dplyr", quiet = TRUE)
     - !expr conflicted::conflict_prefer("select", "dplyr", quiet = TRUE)
-    - !expr eval(parse(text = '.project <<- new.env()'))
   paths:
     - !expr options(path_project   = getwd())
     - !expr options(path_inst      = file.path(.Options$path_project, "inst"))
