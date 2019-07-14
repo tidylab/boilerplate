@@ -49,7 +49,7 @@ stages:
   - build
   - test
   - name: report
-    if: branch = master
+    if: branch = master OR hotfix/bug_at_master
 
 #jobs
 jobs:
