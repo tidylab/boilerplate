@@ -30,7 +30,8 @@ Report <- R6::R6Class(
         },
         codecov = function() {
             Sys.setenv(TESTTHAT = "true")
-            covr::codecov(quiet = FALSE)
+            msg <- covr::codecov(quiet = FALSE)
+            print(msg)
             Sys.setenv(TESTTHAT = "")
         },
         build_binder = function(){

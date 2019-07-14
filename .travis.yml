@@ -47,7 +47,8 @@ services:
 #stages
 stages:
   - build
-  - test
+  - name: test
+    if: branch = nothing
   - name: report
     if: branch = master OR hotfix/bug_at_master
 
