@@ -1,3 +1,6 @@
+# Windows files
+desktop.ini
+
 # History files
 .Rhistory
 .Rapp.history
@@ -8,6 +11,11 @@
 # Session Data files
 .RData
 .Renviron
+
+# Data Files
+*.csv
+*.rds
+*.xlsx
 
 # Example code in package build process
 *-Ex.R
@@ -31,8 +39,13 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 /*_cache/
 /cache/
+*_cache*
+figure-docx/
+figure-html/
+*.html
+*.docx
 
-# Temporary files created by R markdown
+# Temporary files and folders created by R markdown
 *.utf8.md
 *.knit.md
 
@@ -41,7 +54,5 @@ rsconnect/
 .Rproj.user
 temp/
 
-# Windows files
-desktop.ini
 
 
