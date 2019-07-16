@@ -4,7 +4,6 @@ invisible(sapply(list.files("./.tic", full.names = TRUE), source))
 # Stage: Before Install --------------------------------------------------------
 get_stage("before_install") %>%
     add_step(step_install_cran("tidyverse")) %>%
-    add_step(step_install_cran("remotes")) %>%
     add_step(step_install_cran("devtools")) %>%
     add_step(step_install_cran("testthat")) %>%
     add_step(step_install_cran("desc")) %>%
@@ -13,6 +12,9 @@ get_stage("before_install") %>%
 
 # Stage: Install
 get_stage("install") %>%
+    add_step(step_install_cran("devtools")) %>%
+    add_step(step_install_cran("roxygen2")) %>%
+    add_step(step_install_cran("desc")) %>%
     add_step(step_install_deps()) %>%
     add_step(step_install_local_package())
 
