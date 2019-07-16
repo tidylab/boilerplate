@@ -20,9 +20,11 @@ Depends: R (>= 3.5)
 Imports: 
     config (>= 0.3),
     conflicted (>= 1.0.2),
-    devtools (>= 2.0.2),
     yaml (>= 2.2.0)
 Suggests: 
-    testthat (>= 2.0.1),
+    covr,
+    devtools (>= 2.0.2),
     desc (>= 1.2.0),
-    covr
+    testthat (>= 2.0.1)
+
+
