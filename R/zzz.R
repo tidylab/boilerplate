@@ -18,12 +18,15 @@
 
         read_yaml_without_expression_evaluation <- function(file){
             yaml::read_yaml(
-                source_path,
+                file,
                 eval.expr = FALSE,
                 handlers = list(expr = function(x) {paste("!expr", x)})
             )
         }
 
+        add_default_to_config <- function(config) unique(c("default", config))
+
+        config <- add_default_to_config(config)
         yaml_content <- read_yaml_without_expression_evaluation(file)
         yaml_content <- yaml_content[config]
         yaml_content <- remove_special_apostrophe_from_yaml(yaml_content)
@@ -31,7 +34,9 @@
         yaml_path <- tempfile()
         base::get("writeLines")(text = yaml_content, con = yaml_path)
 
-        config::get(value = value, config = "default", file = yaml_path, use_parent = use_parent)
+        suppressWarnings(
+            config::get(value = value, config = config, file = yaml_path, use_parent = use_parent)
+        )
     }
 
     find_CONFIGURATION_path <- function(){

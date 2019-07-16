@@ -1,5 +1,6 @@
 default:
   startup:
+    - !expr message("Loading default configuration")
     - !expr options(tidyverse.quiet = TRUE)
   paths:
     - !expr options(path_project   = getwd())
@@ -19,15 +20,16 @@ default:
     - !expr conflicted::conflict_prefer("summarise", "dplyr", quiet = TRUE)
 
 package:
-  messages:
-    - !expr message("Loading CONFIGURATION in package mode")
+  startup:
+    - !expr message("Loading pacakge configuration")
+    - !expr stop("This line should not be run")
 
 session:
   startup:
-    - !expr devtools::document()
-    - !expr devtools::load_all(export_all = FALSE, helpers = FALSE)
+    - !expr message("Loading session configuration")
+    #- !expr utils::capture.output(devtools::document())
+    #- !expr utils::capture.output(devtools::load_all(export_all = FALSE, helpers = FALSE))
   messages:
-    - !expr message("Loading CONFIGURATION in session mode")
   packages:
     - !expr require(devtools, warn.conflicts = FALSE, quietly = TRUE)
     - !expr require(usethis, warn.conflicts = FALSE, quietly = TRUE)
