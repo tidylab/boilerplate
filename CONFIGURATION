@@ -1,7 +1,9 @@
 default:
   startup:
-    - !expr message("Loading default configuration")
     - !expr options(tidyverse.quiet = TRUE)
+  messages:
+    - !expr if(is.null(getOption("default_flag"))) message("Loading default configuration")
+    - !expr options(default_flag = TRUE)
   paths:
     - !expr options(path_project   = getwd())
     - !expr options(path_inst      = file.path(.Options$path_project, "inst"))
@@ -20,16 +22,18 @@ default:
     - !expr conflicted::conflict_prefer("summarise", "dplyr", quiet = TRUE)
 
 package:
-  startup:
+  messages:
     - !expr message("Loading pacakge configuration")
-    - !expr stop("This line should not be run")
 
 session:
   startup:
-    - !expr message("Loading session configuration")
-    #- !expr utils::capture.output(devtools::document())
-    #- !expr utils::capture.output(devtools::load_all(export_all = FALSE, helpers = FALSE))
+    - !expr sink(tempfile())
+    - !expr devtools::document()
+    - !expr devtools::load_all(export_all = FALSE, helpers = FALSE)
+    - !expr sink()
   messages:
+    - !expr if(is.null(getOption("session_flag"))) message("Loading session configuration")
+    - !expr options(session_flag = TRUE)
   packages:
     - !expr require(devtools, warn.conflicts = FALSE, quietly = TRUE)
     - !expr require(usethis, warn.conflicts = FALSE, quietly = TRUE)
