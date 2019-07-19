@@ -23,7 +23,8 @@ default:
 
 package:
   messages:
-    - !expr message("Loading pacakge configuration")
+    - !expr if(is.null(getOption("package_flag"))) message("Loading package configuration")
+    - !expr options(package_flag = TRUE)
 
 session:
   startup:

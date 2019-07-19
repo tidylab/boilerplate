@@ -26,5 +26,3 @@ Suggests:
     devtools (>= 2.0.2),
     desc (>= 1.2.0),
     testthat (>= 2.0.1)
-
-
