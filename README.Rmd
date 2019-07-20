@@ -76,11 +76,11 @@ knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 4. Copy ``r package_name`` content to the new reposetory.
 5. Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
 6. Open the `DESCRIPTION` file, and edit the following fields:
-    1. **Package** modify the package name while using the `tidylab.` prefix.
-    2. **Title** modify the package title; use uppercase words with no period ('.').
-    3. **URL** modify the package URL such that it leads to its GitHub repo.
-    4. **BugReports** edit the URL such that it leads to the package issue page.
-    5. **Description** modify the package decription.
+1. **Package** modify the package name while using the `tidylab.` prefix.
+2. **Title** modify the package title; use uppercase words with no period ('.').
+3. **URL** modify the package URL such that it leads to its GitHub repo.
+4. **BugReports** edit the URL such that it leads to the package issue page.
+5. **Description** modify the package decription.
 7. In `README.Rmd` delete the **Useage** Section.
 8. Render `README.Rmd` by clicking the **Knit** button.
 9. Push changed on the `inception` branch.
@@ -88,8 +88,8 @@ knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 project and enable its integration.
 11. Decide if you would need binder -- an RStudio Server that lets you
 demonstrate the package. If you do then:
-  * Uncomment *build-binder* under *.travis.yml*; and
-  * Uncomment *Launch Rstudio Binder* from README.Rmd.
+* Uncomment *build-binder* under *.travis.yml*; and
+* Uncomment *Launch Rstudio Binder* from README.Rmd.
 
 ## Installation
 
@@ -101,6 +101,12 @@ devtools::install_github("`r package_repo`")
 ```
 ## Function Dependencies
 
-```{r function-dependencies, echo = FALSE, out.width = "100%"}
-plot_package_function_dependencies(package_name)
+```{r package-function-dependencies, echo = FALSE, out.width = "100%"}
+plot_function_dependencies(package_name)
+```
+
+## Datasets
+
+```{r package-data-overview, out.width = "100%", fig.height=0.5, echo = FALSE}
+plot_datasets_overview(x = list(mtcars = mtcars, iris = iris))
 ```

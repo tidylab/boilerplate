@@ -12,23 +12,39 @@ badge_custom <- function(x, y, color, url = "about::blank"){
     paste0("[", badge, "](", url, ")")
 }
 
-plot_package_function_dependencies <- function(package_name){
-    .install_package("mvbutils")
-    fun_names <- .get_package_function_names(package_name)
-    env_name <- .get_package_env_name(package_name)
-    invisible(
-        capture.output(
-            deps <- mvbutils::foodweb(rprune = fun_names, where = env_name)
-        )
+plot_function_dependencies <- function(package_name){
+    suppressMessages(
+        devtools::install_github(
+            "datastorm-open/DependenciesGraphs",
+            dependencies = TRUE, upgrade = "never")
     )
-    # plot(deps)
+    suppressPackageStartupMessages(library(DependenciesGraphs))
+
+    package_name %>%
+        .get_package_env_name() %>%
+        DependenciesGraphs::envirDependencies() %>%
+        plot()
+
 }
 
-# Low-level Functions -----------------------------------------------------
-.install_package <- function(pkg){
-    is_package_installed <- function(pkg) pkg %in% rownames(utils::installed.packages())
+plot_datasets_overview <- function(x){
+    suppressMessages(
+        devtools::install_github(
+            "krlmlr/dm",
+            dependencies = TRUE, upgrade = "never")
+    )
 
-    if(is_package_installed(pkg)) return(invisible())
+    x %>%
+        dm::as_dm() %>%
+        dm::cdm_draw(
+            col_attr = c("column", "type")[1:2],
+            view_type = "all", columnArrows = FALSE, rankdir = "BT"
+        )
+}
+
+# Low-level Functions ----------------------------------------------------------
+.install_package <- function(pkg){
+    if(.is_package_installed(pkg)) return(invisible())
 
     message("--> Installing {", pkg, "}")
     utils::install.packages(pkg,
@@ -48,3 +64,6 @@ plot_package_function_dependencies <- function(package_name){
 .get_package_env_name <- function(package_name){
     paste0("package:", package_name)
 }
+
+.is_package_installed <- function(pkg) pkg %in% rownames(utils::installed.packages())
+
