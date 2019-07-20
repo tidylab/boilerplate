@@ -71,6 +71,4 @@ You can install `boilerplate` by using:
 
 ## Datasets
 
-### Overview
-
 <img src="README_files/figure-gfm/cdm_draw-overview-1.png" width="100%" style="display: block; margin: auto;" />
