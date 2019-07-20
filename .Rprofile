@@ -1,15 +1,15 @@
 .First <- function(){
-    copy_CONFIGURATION_from_root_to_inst <- function(){
-        source <- "CONFIGURATION"
-        target <- file.path("inst", "CONFIGURATION")
-        dir.create(dirname(target), showWarnings = FALSE, recursive = TRUE)
-        file.copy(from = source, to = target, overwrite = TRUE)
+    path <- list.files(pattern = "^zzz.R$", all.files = TRUE, recursive = TRUE)
+    if(length(path) != 1) {
+        warning("Skipping .Rprofile")
+        return(invisible())
+    } else {
+        source(path, TRUE)
     }
 
-    copy_CONFIGURATION_from_root_to_inst()
-    is_package_installed <- function(package) package %in% rownames(utils::installed.packages())
-    if(is_package_installed("config"))
-    invisible(config::get(file = "CONFIGURATION"))
+    .copy_CONFIGURATION_from_root_to_inst()
+    if(.is_package_installed("config"))
+        .load_config(file = "CONFIGURATION", config = "session")
 }
 
 .Last <- function(){}

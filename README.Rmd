@@ -3,6 +3,7 @@ output: github_document
 ---
 
 ```{r setup, echo=FALSE}
+source("README.R", TRUE)
 knitr::opts_chunk$set(echo = TRUE, fig.align = "center", out.width = "100%")
 ```
 
@@ -36,7 +37,6 @@ Sys.setenv(CI_PROJECT_URL = package_url)
 travis_url <- paste0("https://travis-ci.org/", package_repo)
 pipeline_url <- paste0(travis_url, ".svg?branch=master")
 mybinder_url <- "http://mybinder.org/badge.svg"
-
 
 codecov_url <- paste0("https://codecov.io/github/", package_repo, "/", "?branch=master")
 covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph/badge.svg")
@@ -79,8 +79,8 @@ knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
     1. **Package** modify the package name while using the `tidylab.` prefix.
     2. **Title** modify the package title; use uppercase words with no period ('.').
     3. **URL** modify the package URL such that it leads to its GitHub repo.
-    3. **BugReports** edit the URL such that it leads to the package issue page.
-    4. **Description** modify the package decription.
+    4. **BugReports** edit the URL such that it leads to the package issue page.
+    5. **Description** modify the package decription.
 7. In `README.Rmd` delete the **Useage** Section.
 8. Render `README.Rmd` by clicking the **Knit** button.
 9. Push changed on the `inception` branch.
@@ -98,4 +98,9 @@ You can install ``r package_name`` by using:
 ```
 install.packages("devtools")
 devtools::install_github("`r package_repo`")
+```
+## Function Dependencies
+
+```{r function-dependencies, echo = FALSE, out.width = "100%"}
+plot_package_function_dependencies(package_name)
 ```

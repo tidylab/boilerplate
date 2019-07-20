@@ -11,6 +11,7 @@ desktop.ini
 # Session Data files
 .RData
 .Renviron
+inst/CONFIGURATION
 
 # Data Files
 *.csv
