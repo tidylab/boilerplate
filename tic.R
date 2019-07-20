@@ -1,6 +1,10 @@
 library(tic)
 invisible(sapply(list.files("./.tic", full.names = TRUE), source))
 
+# Stage: After Failure ----------------------------------------------------------
+get_stage("after_failure") %>%
+    add_step(step_run_code(show_error_log()))
+
 # Stage: Before Install --------------------------------------------------------
 get_stage("before_install") %>%
     add_step(step_install_cran("tidyverse")) %>%
@@ -29,3 +33,5 @@ get_stage("script") %>%
     add_step(step_build_and_check(job_name = ci_get_job_name())) %>%
     add_step(step_run_test_suite(job_name = ci_get_job_name())) %>%
     add_step(step_render_report(job_name = ci_get_job_name()))
+
+
