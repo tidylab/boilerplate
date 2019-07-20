@@ -12,6 +12,7 @@
 .*\.md$
 .*\.png$
 .*\.html$
+^CONFIGURATION$
 
 # Folders ----------------------------------------------------------------------
 ^\.tic/*
@@ -20,4 +21,4 @@
 ^data-raw/*
 ^public/*
 ^\.Rproj\.user$
-^CONFIGURATION$
+^inst/data/$

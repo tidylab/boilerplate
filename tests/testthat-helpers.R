@@ -122,6 +122,35 @@ expect_table_has_col_names <- function(object, col_names) expect_subset(col_name
 }
 
 # Misc -------------------------------------------------------------------------
+.get_package_name <- function(){
+    is_not_null <- function(x) !is.null(x)
+
+    get_package_name_via_desc <- function(){
+        package_name <- try(desc::description$new()$get_field("Package"), silent = TRUE)
+        if("try-error" %in% class(package_name)) return(NULL)
+        return(package_name)
+    }
+
+    get_package_name_via_devtools <- function(){
+        package_name <- try(devtools::dev_packages(), silent = TRUE)
+        if("try-error" %in% class(package_name)) return(NULL)
+        if(length(package_name) == 0) return(NULL)
+        return(package_name)
+    }
+
+    get_package_name_via_path <- function(){
+        basename(.get_projet_dir())
+    }
+
+    if(is_not_null(get_package_name_via_desc())){
+        return(get_package_name_via_desc())
+    } else if (is_not_null(get_package_name_via_devtools())){
+        return(get_package_name_via_devtools())
+    } else {
+        return(get_package_name_via_path())
+    }
+}
+
 .delete_and_create_dir <- function(path){
     stopifnot(path != .get_projet_dir())
     unlink(path, recursive = TRUE)
@@ -141,8 +170,4 @@ expect_table_has_col_names <- function(object, col_names) expect_subset(col_name
     return(proj_path)
 }
 
-.get_package_name <- function(){
-    package_name <- devtools::dev_packages()
-    package_name <- ifelse(length(package_name) == 0, basename(.get_projet_dir()), package_name)
-    return(package_name)
-}
+
