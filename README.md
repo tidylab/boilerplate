@@ -36,21 +36,21 @@ reduces unnecessary variance between packages configurations.
 4.  Copy `boilerplate` content to the new reposetory.
 5.  Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
 6.  Open the `DESCRIPTION` file, and edit the following fields:
-    1.  **Package** modify the package name while using the `tidylab.`
-        prefix.
-    2.  **Title** modify the package title; use uppercase words with no
-        period (‘.’).
-    3.  **URL** modify the package URL such that it leads to its GitHub
-        repo.
-    4.  **BugReports** edit the URL such that it leads to the package
-        issue page.
-    5.  **Description** modify the package decription.
-7.  In `README.Rmd` delete the **Useage** Section.
-8.  Render `README.Rmd` by clicking the **Knit** button.
-9.  Push changed on the `inception` branch.
-10. Go to [Travis website](https://travis-ci.org/account/repositories),
+7.  **Package** modify the package name while using the `tidylab.`
+    prefix.
+8.  **Title** modify the package title; use uppercase words with no
+    period (‘.’).
+9.  **URL** modify the package URL such that it leads to its GitHub
+    repo.
+10. **BugReports** edit the URL such that it leads to the package issue
+    page.
+11. **Description** modify the package decription.
+12. In `README.Rmd` delete the **Useage** Section.
+13. Render `README.Rmd` by clicking the **Knit** button.
+14. Push changed on the `inception` branch.
+15. Go to [Travis website](https://travis-ci.org/account/repositories),
     add the project and enable its integration.
-11. Decide if you would need binder – an RStudio Server that lets you
+16. Decide if you would need binder – an RStudio Server that lets you
     demonstrate the package. If you do then:
 
 <!-- end list -->
@@ -67,4 +67,8 @@ You can install `boilerplate` by using:
 
 ## Function Dependencies
 
-<img src="README_files/figure-gfm/function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
+
+## Datasets
+
+<img src="README_files/figure-gfm/package-data-overview-1.png" width="100%" style="display: block; margin: auto;" />
