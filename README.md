@@ -64,3 +64,7 @@ You can install `boilerplate` by using:
 
     install.packages("devtools")
     devtools::install_github("tidylab/boilerplate")
+
+## Function Dependencies
+
+<img src="README_files/figure-gfm/function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
