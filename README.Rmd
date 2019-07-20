@@ -107,6 +107,6 @@ plot_function_dependencies(package_name)
 
 ## Datasets
 
-```{r cdm_draw-overview, out.width = "100%", fig.height=0.5, echo = FALSE}
+```{r package-data-overview, out.width = "100%", fig.height=0.5, echo = FALSE}
 plot_datasets_overview(x = list(mtcars = mtcars, iris = iris))
 ```
