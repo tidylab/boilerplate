@@ -1,5 +1,5 @@
 
-# `boilerplate`
+# `boilerplate.package`
 
 <!-- badges: start -->
 
@@ -33,8 +33,9 @@ reduces unnecessary variance between packages configurations.
     [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/)
     approach in your development cycle.
 3.  Create a new release named `inception`.
-4.  Copy `boilerplate` content to the new reposetory.
-5.  Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
+4.  Copy `boilerplate.package` content to the new reposetory.
+5.  Change the `boilerplate.package.Rproj` file to
+    `<package-name>.Rproj`.
 6.  Open the `DESCRIPTION` file, and edit the following fields:
 7.  **Package** modify the package name while using the `tidylab.`
     prefix.
@@ -60,7 +61,7 @@ reduces unnecessary variance between packages configurations.
 
 ## Installation
 
-You can install `boilerplate` by using:
+You can install `boilerplate.package` by using:
 
     install.packages("devtools")
     devtools::install_github("tidylab/boilerplate")
