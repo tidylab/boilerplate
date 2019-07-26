@@ -16,6 +16,7 @@ expect_no_duplicates <- function(x) expect_true(.has_no_duplicates(x))
 expect_an_empty_data.frame <- function(x){expect_class(x, "data.frame"); expect_equal(nrow(x), 0, label = paste("data.frame is not-empty; "))}
 expect_a_non_empty_data.frame <- function(x){expect_class(x, "data.frame"); expect_gt(nrow(x), 0, label = paste("data.frame is empty; "))}
 expect_table_has_col_names <- function(object, col_names) expect_subset(col_names, colnames(object))
+expect_not_identical <- function(object, expected) expect_false(identical(object, expected), info  = "Error: objects A and B are identical")
 
 # Setup and Teardown -----------------------------------------------------------
 .create_temp_folder <- function() dir.create(.get_temp_dir(), showWarnings = FALSE, recursive = TRUE)

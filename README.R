@@ -28,10 +28,12 @@ plot_function_dependencies <- function(package_name){
 }
 
 plot_datasets_overview <- function(x){
-    suppressMessages(
-        devtools::install_github(
-            "krlmlr/dm",
-            dependencies = TRUE, upgrade = "never")
+    suppressWarnings(
+        suppressMessages(
+            devtools::install_github(
+                "krlmlr/dm",
+                dependencies = TRUE, upgrade = "never")
+        )
     )
 
     x %>%
