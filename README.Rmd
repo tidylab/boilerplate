@@ -26,7 +26,7 @@ desc_obj <- description$new(target)
 ## Set System Variables ##
 ##########################
 package_url <- desc_obj$get_field("BugReports") %>% stringr::str_remove("/issues$")
-package_name <- stringr::str_extract_all(package_url, "[^/]+(?://[^/]*)*")[[1]][3]
+package_name <- desc_obj$get_field("Package")
 package_repo <- stringr::str_extract_all(package_url, "[^/]+(?://[^/]*)*")[[1]][2:3] %>% paste0(collapse ="/")
 Sys.setenv(CI_PROJECT_NAME = package_name)
 Sys.setenv(CI_PROJECT_URL = package_url)
@@ -74,7 +74,7 @@ knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 2. Use the [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/) approach in your development cycle. 
 3. Create a new release named `inception`.
 4. Copy ``r package_name`` content to the new reposetory.
-5. Change the `boilerplate.Rproj` file to `<package-name>.Rproj`.
+5. Change the ``r paste0(package_name,".Rproj")`` file to `<package-name>.Rproj`.
 6. Open the `DESCRIPTION` file, and edit the following fields:
 1. **Package** modify the package name while using the `tidylab.` prefix.
 2. **Title** modify the package title; use uppercase words with no period ('.').
@@ -107,6 +107,6 @@ plot_function_dependencies(package_name)
 
 ## Datasets
 
-```{r package-data-overview, out.width = "100%", fig.height=0.5, echo = FALSE}
+```{r package-data-overview, out.width = "100%", fig.height=0.5, echo = FALSE, error=FALSE}
 plot_datasets_overview(x = list(mtcars = mtcars, iris = iris))
 ```

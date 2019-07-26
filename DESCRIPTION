@@ -1,9 +1,9 @@
-Package: boilerplate
+Package: boilerplate.package
 Type: Package
 Title: Boilerplate for 'tidylab' Packages
-URL: https://github.com/tidylab/boilerplate
+URL: https://github.com/tidylab/boilerplate.package
 BugReports: https://github.com/tidylab/boilerplate/issues
-Version: 0.19.29
+Version: 0.19.30
 Authors@R: c(
             person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre"))
             )
