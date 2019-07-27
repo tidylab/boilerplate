@@ -4,10 +4,10 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/tidylab/boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/boilerplate)
+status](https://travis-ci.org/tidylab/boilerplate.package.svg?branch=master)](https://travis-ci.org/tidylab/boilerplate.package)
 [![Code coverage
-status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate/?branch=master)
-<!-- [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tidylab/boilerplate/master?urlpath=rstudio) -->
+status](https://codecov.io/gh/tidylab/boilerplate.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate.package/?branch=master)
+<!-- [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tidylab/boilerplate.package/master?urlpath=rstudio) -->
 <!-- badges: end -->
 
 Boilerplate for ‘tidylab’
@@ -21,8 +21,13 @@ Packages
 
 ## Overview
 
-As tidylab expands, new complexities arise. Using this boilerplate
-reduces unnecessary variance between packages configurations.
+Using this boilerplate reduces:  
+\* Unnecessary variance between packages configurations; and  
+\* Development time spent on making a barebone package working for the
+first time.  
+This is possible as the boilerplate comes with:  
+\* Fully configured test-suite, including code-coverage; and  
+\* Fully configured continuous-integration (CI) script for Travis.
 
 <!--- Only relevant for the {boilerplate} package -->
 
@@ -64,7 +69,7 @@ reduces unnecessary variance between packages configurations.
 You can install `boilerplate.package` by using:
 
     install.packages("devtools")
-    devtools::install_github("tidylab/boilerplate")
+    devtools::install_github("tidylab/boilerplate.package")
 
 ## Function Dependencies
 
