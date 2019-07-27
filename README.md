@@ -7,7 +7,6 @@
 status](https://travis-ci.org/tidylab/template.package.svg?branch=master)](https://travis-ci.org/tidylab/template.package)
 [![Code coverage
 status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/template.package/?branch=master)
-<!-- [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tidylab/template.package/master?urlpath=rstudio) -->
 <!-- badges: end -->
 
 Boilerplate for ‘tidylab’

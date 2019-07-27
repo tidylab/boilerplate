@@ -75,6 +75,3 @@ jobs:
     - stage: "report"
       name: "coverage-report"
       script: R -q -e 'tic::script()'
-#    - stage: "report"
-#      name: "build-binder"
-#      script: R -q -e 'tic::script()'
