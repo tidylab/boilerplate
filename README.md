@@ -1,13 +1,12 @@
 
-# `boilerplate.package`
+# `template.package`
 
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/tidylab/boilerplate.svg?branch=master)](https://travis-ci.org/tidylab/boilerplate)
+status](https://travis-ci.org/tidylab/template.package.svg?branch=master)](https://travis-ci.org/tidylab/template.package)
 [![Code coverage
-status](https://codecov.io/gh/tidylab/boilerplate/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/boilerplate/?branch=master)
-<!-- [![Launch Rstudio Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/tidylab/boilerplate/master?urlpath=rstudio) -->
+status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/template.package/?branch=master)
 <!-- badges: end -->
 
 Boilerplate for ‘tidylab’
@@ -21,8 +20,13 @@ Packages
 
 ## Overview
 
-As tidylab expands, new complexities arise. Using this boilerplate
-reduces unnecessary variance between packages configurations.
+Using this template reduces:  
+\* Unnecessary variance between packages configurations; and  
+\* Development time spent on making a barebone package working for the
+first time.  
+This is possible as the template comes with:  
+\* Fully configured test-suite, including code-coverage; and  
+\* Fully configured continuous-integration (CI) script for Travis.
 
 <!--- Only relevant for the {boilerplate} package -->
 
@@ -33,9 +37,8 @@ reduces unnecessary variance between packages configurations.
     [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/)
     approach in your development cycle.
 3.  Create a new release named `inception`.
-4.  Copy `boilerplate.package` content to the new reposetory.
-5.  Change the `boilerplate.package.Rproj` file to
-    `<package-name>.Rproj`.
+4.  Copy `template.package` content to the new reposetory.
+5.  Change the `template.package.Rproj` file to `<package-name>.Rproj`.
 6.  Open the `DESCRIPTION` file, and edit the following fields:
 7.  **Package** modify the package name while using the `tidylab.`
     prefix.
@@ -61,10 +64,10 @@ reduces unnecessary variance between packages configurations.
 
 ## Installation
 
-You can install `boilerplate.package` by using:
+You can install `template.package` by using:
 
     install.packages("devtools")
-    devtools::install_github("tidylab/boilerplate")
+    devtools::install_github("tidylab/template.package")
 
 ## Function Dependencies
 

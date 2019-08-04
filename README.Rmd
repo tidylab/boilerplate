@@ -48,7 +48,6 @@ binder_url <- paste0("https://mybinder.org/v2/gh/", package_repo, "/master?urlpa
 <!-- badges: start -->
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
 [![Code coverage status](`r covr_url`)](`r codecov_url`)
-<!-- [![Launch Rstudio Binder](`r mybinder_url`)](`r binder_url`) -->
 <!-- badges: end -->
 
 

@@ -18,6 +18,40 @@ expect_a_non_empty_data.frame <- function(x){expect_class(x, "data.frame"); expe
 expect_table_has_col_names <- function(object, col_names) expect_subset(col_names, colnames(object))
 expect_not_identical <- function(object, expected) expect_false(identical(object, expected), info  = "Error: objects A and B are identical")
 
+# Predicates -------------------------------------------------------------------
+.are_set_equal <- function(x, y){
+    return(setequal(x %>% distinct(), y %>% distinct()))
+}
+
+.are_disjoint_sets <- function(x, y){
+    return(length(intersect(x, y)) == 0)
+}
+
+.is_subset <- function(x, y){
+    return(length(setdiff(x, y)) == 0)
+}
+
+.is_testing <- function(){
+    identical(Sys.getenv("TESTTHAT"), "true")
+}
+
+.is_developing <- function(){
+    identical(Sys.getenv("DEVTOOLS_LOAD"), "true")
+}
+
+.is_integrating <- function(){
+    identical(Sys.getenv("CI"), "true")
+}
+
+.is_not_on_cran <- function(){
+    identical(Sys.getenv("NOT_CRAN"), "true")
+}
+
+.any_testthat_failures <- function(test_result){
+    invisible(capture.output(failure_flag <- print(test_result)$failed > 0))
+    return(failure_flag)
+}
+
 # Setup and Teardown -----------------------------------------------------------
 .create_temp_folder <- function() dir.create(.get_temp_dir(), showWarnings = FALSE, recursive = TRUE)
 .delete_temp_folder <- function() unlink(.get_temp_dir(), recursive = TRUE, force = TRUE)
@@ -55,7 +89,19 @@ expect_not_identical <- function(object, expected) expect_false(identical(object
     if(.is_testing()) return(invisible())
     if(.is_developing()) return(invisible())
     .title("Running Coverage Tests")
-    testthat::test_dir(file.path(.get_projet_dir(), "tests", "coverage-tests"))
+    test_result <- testthat::test_dir(file.path(.get_projet_dir(), "tests", "coverage-tests"))
+    if(.any_testthat_failures(test_result)){
+        .title("Rendering Coverage Report")
+        .run_report()
+    }
+}
+
+.run_report <- function(){
+    try(devtools::document(pkg = .get_projet_dir()), silent = TRUE)
+    try(devtools::load_all(path = .get_projet_dir()), silent = TRUE)
+    Sys.setenv(TESTTHAT = "true")
+    on.exit(Sys.setenv(TESTTHAT = ""))
+    covr::report()
 }
 
 .cleanup <- function(){
@@ -91,35 +137,6 @@ expect_not_identical <- function(object, expected) expect_false(identical(object
 .title <- function(string){
     seperator <- paste0(rep("#", 80), collapse = "")
     message(paste0(c(seperator, paste("##", string), seperator), collapse = "\n"))
-}
-
-# Predicates -------------------------------------------------------------------
-.are_set_equal <- function(x, y){
-    return(setequal(x %>% distinct(), y %>% distinct()))
-}
-
-.are_disjoint_sets <- function(x, y){
-    return(length(intersect(x, y)) == 0)
-}
-
-.is_subset <- function(x, y){
-    return(length(setdiff(x, y)) == 0)
-}
-
-.is_testing <- function(){
-    identical(Sys.getenv("TESTTHAT"), "true")
-}
-
-.is_developing <- function(){
-    identical(Sys.getenv("DEVTOOLS_LOAD"), "true")
-}
-
-.is_integrating <- function(){
-    identical(Sys.getenv("CI"), "true")
-}
-
-.is_not_on_cran <- function(){
-    identical(Sys.getenv("NOT_CRAN"), "true")
 }
 
 # Misc -------------------------------------------------------------------------
