@@ -22,9 +22,9 @@
     }
 
     # Main --------------------------------------------------------------------
-    set_repos_to_MRAN()
-
     try({ # The expectation is needed when using CI
+        set_repos_to_MRAN()
+
         sink(tempfile())
         suppressMessages(devtools::load_all(export_all = FALSE, helpers = FALSE))
         sink()
