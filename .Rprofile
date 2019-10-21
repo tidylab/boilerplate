@@ -1,6 +1,7 @@
 .First <- function(){
     # Helper Functions --------------------------------------------------------
     is_package_installed <- function(pkg) pkg %in% rownames(utils::installed.packages())
+    is_integrating <- function() identical(Sys.getenv("CI"), "true")
 
     set_repos_to_MRAN <- function(){
         options(repos = get_MRAN_URL())
@@ -38,6 +39,7 @@
     print_n_hashtags <- function(n) message(paste0(rep("#", n)))
 
     # Main --------------------------------------------------------------------
+    if(is_integrating()) return(invisible())
     print_welcome_message()
 
     #try({ # The expectation is needed when using CI
