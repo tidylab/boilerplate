@@ -5,8 +5,8 @@
 
     sink_command <- function(command){
         sink(tempfile())
+        on.exit(sink())
         suppressMessages(eval(expr = parse(text = command)))
-        sink()
     }
 
     print_welcome_message <- function(){
