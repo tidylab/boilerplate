@@ -64,8 +64,10 @@ expect_not_identical <- function(object, expected) expect_false(identical(object
     if(.is_developing()) return(invisible())
 
     try({
-        devtools::document(pkg = .get_projet_dir())
-        devtools::load_all(path = .get_projet_dir(), export_all = FALSE)
+        sink(tempfile())
+        suppressMessages(devtools::document())
+        suppressMessages(devtools::load_all(export_all = FALSE, helpers = FALSE))
+        sink()
     })
     invisible()
 }
@@ -97,8 +99,11 @@ expect_not_identical <- function(object, expected) expect_false(identical(object
 }
 
 .run_report <- function(){
-    try(devtools::document(pkg = .get_projet_dir()), silent = TRUE)
-    try(devtools::load_all(path = .get_projet_dir()), silent = TRUE)
+    sink(tempfile())
+    try(suppressMessages(devtools::document(pkg = .get_projet_dir())), silent = TRUE)
+    try(suppressMessages(devtools::load_all(path = .get_projet_dir(), export_all = FALSE, helpers = FALSE)), silent = TRUE)
+    sink()
+
     Sys.setenv(TESTTHAT = "true")
     on.exit(Sys.setenv(TESTTHAT = ""))
     covr::report()
@@ -187,5 +192,3 @@ expect_not_identical <- function(object, expected) expect_false(identical(object
     while (length(grep("test", proj_path))>0) proj_path <- dirname(proj_path)
     return(proj_path)
 }
-
-
