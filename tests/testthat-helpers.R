@@ -120,7 +120,6 @@ expect_not_identical <- function(object, expected) expect_false(identical(object
         if(!require(package, character.only = TRUE)){
             message("--> Installing {", package, "}")
             utils::install.packages(package,
-                                    repos = "https://cloud.r-project.org",
                                     dependencies = TRUE,
                                     Ncpus = parallel::detectCores()
             )

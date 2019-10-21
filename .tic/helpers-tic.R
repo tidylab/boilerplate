@@ -35,11 +35,11 @@ install_package <- function(pkg){
         install_from_CRAN("devtools")
         devtools::install_github(pkg, dependencies = TRUE, upgrade = "never")
     }
+
     install_from_CRAN <- function(pkg){
         message("--> Installing {", get_package_name(pkg), "}")
         utils::install.packages(
             pkg,
-            repos = "https://cloud.r-project.org",
             dependencies = TRUE,
             Ncpus = parallel::detectCores()
         )
@@ -55,3 +55,4 @@ install_package <- function(pkg){
     }
     return(invisible())
 }
+
