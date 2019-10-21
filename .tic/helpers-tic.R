@@ -31,13 +31,13 @@ install_package <- function(pkg){
     get_package_name <- function(pkg) sub("^.*/","", pkg)
     is_package_installed <- function(pkg) pkg %in% rownames(utils::installed.packages())
     install_form_GitHub <- function(pkg){
-        message("--> Installing {", get_package_name(pkg), "}")
+        message("--> Installing {", get_package_name(pkg), "} from GitHub")
         install_from_CRAN("devtools")
         devtools::install_github(pkg, dependencies = TRUE, upgrade = "never")
     }
 
     install_from_CRAN <- function(pkg){
-        message("--> Installing {", get_package_name(pkg), "}")
+        message("--> Installing {", get_package_name(pkg), "} from CRAN")
         utils::install.packages(
             pkg,
             dependencies = TRUE,
