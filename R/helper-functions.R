@@ -1,15 +1,19 @@
 #nocov start
 # Predicates --------------------------------------------------------------
+.all_are_non_missing_nor_empty_strings <- function(x){
+    return(identical(all(is.character(x)) & all(nchar(x) > 0), TRUE))
+}
+
 .is_a_non_missing_nor_empty_string <- function(x){
-    return(length(x) == 1 & is.character(x) & nchar(x) > 0)
+    return(identical(length(x) == 1 & is.character(x) & nchar(x) > 0, TRUE))
 }
 
 .are_disjoint_sets <- function(x, y){
-    return(length(intersect(x, y)) == 0)
+    return(identical(length(intersect(x, y)), 0L))
 }
 
 .is_positive_and_finite <- function(x){
-    return(length(x) == 1 & is.numeric(x) & is.finite(x) & x > 0)
+    return(identical(length(x) == 1 & is.numeric(x) & is.finite(x) & x > 0, TRUE))
 }
 
 # Assertions --------------------------------------------------------------

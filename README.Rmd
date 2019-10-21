@@ -2,9 +2,19 @@
 output: github_document
 ---
 
-```{r setup, echo=FALSE}
+```{r setup, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
 source("README.R", TRUE)
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center", out.width = "100%")
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  message = FALSE,
+  fig.align = "center", 
+  out.width = "100%"
+)
+.install_package("desc")
+.install_package("devtools")
+# Required for converting HTML widgets to Images
+.install_package("webshot")
+# webshot::install_phantomjs()
 ```
 
 ```{r, echo = FALSE, message=FALSE}
@@ -102,10 +112,4 @@ devtools::install_github("`r package_repo`")
 
 ```{r package-function-dependencies, echo = FALSE, out.width = "100%"}
 plot_function_dependencies(package_name)
-```
-
-## Datasets
-
-```{r package-data-overview, out.width = "100%", fig.height=0.5, echo = FALSE, error=FALSE}
-plot_datasets_overview(x = list(mtcars = mtcars, iris = iris))
 ```

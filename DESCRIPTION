@@ -3,7 +3,8 @@ Type: Package
 Title: Boilerplate for 'tidylab' Packages
 URL: https://github.com/tidylab/template.package
 BugReports: https://github.com/tidylab/template.package/issues
-Version: 0.19.31
+Version: 0.19.43
+Date: 2019-04-15
 Authors@R: c(
             person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre"))
             )
@@ -21,12 +22,9 @@ RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Language: en-GB
 Depends: R (>= 3.5)
-Imports: 
-    config (>= 0.3),
-    conflicted (>= 1.0.2),
-    yaml (>= 2.2.0)
 Suggests: 
-    covr,
-    devtools (>= 2.0.2),
+    config (>= 0.3),
+    covr (>= 3.2.1),
     desc (>= 1.2.0),
+    devtools (>= 2.0.2),
     testthat (>= 2.0.1)

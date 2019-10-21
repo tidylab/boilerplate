@@ -1,4 +1,8 @@
 
+    ## Warning: `quo_expr()` is deprecated as of rlang 0.2.0.
+    ## Please use `quo_squash()` instead.
+    ## This warning is displayed once per session.
+
 # `template.package`
 
 <!-- badges: start -->
@@ -72,7 +76,3 @@ You can install `template.package` by using:
 ## Function Dependencies
 
 <img src="README_files/figure-gfm/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
-
-## Datasets
-
-<img src="README_files/figure-gfm/package-data-overview-1.png" width="100%" style="display: block; margin: auto;" />
