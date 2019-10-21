@@ -11,20 +11,19 @@ InstallLocal <- R6::R6Class(
 
         run = function() {
             message("\n", rep("#",40), "\n", "## Installing the Current Package Version\n", rep("#",40))
-
             try(utils::remove.packages(private$package_name), silent = TRUE)
 
             devtools::document()
 
             devtools::install_local(
                 path = ".",
+                repos = get_MRAN_URL(),
                 dependencies = TRUE,
                 upgrade = FALSE,
                 force = FALSE,
                 build = FALSE,
                 build_opts = "--no-multiarch --with-keep.source --no-build-vignettes",
-                Ncpus = parallel::detectCores(),
-                repos = "https://cloud.r-project.org"
+                Ncpus = parallel::detectCores()
             )
         }
     ),
