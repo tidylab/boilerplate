@@ -29,7 +29,17 @@
         file.copy(from = source, to = target, overwrite = TRUE)
     }
 
+    print_welcome_message <- function(){
+        print_n_hashtags(80)
+        message("## Running .Rprofile")
+        print_n_hashtags(80)
+    }
+
+    print_n_hashtags <- function(n) message(paste0(rep("#", n)))
+
     # Main --------------------------------------------------------------------
+    print_welcome_message()
+
     #try({ # The expectation is needed when using CI
     if(is_package_installed("desc") == FALSE) utils::install.packages("desc")
     set_repos_to_MRAN()
