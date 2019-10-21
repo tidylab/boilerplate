@@ -5,6 +5,7 @@
 
 # DO NOT CHANGE THE CODE BELOW
 before_install:
+  - R -q -e 'source(".Rprofile")'
   - R -q -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
   - R -q -e 'try(remotes::install_local(dependencies = TRUE, force = TRUE, upgrade = "never")); try(devtools::uninstall())'
   - R -q -e 'remotes::install_github("ropenscilabs/tic", upgrade = "never", dependencies = TRUE); print(tic::dsl_load()); tic::prepare_all_stages()'
