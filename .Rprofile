@@ -30,17 +30,17 @@
     }
 
     # Main --------------------------------------------------------------------
-    try({ # The expectation is needed when using CI
-        if(is_package_installed("desc") == FALSE) utils::install.packages("desc")
-        set_repos_to_MRAN()
+    #try({ # The expectation is needed when using CI
+    if(is_package_installed("desc") == FALSE) utils::install.packages("desc")
+    set_repos_to_MRAN()
 
-        if(is_package_installed("devtools") == FALSE) utils::install.packages("devtools")
-        sink_command("devtools::load_all(export_all = FALSE, helpers = FALSE)")
+    if(is_package_installed("devtools") == FALSE) utils::install.packages("devtools")
+    sink_command("devtools::load_all(export_all = FALSE, helpers = FALSE)")
 
-        if(is_package_installed("config") == FALSE) utils::install.packages("config")
-        config::get(file = file.path(rprojroot::find_rstudio_root_file(), "CONFIGURATION"))
-        copy_CONFIGURATION_from_root_to_inst()
-    }, silent = FALSE)
+    if(is_package_installed("config") == FALSE) utils::install.packages("config")
+    config::get(file = file.path(rprojroot::find_rstudio_root_file(), "CONFIGURATION"))
+    copy_CONFIGURATION_from_root_to_inst()
+    #}, silent = FALSE)
 }
 
 .Last <- function(){
