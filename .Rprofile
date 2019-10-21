@@ -9,19 +9,11 @@
         sink()
     }
 
-    copy_CONFIGURATION_from_root_to_inst <- function(){
-        source <- "CONFIGURATION"
-        target <- file.path("inst", "CONFIGURATION")
-        dir.create(dirname(target), showWarnings = FALSE, recursive = TRUE)
-        file.copy(from = source, to = target, overwrite = TRUE)
-    }
-
     print_welcome_message <- function(){
         print_n_hashtags(80)
         message("## Running .Rprofile")
         print_n_hashtags(80)
     }
-
 
     # Main --------------------------------------------------------------------
     if(is_integrating()) return(invisible())
@@ -33,7 +25,6 @@
 
     if(is_package_installed("config") == FALSE) utils::install.packages("config")
     config::get(file = file.path(rprojroot::find_rstudio_root_file(), "CONFIGURATION"))
-    copy_CONFIGURATION_from_root_to_inst()
 }
 
 .Last <- function(){
