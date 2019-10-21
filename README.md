@@ -1,8 +1,4 @@
 
-    ## Warning: `quo_expr()` is deprecated as of rlang 0.2.0.
-    ## Please use `quo_squash()` instead.
-    ## This warning is displayed once per session.
-
 # `template.package`
 
 <!-- badges: start -->

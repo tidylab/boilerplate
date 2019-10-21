@@ -21,7 +21,8 @@ LazyData: true
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Language: en-GB
-Depends: R (>= 3.5)
+Depends: 
+    R (>= 3.5)
 Suggests: 
     config (>= 0.3),
     covr (>= 3.2.1),
