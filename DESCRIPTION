@@ -22,10 +22,9 @@ RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Language: en-GB
 Depends: R (>= 3.5)
-Imports: 
 Suggests: 
     config (>= 0.3),
     covr (>= 3.2.1),
-    devtools (>= 2.0.2),
     desc (>= 1.2.0),
+    devtools (>= 2.0.2),
     testthat (>= 2.0.1)
