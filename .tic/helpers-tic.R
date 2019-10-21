@@ -56,3 +56,16 @@ install_package <- function(pkg){
     return(invisible())
 }
 
+set_repos_to_MRAN <- function(){
+    options(repos = get_MRAN_URL())
+}
+
+get_MRAN_URL <- function(){
+    MRAN_timestamp <- get_package_timestamp()
+    paste0("https://mran.microsoft.com/snapshot/", MRAN_timestamp)
+}
+
+get_package_timestamp <- function(){
+    desc_obj <- desc::description$new()
+    tryCatch(as.Date(desc_obj$get_field("Date")), error = function(e) Sys.Date() - 1)
+}
