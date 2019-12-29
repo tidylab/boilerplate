@@ -21,8 +21,8 @@ matrix:
   #- r: oldrel
   include:
   - r: 3.6.0
-  #- r: oldrel
   - r: release
+    if: branch = master
 
 # Stages -----------------------------------------------------------------------
 
