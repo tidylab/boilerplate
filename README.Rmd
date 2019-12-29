@@ -3,12 +3,13 @@ output: github_document
 ---
 
 ```{r setup, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
-source("README.R", TRUE)
+source(".app/readme/helper-functions.R", TRUE)
 knitr::opts_chunk$set(
   echo = TRUE, 
   message = FALSE,
   warning = FALSE,
   fig.align = "center", 
+  fig.path = ".app/readme/figures/",
   out.width = "100%"
 )
 .install_package("desc")

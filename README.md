@@ -9,8 +9,7 @@ status](https://travis-ci.org/tidylab/template.package.svg?branch=master)](https
 status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/template.package/?branch=master)
 <!-- badges: end -->
 
-Boilerplate for ‘tidylab’
-Packages
+Boilerplate for ‘tidylab’ Packages
 
 -----
 
@@ -71,4 +70,4 @@ You can install `template.package` by using:
 
 ## Function Dependencies
 
-<img src="README_files/figure-gfm/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
+<img src=".app/readme/figures/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
