@@ -24,7 +24,34 @@ matrix:
   - r: release
     if: branch = master
 
-# Stages -----------------------------------------------------------------------
+# stages -----------------------------------------------------------------------
+stages:
+  - build
+  - test
+  - name: report
+    if: branch = master
+
+# jobs -------------------------------------------------------------------------
+jobs:
+  include:
+    - stage: "build"
+      name: "build"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "testthat"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "component-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "integration-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "coverage-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "report"
+      name: "coverage-report"
+      script: R -q -e 'tic::script()'
 
 # DO NOT CHANGE THE CODE BELOW -------------------------------------------------
 before_install:
