@@ -56,17 +56,19 @@ install_package <- function(pkg){
     return(invisible())
 }
 
-set_repos_to_MRAN <- function(){
-    options(repos = get_MRAN_URL())
+.set_repos_to_MRAN <- function(){
+    options(repos = .get_MRAN_URL())
+    if(!"https://cran.rstudio.com/" %in% repos)
+        message("Default CRAN mirror snapshot taken on ", gsub("^.*/", "", repos))
+    invisible()
 }
 
-get_MRAN_URL <- function(){
-    MRAN_timestamp <- get_package_timestamp()
+.get_MRAN_URL <- function(){
+    MRAN_timestamp <- .get_package_timestamp()
     paste0("https://mran.microsoft.com/snapshot/", MRAN_timestamp)
 }
 
-get_package_timestamp <- function(){
-    desc_obj <- desc::description$new()
+.get_package_timestamp <- function(){
     tryCatch(.get_field_from_DESCRIPTION("Date"), error = function(e) Sys.Date() - 1)
 }
 

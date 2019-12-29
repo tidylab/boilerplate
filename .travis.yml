@@ -17,12 +17,10 @@ env:
 
 # multiple R versions ----------------------------------------------------------
 matrix:
-  #allow_failures:
-  #- r: oldrel
   include:
   - r: 3.6.0
   - r: release
-    if: branch = master
+    if: branch = develop
 
 # stages -----------------------------------------------------------------------
 stages:
