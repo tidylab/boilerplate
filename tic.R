@@ -1,7 +1,16 @@
-# installs dependencies, runs R CMD check, runs covr::codecov()
-tic::do_package_checks()
+library(tic)
+invisible(sapply(list.files("./.tic", full.names = TRUE), source))
 
-# if (ci_on_travis()) {
-#   # creates pkgdown site and pushes to gh-pages branch
-#   do_pkgdown()
-# }
+# Stage: Install ----------------------------------------------------------
+get_stage("install") %>%
+    add_step(step_run_code(devtools::document())) %>%
+    add_step(step_run_code(remotes::install_local(dependencies = TRUE)))
+
+# Stage: Script ----------------------------------------------------------------
+get_stage("script") %>%
+    add_step(step_run_test_suite(job_name = ci_get_job_name())) %>%
+    add_step(step_render_report(job_name = ci_get_job_name()))
+
+# Stage: After Failure ----------------------------------------------------------
+get_stage("after_failure") %>%
+    add_step(step_run_code(show_error_log()))
