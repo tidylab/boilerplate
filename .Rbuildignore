@@ -22,3 +22,4 @@
 ^inst/docs$
 ^\.tic/*
 .*_cache/*
+^\.app$
