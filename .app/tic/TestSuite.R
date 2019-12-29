@@ -7,9 +7,7 @@
 #' @export
 TestSuite <- R6::R6Class(
     "TestSuite", inherit = TicStep,
-
     public = list(
-
         initialize = function(job_name){
             private$job_name <- job_name
         },

@@ -20,5 +20,6 @@
 ^public/*
 ^inst/data$
 ^inst/docs$
-^\.tic/*
+^\.app/*
 .*_cache/*
+

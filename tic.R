@@ -1,21 +1,16 @@
 library(tic)
-invisible(sapply(list.files("./.tic", full.names = TRUE), source))
+invisible(sapply(list.files("./.app/tic", full.names = TRUE), source))
 
-# Stage: Before Install --------------------------------------------------------
-get_stage("before_install") %>%
-    add_step(step_install_development_tools())
-
-# Stage: Install
+# Stage: Install ----------------------------------------------------------
 get_stage("install") %>%
-    add_step(step_install_local_package())
-
-# Stage: Before Script ---------------------------------------------------------
-get_stage("before_script") %>%
-    add_step(step_run_code(devtools::document()))
+    add_step(step_run_code(devtools::document())) %>%
+    # Configures R session to install packages as they existed on CRAN at time
+    # of package Date field in DESCRIPTION file
+    add_step(step_run_code(set_repos_to_MRAN())) %>%
+    add_step(step_run_code(remotes::install_local(dependencies = TRUE)))
 
 # Stage: Script ----------------------------------------------------------------
 get_stage("script") %>%
-    add_step(step_build_and_check(job_name = ci_get_job_name())) %>%
     add_step(step_run_test_suite(job_name = ci_get_job_name())) %>%
     add_step(step_render_report(job_name = ci_get_job_name()))
 

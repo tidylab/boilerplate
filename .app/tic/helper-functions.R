@@ -57,15 +57,25 @@ install_package <- function(pkg){
 }
 
 set_repos_to_MRAN <- function(){
-    options(repos = get_MRAN_URL())
+    options(repos = .get_MRAN_URL())
+    repos <- getOption("repos")
+    if(!"https://cran.rstudio.com/" %in% repos)
+        message("Changed the default CRAN mirror to MRAN snapshot taken on ", gsub("^.*/", "", repos))
+    invisible()
 }
 
-get_MRAN_URL <- function(){
-    MRAN_timestamp <- get_package_timestamp()
+.get_MRAN_URL <- function(){
+    MRAN_timestamp <- .get_package_timestamp()
     paste0("https://mran.microsoft.com/snapshot/", MRAN_timestamp)
 }
 
-get_package_timestamp <- function(){
-    desc_obj <- desc::description$new()
-    tryCatch(as.Date(desc_obj$get_field("Date")), error = function(e) Sys.Date() - 1)
+.get_package_timestamp <- function(){
+    tryCatch(.get_field_from_DESCRIPTION("Date"), error = function(e) Sys.Date() - 1)
+}
+
+.get_field_from_DESCRIPTION <- function(field){
+    .read_DESCRIPTION <- function() readLines("DESCRIPTION")
+    field_regex <- paste0("^",field,":")
+    Date_line <- .read_DESCRIPTION()[grep(field_regex, .read_DESCRIPTION())]
+    Date <- trimws(sub(field_regex, "", Date_line))
 }

@@ -14,7 +14,7 @@ badge_custom <- function(x, y, color, url = "about::blank"){
 
 plot_function_dependencies <- function(package_name){
     suppressMessages(
-        devtools::install_github(
+        remotes::install_github(
             "datastorm-open/DependenciesGraphs",
             dependencies = TRUE, upgrade = "never")
     )
