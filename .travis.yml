@@ -20,7 +20,7 @@ matrix:
   #allow_failures:
   #- r: oldrel
   include:
-  #- r: devel
+  - r: 3.6.0
   #- r: oldrel
   - r: release
 
