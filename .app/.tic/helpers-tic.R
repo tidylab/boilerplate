@@ -67,5 +67,12 @@ get_MRAN_URL <- function(){
 
 get_package_timestamp <- function(){
     desc_obj <- desc::description$new()
-    tryCatch(as.Date(desc_obj$get_field("Date")), error = function(e) Sys.Date() - 1)
+    tryCatch(.get_field_from_DESCRIPTION("Date"), error = function(e) Sys.Date() - 1)
+}
+
+.get_field_from_DESCRIPTION <- function(field){
+    .read_DESCRIPTION <- function() readLines("DESCRIPTION")
+    field_regex <- paste0("^",field,":")
+    Date_line <- .read_DESCRIPTION()[grep(field_regex, .read_DESCRIPTION())]
+    Date <- trimws(sub(field_regex, "", Date_line))
 }
