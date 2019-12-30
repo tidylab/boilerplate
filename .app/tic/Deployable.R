@@ -42,7 +42,7 @@ Deployable <- R6::R6Class(
         },
         pkgdown = function(){
             remotes::install_github("r-lib/pkgdown")
-            pkgdown::build_site()
+            tic::do_pkgdown(deploy = TRUE, orphan = TRUE, path = "docs", branch = "gh-pages")
         },
         job_name = character(),
         package_name = desc::description$new()$get_field("Package")

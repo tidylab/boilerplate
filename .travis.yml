@@ -46,9 +46,9 @@ jobs:
     - stage: "deploy"
       name: "coverage-report"
       script: R -q -e 'tic::script()'
-#    - stage: "deploy"
-#      name: "pkgdown"
-#      script: R -q -e 'tic::script()'
+    - stage: "deploy"
+      name: "pkgdown"
+      script: R -q -e 'tic::script()'
 
 # DO NOT CHANGE THE CODE BELOW -------------------------------------------------
 before_install:
@@ -64,8 +64,7 @@ after_failure: R -q -e 'tic::after_failure()'
 before_deploy: R -q -e 'tic::before_deploy()'
 deploy:
   provider: script
-  script: Rscript -e 'pkgdown::deploy_site_github()'
-  skip_cleanup: true
+  script: R -q -e 'tic::deploy()'
   on:
     all_branches: true
 #     branch: master

@@ -15,10 +15,6 @@ get_stage("script") %>%
     add_step(step_run_test_suite(job_name = ci_get_job_name())) %>%
     add_step(step_deploy(job_name = ci_get_job_name()))
 
-# Deploy -----------------------------------------------------------------------
-# get_stage("deploy") %>%
-#     add_step(tic::do_pkgdown())
-
 # Stage: After Failure ---------------------------------------------------------
 get_stage("after_failure") %>%
     add_step(step_run_code(show_error_log()))
