@@ -27,7 +27,7 @@ Deployable <- R6::R6Class(
 
     private = list(
         is_job_name_known = function(job_name){
-            job_name %in% c("coverage-report", "binder")
+            job_name %in% c("coverage-report", "binder", "pkgdown")
         },
         codecov = function() {
             Sys.setenv(TESTTHAT = "true")
