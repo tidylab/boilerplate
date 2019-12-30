@@ -14,6 +14,7 @@ get_stage("install") %>%
 
 # Stage: Script ----------------------------------------------------------------
 get_stage("script") %>%
+    add_step(step_run_code(set_repos_to_MRAN())) %>%
     add_step(step_run_code(devtools::document())) %>%
     add_step(step_build_and_check(job_name = ci_get_job_name())) %>%
     add_step(step_run_test_suite(job_name = ci_get_job_name())) %>%
@@ -21,4 +22,4 @@ get_stage("script") %>%
 
 # Stage: After Failure ---------------------------------------------------------
 get_stage("after_failure") %>%
-    add_step(step_run_code(show_error_log()))
+    add_step(step_run_code(sessioninfo::session_info(include_base = FALSE)))

@@ -1,27 +1,6 @@
 ci_get_job_name <- function() tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
 is_travis <- function() identical(Sys.getenv("TRAVIS"), "true")
 is_integrating <- function() identical(Sys.getenv("CI"), "true")
-
-show_error_log <- function(){
-    `%+%` <- function(a,b) paste0(a, b)
-
-    install_package("desc")
-    install_package("stringr")
-    install_package("devtools")
-
-    desc_obj <- desc::description$new()
-    package_url <- desc_obj$get_field("BugReports") %>% stringr::str_remove("/issues$")
-    package_name <- desc_obj$get_field("Package")
-    package_repo <- stringr::str_extract_all(package_url, "[^/]+(?://[^/]*)*")[[1]][2:3] %>% paste0(collapse ="/")
-
-    if(is_travis()){
-        error_log <- "/home/travis/build/" %+% package_repo %+% "/" %+% package_name %+% ".Rcheck/00check.log"
-        try(print(readLines(error_log)), silent = TRUE)
-    }
-
-    print(devtools::session_info())
-}
-
 install_package <- function(pkg){
     # Helper Functions ---------------------------------------------------------
     get_package_name <- function(pkg) sub("^.*/","", pkg)
