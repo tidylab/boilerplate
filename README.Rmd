@@ -3,6 +3,8 @@ output: github_document
 ---
 
 ```{r setup, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
+remotes::install_cran(c("desc", "devtools", "webshot"))
+webshot::install_phantomjs()
 source(".app/readme/helper-functions.R", TRUE)
 knitr::opts_chunk$set(
   echo = TRUE, 
@@ -12,11 +14,6 @@ knitr::opts_chunk$set(
   fig.path = ".app/figures/readme/",
   out.width = "100%"
 )
-.install_package("desc")
-.install_package("devtools")
-# Required for converting HTML widgets to Images
-.install_package("webshot")
-# webshot::install_phantomjs()
 ```
 
 ```{r, echo = FALSE, message=FALSE}
@@ -58,6 +55,7 @@ binder_url <- paste0("https://mybinder.org/v2/gh/", package_repo, "/master?urlpa
 # ``r package_name``
 
 <!-- badges: start -->
+`r badge_custom("Package Website", "Click-Here", "9cf", desc_obj$get_urls()[[1]])`
 [![Travis build status](`r pipeline_url`)](`r travis_url`)
 [![Code coverage status](`r covr_url`)](`r codecov_url`)
 <!-- badges: end -->

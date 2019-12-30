@@ -1,7 +1,7 @@
 Package: template.package
 Type: Package
 Title: Boilerplate for 'tidylab' Packages
-URL: https://github.com/tidylab/template.package
+URL: https://tidylab.github.io/template.package/
 BugReports: https://github.com/tidylab/template.package/issues
 Version: 0.19.52
 Date: 2019-12-15
