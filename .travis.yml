@@ -28,24 +28,24 @@ stages:
 # jobs -------------------------------------------------------------------------
 jobs:
   include:
-#    - stage: "build"
-#      name: "build"
-#      script: R -q -e 'tic::script()'
-#    - stage: "test"
-#      name: "testthat"
-#      script: R -q -e 'tic::script()'
-#    - stage: "test"
-#      name: "component-tests"
-#      script: R -q -e 'tic::script()'
-#    - stage: "test"
-#      name: "integration-tests"
-#      script: R -q -e 'tic::script()'
-#    - stage: "test"
-#      name: "coverage-tests"
-#      script: R -q -e 'tic::script()'
-#    - stage: "deploy"
-#      name: "coverage-report"
-#      script: R -q -e 'tic::script()'
+    - stage: "build"
+      name: "build"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "testthat"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "component-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "integration-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "coverage-tests"
+      script: R -q -e 'tic::script()'
+    - stage: "deploy"
+      name: "coverage-report"
+      script: R -q -e 'tic::script()'
     - stage: "deploy"
       name: "pkgdown"
       script: R -q -e 'tic::script()'
