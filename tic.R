@@ -1,5 +1,5 @@
 library(tic)
-if(!requireNamespace("desc")) install.packages("desc")
+if(!requireNamespace("desc")) remotes::install_version("desc", "1.2.0")
 invisible(sapply(list.files("./.app/tic", full.names = TRUE), source))
 
 # Stage: Install ----------------------------------------------------------

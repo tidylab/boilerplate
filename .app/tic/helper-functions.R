@@ -55,8 +55,7 @@ install_package <- function(pkg){
 set_repos_to_MRAN <- function(){
     options(repos = .get_MRAN_URL())
     repos <- getOption("repos")
-    if(!"https://cran.rstudio.com/" %in% repos)
-        message("Changed the default CRAN mirror to MRAN snapshot taken on ", gsub("^.*/", "", repos))
+    message("Changed the default CRAN mirror to MRAN snapshot taken on ", gsub("^.*/", "", repos))
     invisible()
 }
 
