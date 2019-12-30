@@ -64,6 +64,7 @@ after_failure: R -q -e 'tic::after_failure()'
 before_deploy: R -q -e 'tic::before_deploy()'
 deploy:
   provider: script
+  github_token: $GITHUB_PAT
   script: R -q -e 'tic::deploy()'
   on:
     all_branches: true
