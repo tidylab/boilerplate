@@ -54,3 +54,6 @@ figure-html/
 rsconnect/
 .Rproj.user
 temp/
+
+# pkgdown
+docs/

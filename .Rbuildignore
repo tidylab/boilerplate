@@ -6,8 +6,6 @@
 ^tic\.R$
 ^codecov\.yml$
 ^\.travis\.yml$
-^CONFIGURATION$
-^README\.R$
 ^README\.Rmd$
 ^LICENSE\.md$
 .*\.ini$
@@ -15,10 +13,15 @@
 .*\.png$
 
 # Folders ----------------------------------------------------------------------
+^\.app/*
 ^temp/*
 ^data-raw/*
 ^public/*
 ^inst/data$
 ^inst/docs$
-^\.tic/*
 .*_cache/*
+
+# pkgdown ----------------------------------------------------------------------
+^vignettes/*
+^docs/*
+^inst/\.gitkeep$

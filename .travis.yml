@@ -1,76 +1,76 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-# Default configuration for use with tic package
-# tic documentation to get started: https://ropenscilabs.github.io/tic/
-# Usually you shouldn't need to change the first part of the file
+# tic documentation: https://docs.ropensci.org/tic/dev/
 
-# DO NOT CHANGE THE CODE BELOW
-before_install:
-  - R -q -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
-  - R -q -e 'remotes::install_github("ropenscilabs/tic", upgrade = "never", dependencies = TRUE); print(tic::dsl_load()); tic::prepare_all_stages()'
-  - R -q -e 'tic::before_install()'
-install: R -q -e 'tic::install()'
-after_install: R -q -e 'tic::after_install()'
-before_script: R -q -e 'tic::before_script()'
-script: R -q -e 'tic::script()'
-after_success: R -q -e 'tic::after_success()'
-after_failure: R -q -e 'tic::after_failure()'
-before_deploy: R -q -e 'tic::before_deploy()'
-deploy:
-  provider: script
-  script: R -q -e 'tic::deploy()'
-  on:
-    all_branches: false
-after_deploy: R -q -e 'tic::after_deploy()'
-after_script: R -q -e 'tic::after_script()'
-# DO NOT CHANGE THE CODE ABOVE
+# OS ---------------------------------------------------------------------------
+os: linux
+dist: bionic
 
-# Custom parts:
-
-# Header
+# meta -------------------------------------------------------------------------
 language: r
-r: 3.5.3
-sudo: false
-dist: xenial
-cache: packages
+cache:
+  - packages
+  - $HOME/.ccache
 latex: false
-fortran: true
 
-#env
 env:
   global:
   - MAKEFLAGS="-j 2"
 
-#services
-services:
+# multiple versions ------------------------------------------------------------
+r: 3.6.2
 
-#stages
+# stages -----------------------------------------------------------------------
 stages:
-  - build
-  - test
-  - name: report
+  - name: build
+  - name: test
+  - name: deploy
     if: branch = master
 
-#jobs
+# jobs -------------------------------------------------------------------------
 jobs:
   include:
     - stage: "build"
       name: "build"
       script: R -q -e 'tic::script()'
-      if: branch = master OR branch = develop
     - stage: "test"
       name: "testthat"
       script: R -q -e 'tic::script()'
     - stage: "test"
       name: "component-tests"
       script: R -q -e 'tic::script()'
-      if: branch = master OR branch = develop
     - stage: "test"
       name: "integration-tests"
       script: R -q -e 'tic::script()'
-      if: branch = master OR branch = develop
     - stage: "test"
       name: "coverage-tests"
       script: R -q -e 'tic::script()'
-    - stage: "report"
+    - stage: "deploy"
       name: "coverage-report"
       script: R -q -e 'tic::script()'
+    - stage: "deploy"
+      name: "pkgdown"
+      script: R -q -e 'tic::script()'
+
+# DO NOT CHANGE THE CODE BELOW -------------------------------------------------
+before_install:
+  - R -q -e 'if(!requireNamespace("remotes")) install.packages("remotes")'
+  - R -q -e 'remotes::install_github("ropenscilabs/tic@v0.3.0"); print(tic::dsl_load()); tic::prepare_all_stages()'
+  - R -q -e 'tic::before_install()'
+install: R -q -e 'tic::install()'
+before_script: R -q -e 'tic::before_script()'
+script: R -q -e 'tic::script()'
+after_success: R -q -e 'tic::after_success()'
+after_failure: R -q -e 'tic::after_failure()'
+before_deploy: R -q -e 'tic::before_deploy()'
+deploy:
+  provider: pages
+  local_dir: docs
+  skip_cleanup: true
+  keep-history: true
+  github_token: $GITHUB_PAT
+  target_branch: gh-pages
+  on:
+    all_branches: true
+    condition: $TRAVIS_JOB_NAME = pkgdown
+after_deploy: R -q -e 'tic::after_deploy()'
+after_script: R -q -e 'tic::after_script()'
+# DO NOT CHANGE THE CODE ABOVE -------------------------------------------------

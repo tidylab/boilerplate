@@ -1,37 +1,24 @@
+# First -------------------------------------------------------------------
 .First <- function(){
-    # Helper Functions --------------------------------------------------------
-    is_package_installed <- function(pkg) pkg %in% rownames(utils::installed.packages())
     is_integrating <- function() identical(Sys.getenv("CI"), "true")
+    if(is_integrating()) return()
 
-    sink_command <- function(command){
-        sink(tempfile())
-        suppressMessages(eval(expr = parse(text = command)))
-        sink()
-    }
+    packages <- c("devtools", "usethis", "testthat", "tidyverse", "desc")
 
-    print_welcome_message <- function(){
-        print_n_hashtags(80)
-        message("## Running .Rprofile")
-        print_n_hashtags(80)
-    }
+    local({
+        tryCatch({
+            source("./.app/tic/helper-functions.R")
+            require <- function(...) suppressPackageStartupMessages(base::require(...))
+            set_repos_to_MRAN()
+            sapply(packages, install_package)
+            sapply(packages, require, character.only = TRUE, warn.conflicts = FALSE, quietly = TRUE)
+        }, error = function(e) warning("Failed to modify the default CRAN mirror"))
+    })
 
-    # Main --------------------------------------------------------------------
-    if(is_integrating()) return(invisible())
-
-    if(is_package_installed("desc") == FALSE) utils::install.packages("desc")
-
-    if(is_package_installed("devtools") == FALSE) utils::install.packages("devtools")
-    sink_command("devtools::load_all(export_all = FALSE, helpers = FALSE)")
-
-    if(is_package_installed("config") == FALSE) utils::install.packages("config")
-    config::get(file = file.path(rprojroot::find_rstudio_root_file(), "CONFIGURATION"))
+    return(invisible())
 }
 
+# Last --------------------------------------------------------------------
 .Last <- function(){
-    arrange_DESCRIPTION_requirements_alphabetically <- function(){
-        deps <- desc::description$new()$get_deps() %>% dplyr::arrange(type, package)
-        desc::description$new()$del_deps()$set_deps(deps)$write()
-    }
-
-    try(arrange_DESCRIPTION_requirements_alphabetically(), silent = TRUE)
+    return(invisible())
 }
