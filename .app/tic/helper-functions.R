@@ -1,6 +1,6 @@
-ci_get_job_name <- function(){
-    tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
-}
+ci_get_job_name <- function() tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
+is_travis <- function() identical(Sys.getenv("TRAVIS"), "true")
+is_integrating <- function() identical(Sys.getenv("CI"), "true")
 
 show_error_log <- function(){
     `%+%` <- function(a,b) paste0(a, b)
@@ -20,10 +20,6 @@ show_error_log <- function(){
     }
 
     print(devtools::session_info())
-}
-
-is_travis <- function(){
-    identical(Sys.getenv("TRAVIS"), "true")
 }
 
 install_package <- function(pkg){
@@ -57,14 +53,13 @@ install_package <- function(pkg){
 }
 
 set_repos_to_MRAN <- function(){
-    options(repos = .get_MRAN_URL())
+    options(repos = get_MRAN_URL())
     repos <- getOption("repos")
-    if(!"https://cran.rstudio.com/" %in% repos)
-        message("Changed the default CRAN mirror to MRAN snapshot taken on ", gsub("^.*/", "", repos))
+    message("Changed the default CRAN mirror to MRAN snapshot taken on ", gsub("^.*/", "", repos))
     invisible()
 }
 
-.get_MRAN_URL <- function(){
+get_MRAN_URL <- function(){
     MRAN_timestamp <- .get_package_timestamp()
     paste0("https://mran.microsoft.com/snapshot/", MRAN_timestamp)
 }
