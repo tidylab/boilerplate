@@ -44,7 +44,7 @@ Deployable <- R6::R6Class(
         },
         build_site = function(){
             remotes::install_cran(c("fs", "pkgdown", "rmarkdown"), quiet = TRUE)
-            try(rmarkdown::render("README.Rmd"), silent = TRUE)
+            try(rmarkdown::render("README.Rmd", output_format = "md_document"), silent = TRUE)
             fs::dir_copy("./.app", "./docs/.app")
             pkgdown::build_site()
         },

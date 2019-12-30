@@ -1,5 +1,5 @@
-
-# `template.package`
+`template.package`
+==================
 
 <!-- badges: start -->
 
@@ -11,13 +11,14 @@ status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge
 
 Boilerplate for ‘tidylab’ Packages
 
------
+------------------------------------------------------------------------
 
 <img src="https://i.imgur.com/RLEQkhe.png" width="75%" style="display: block; margin: auto;" />
 
 <!-- Package Description -->
 
-## Overview
+Overview
+--------
 
 Using this template reduces:  
 \* Unnecessary variance between packages configurations; and  
@@ -29,7 +30,8 @@ This is possible as the template comes with:
 
 <!--- Only relevant for the {boilerplate} package -->
 
-## Useage
+Useage
+------
 
 1.  Create a new repo on GitHub.
 2.  Use the
@@ -56,18 +58,13 @@ This is possible as the template comes with:
 16. Decide if you would need binder – an RStudio Server that lets you
     demonstrate the package. If you do then:
 
-<!-- end list -->
+-   Uncomment *build-binder* under *.travis.yml*; and
+-   Uncomment *Launch Rstudio Binder* from README.Rmd.
 
-  - Uncomment *build-binder* under *.travis.yml*; and
-  - Uncomment *Launch Rstudio Binder* from README.Rmd.
-
-## Installation
+Installation
+------------
 
 You can install `template.package` by using:
 
     install.packages("devtools")
     devtools::install_github("tidylab/template.package")
-
-## Function Dependencies
-
-<img src=".app/figures/readme/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
