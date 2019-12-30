@@ -2,6 +2,10 @@ library(tic)
 if(!requireNamespace("desc")) remotes::install_version("desc", "1.2.0")
 invisible(sapply(list.files("./.app/tic", full.names = TRUE), source))
 
+# Stage : Before Install -------------------------------------------------------
+get_stage("before_install") %>%
+    add_step(step_run_code(Sys.getenv()))
+
 # Stage: Install ---------------------------------------------------------------
 get_stage("install") %>%
     add_step(step_run_code(set_repos_to_MRAN())) %>%
