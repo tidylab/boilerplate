@@ -16,15 +16,14 @@ env:
   - MAKEFLAGS="-j 2"
 
 # multiple R versions ----------------------------------------------------------
-matrix:
-  allow_failures:
-  - r: oldrel
-  include:
-  - release
-  - oldrel
-    if: branch = master
+r: 3.6.2
+#matrix:
+#  allow_failures:
+#  - r: oldrel
+#  include:
+#  - release
+#  - oldrel
 #  - devel
-#    if: branch = develop
 
 # stages -----------------------------------------------------------------------
 stages:
