@@ -50,5 +50,5 @@ Deployable <- R6::R6Class(
 )
 
 step_deploy <- function(job_name){
-    Report$new(job_name)
+    Deployable$new(job_name)
 }
