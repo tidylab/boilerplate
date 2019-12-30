@@ -69,6 +69,7 @@ deploy:
   keep-history: true
   github_token: $GITHUB_PAT
   target_branch: gh-pages
+  if: job_name = pkgdown
   on:
     all_branches: true
 #     branch: master
