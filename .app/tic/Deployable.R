@@ -43,9 +43,9 @@ Deployable <- R6::R6Class(
         pkgdown = function(){
             remotes::install_cran("pkgdown", quiet = TRUE)
             if(isFALSE(tic::ci_can_push())) stop("Can not push deployment; set up CI environment variable `id_rsa`")
-            tic::do_pkgdown(deploy = TRUE, orphan = FALSE, path = "docs", branch = NULL)
-            # tic::do_pkgdown(deploy = TRUE, orphan = TRUE, path = "docs", branch = "gh-pages")
-
+            # fun <- tic::do_pkgdown(deploy = TRUE, orphan = TRUE, path = "docs", branch = "gh-pages")
+            fun <- function() tic::do_pkgdown(deploy = TRUE, orphan = FALSE, path = NULL, branch = NULL)
+            get(fun)()
         },
         job_name = character(),
         package_name = desc::description$new()$get_field("Package")
