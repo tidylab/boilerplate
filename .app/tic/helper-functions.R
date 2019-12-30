@@ -53,13 +53,13 @@ install_package <- function(pkg){
 }
 
 set_repos_to_MRAN <- function(){
-    options(repos = .get_MRAN_URL())
+    options(repos = get_MRAN_URL())
     repos <- getOption("repos")
     message("Changed the default CRAN mirror to MRAN snapshot taken on ", gsub("^.*/", "", repos))
     invisible()
 }
 
-.get_MRAN_URL <- function(){
+get_MRAN_URL <- function(){
     MRAN_timestamp <- .get_package_timestamp()
     paste0("https://mran.microsoft.com/snapshot/", MRAN_timestamp)
 }

@@ -5,7 +5,7 @@ invisible(sapply(list.files("./.app/tic", full.names = TRUE), source))
 # Stage: Install ----------------------------------------------------------
 get_stage("install") %>%
     add_step(step_run_code(set_repos_to_MRAN())) %>%
-    add_step(step_install_cran("devtools")) %>%
+    add_step(step_install_cran("devtools", repos = get_MRAN_URL())) %>%
     add_step(step_install_deps())
 
 # Stage: Script ----------------------------------------------------------------

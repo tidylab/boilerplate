@@ -1,5 +1,8 @@
 # First -------------------------------------------------------------------
 .First <- function(){
+    is_integrating <- function() identical(Sys.getenv("CI"), "true")
+    if(is_integrating()) return()
+
     packages <- c("devtools", "usethis", "testthat", "tidyverse", "desc")
 
     local({
