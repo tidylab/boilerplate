@@ -1,6 +1,6 @@
-ci_get_job_name <- function(){
-    tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
-}
+ci_get_job_name <- function() tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
+is_travis <- function() identical(Sys.getenv("TRAVIS"), "true")
+is_integrating <- function() identical(Sys.getenv("CI"), "true")
 
 show_error_log <- function(){
     `%+%` <- function(a,b) paste0(a, b)
@@ -20,10 +20,6 @@ show_error_log <- function(){
     }
 
     print(devtools::session_info())
-}
-
-is_travis <- function(){
-    identical(Sys.getenv("TRAVIS"), "true")
 }
 
 install_package <- function(pkg){
