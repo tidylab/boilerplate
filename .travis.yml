@@ -28,24 +28,24 @@ stages:
 # jobs -------------------------------------------------------------------------
 jobs:
   include:
-    - stage: "build"
-      name: "build"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "testthat"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "component-tests"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "integration-tests"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "coverage-tests"
-      script: R -q -e 'tic::script()'
-    - stage: "deploy"
-      name: "coverage-report"
-      script: R -q -e 'tic::script()'
+#    - stage: "build"
+#      name: "build"
+#      script: R -q -e 'tic::script()'
+#    - stage: "test"
+#      name: "testthat"
+#      script: R -q -e 'tic::script()'
+#    - stage: "test"
+#      name: "component-tests"
+#      script: R -q -e 'tic::script()'
+#    - stage: "test"
+#      name: "integration-tests"
+#      script: R -q -e 'tic::script()'
+#    - stage: "test"
+#      name: "coverage-tests"
+#      script: R -q -e 'tic::script()'
+#    - stage: "deploy"
+#      name: "coverage-report"
+#      script: R -q -e 'tic::script()'
     - stage: "deploy"
       name: "pkgdown"
       script: R -q -e 'tic::script()'
@@ -64,15 +64,14 @@ after_failure: R -q -e 'tic::after_failure()'
 before_deploy: R -q -e 'tic::before_deploy()'
 deploy:
   provider: script
-  local_dir: docs
-  script: Rscript -e 'pkgdown::build_site()'
+#  local_dir: docs
+  script: R -q -e 'tic::deploy()'
   skip_cleanup: true
   keep-history: true
   github_token: $GITHUB_PAT
-  target_branch: gh-pages
+#  target_branch: gh-pages
   on:
     all_branches: true
-  if: job_name = pkgdown
 #     branch: master
 after_deploy: R -q -e 'tic::after_deploy()'
 after_script: R -q -e 'tic::after_script()'
