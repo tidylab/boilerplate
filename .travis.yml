@@ -16,10 +16,10 @@ env:
   - MAKEFLAGS="-j 2"
 
 # multiple R versions ----------------------------------------------------------
-matrix:
-  include:
-  - r: 3.6.0
-  - r: release
+r:
+  - oldrel
+  - release
+  - devel
 
 # stages -----------------------------------------------------------------------
 stages:
