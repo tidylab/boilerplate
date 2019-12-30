@@ -5,15 +5,26 @@ output: github_document
 ```{r setup, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
 remotes::install_cran(c("desc", "devtools", "webshot"))
 webshot::install_phantomjs()
-source(".app/readme/helper-functions.R", TRUE)
 knitr::opts_chunk$set(
   echo = TRUE, 
   message = FALSE,
   warning = FALSE,
   fig.align = "center", 
-  fig.path = ".app/figures/readme/",
   out.width = "100%"
 )
+```
+
+```{r helper-functions, echo = FALSE}
+badge_custom <- function(x, y, color, url = "about::blank"){
+    alt <- paste(x)
+    x <- gsub(" ", "%20", x)
+    y <- gsub(" ", "%20", y)
+    x <- gsub("-", "--", x)
+    y <- gsub("-", "--", y)
+    badge <- paste0("![", alt, "](https://img.shields.io/badge/", x, "-",
+                    y, "-", color, ".svg)")
+    if (is.null(url)) return(badge) else paste0("[", badge, "](", url, ")")
+}
 ```
 
 ```{r, echo = FALSE, message=FALSE}
@@ -70,6 +81,8 @@ knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 ## Overview
 
 `r desc_obj$get_field("Description")`
+
+See the [package website](`r desc_obj$get_urls()[[1]]`) for more information. 
 
 ## Installation
 

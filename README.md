@@ -25,6 +25,9 @@ This is possible as the template comes with:
 \* Fully configured test-suite, including code-coverage; and  
 \* Fully configured continuous-integration (CI) script for Travis.
 
+See the [package website](https://tidylab.github.io/template.package/)
+for more information.
+
 ## Installation
 
 You can install `template.package` by using:
