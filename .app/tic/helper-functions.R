@@ -9,7 +9,7 @@ show_error_log <- function(){
     install_package("stringr")
     install_package("devtools")
 
-    desc_obj <- description$new()
+    desc_obj <- description::description$new()
     package_url <- desc_obj$get_field("BugReports") %>% stringr::str_remove("/issues$")
     package_name <- desc_obj$get_field("Package")
     package_repo <- stringr::str_extract_all(package_url, "[^/]+(?://[^/]*)*")[[1]][2:3] %>% paste0(collapse ="/")
