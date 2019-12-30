@@ -41,7 +41,7 @@ Deployable <- R6::R6Class(
             holepunch::build_binder()
         },
         pkgdown = function(){
-            remotes::install_github("r-lib/pkgdown")
+            remotes::install_cran("r-lib/pkgdown")
             tic::do_pkgdown(deploy = TRUE, orphan = TRUE, path = "docs", branch = "gh-pages")
         },
         job_name = character(),
