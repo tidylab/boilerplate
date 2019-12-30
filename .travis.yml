@@ -15,15 +15,8 @@ env:
   global:
   - MAKEFLAGS="-j 2"
 
-# multiple R versions ----------------------------------------------------------
+# multiple versions ------------------------------------------------------------
 r: 3.6.2
-#matrix:
-#  allow_failures:
-#  - r: oldrel
-#  include:
-#  - release
-#  - oldrel
-#  - devel
 
 # stages -----------------------------------------------------------------------
 stages:
