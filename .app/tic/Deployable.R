@@ -43,7 +43,8 @@ Deployable <- R6::R6Class(
             holepunch::build_binder()
         },
         build_site = function(){
-            remotes::install_cran("pkgdown", quiet = TRUE)
+            remotes::install_cran(c("fs", "pkgdown"), quiet = TRUE)
+            fs::dir_copy("./.app", "./docs/.app")
             pkgdown::build_site()
         },
         job_name = character(),
