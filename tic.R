@@ -4,7 +4,7 @@ invisible(sapply(list.files("./.app/tic", full.names = TRUE), source))
 
 # Stage : Before Install -------------------------------------------------------
 get_stage("before_install") %>%
-    add_step(step_run_code(Sys.getenv()))
+    add_step(step_run_code(print(Sys.getenv())))
 
 # Stage: Install ---------------------------------------------------------------
 get_stage("install") %>%
