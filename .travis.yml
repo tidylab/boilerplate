@@ -20,7 +20,8 @@ matrix:
   include:
   - r: 3.6.0
   - r: release
-    if: branch = develop
+    on:
+      branch: develop
 
 # stages -----------------------------------------------------------------------
 stages:
