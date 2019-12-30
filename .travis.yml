@@ -64,8 +64,12 @@ after_failure: R -q -e 'tic::after_failure()'
 before_deploy: R -q -e 'tic::before_deploy()'
 deploy:
   provider: script
+  local_dir: docs
+  script: Rscript -e 'if(Sys.getenv("TRAVIS_JOB_NAME"") == "pkgdown") pkgdown::build_site()'
+  skip_cleanup: true
+  keep-history: true
   github_token: $GITHUB_PAT
-  script: R -q -e 'tic::deploy()'
+  target_branch: gh-pages
   on:
     all_branches: true
 #     branch: master

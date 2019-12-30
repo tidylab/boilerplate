@@ -19,8 +19,7 @@ Deployable <- R6::R6Class(
             library(private$package_name, character.only = TRUE)
             switch (private$job_name,
                     "coverage-report" = private$codecov(),
-                    "binder" = private$build_binder(),
-                    "pkgdown" = private$pkgdown()
+                    "binder" = private$build_binder()
             )
         }
     ),
@@ -39,11 +38,6 @@ Deployable <- R6::R6Class(
             holepunch::write_install()
             holepunch::write_runtime()
             holepunch::build_binder()
-        },
-        pkgdown = function(){
-            remotes::install_cran("pkgdown", quiet = TRUE)
-            if(isFALSE(tic::ci_can_push())) stop("Can not push deployment; set up CI environment variable `id_rsa`")
-            pkgdown::deploy_site_github()
         },
         job_name = character(),
         package_name = desc::description$new()$get_field("Package")
