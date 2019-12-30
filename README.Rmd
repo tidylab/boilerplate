@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   fig.align = "center", 
-  fig.path = ".app/readme/figures/",
+  fig.path = ".app/figures/readme/",
   out.width = "100%"
 )
 .install_package("desc")
