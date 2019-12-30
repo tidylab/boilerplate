@@ -20,11 +20,8 @@ get_stage("script") %>%
 
 # Stage: Deploy ----------------------------------------------------------------
 if(ci_get_job_name() == "pkgdown" & ci_on_travis()){
-    message("######################### do_pkgdown ###########################")
-    if(isFALSE(ci_can_push())) stop("Can not push deployment; CI environments require an environment variable")
-    pkgdown::deploy_site_github()
+    pkgdown::build_site()
 }
-
 
 # Stage: After Failure ---------------------------------------------------------
 get_stage("after_failure") %>%
