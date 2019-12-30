@@ -22,7 +22,7 @@ get_stage("script") %>%
 if(ci_get_job_name() == "pkgdown" & ci_on_travis()){
     message("######################### do_pkgdown ###########################")
     if(isFALSE(ci_can_push())) stop("Can not push deployment; CI environments require an environment variable")
-    tic::do_pkgdown(deploy = TRUE)
+    pkgdown::deploy_site_github()
 }
 
 
