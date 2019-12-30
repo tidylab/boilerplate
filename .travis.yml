@@ -68,9 +68,9 @@ deploy:
   keep-history: true
   github_token: $GITHUB_PAT
   target_branch: gh-pages
-  if: job_name = pkgdown
   on:
     all_branches: true
+    condition: $TRAVIS_JOB_NAME = pkgdown
 #     branch: master
 after_deploy: R -q -e 'tic::after_deploy()'
 after_script: R -q -e 'tic::after_script()'
