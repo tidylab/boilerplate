@@ -19,7 +19,8 @@ Deployable <- R6::R6Class(
             library(private$package_name, character.only = TRUE)
             switch (private$job_name,
                     "coverage-report" = private$codecov(),
-                    "binder" = private$build_binder()
+                    "binder" = private$build_binder(),
+                    "pkgdown" = private$build_site()
             )
         }
     ),
@@ -29,15 +30,21 @@ Deployable <- R6::R6Class(
             job_name %in% c("coverage-report", "binder", "pkgdown")
         },
         codecov = function() {
+            remotes::install_cran("covr", quiet = TRUE)
             Sys.setenv(TESTTHAT = "true")
             msg <- covr::codecov(quiet = FALSE)
             print(msg)
             Sys.setenv(TESTTHAT = "")
         },
         build_binder = function(){
+            remotes::install_github("karthik/holepunch@0eec31cbefbb50ba142b2007103316bd6fbaef8a", quiet = TRUE)
             holepunch::write_install()
             holepunch::write_runtime()
             holepunch::build_binder()
+        },
+        build_site = function(){
+            remotes::install_cran("pkgdown", quiet = TRUE)
+            pkgdown::build_site()
         },
         job_name = character(),
         package_name = desc::description$new()$get_field("Package")

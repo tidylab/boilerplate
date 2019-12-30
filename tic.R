@@ -16,12 +16,8 @@ get_stage("install") %>%
 get_stage("script") %>%
     add_step(step_run_code(devtools::document())) %>%
     add_step(step_build_and_check(job_name = ci_get_job_name())) %>%
-    add_step(step_run_test_suite(job_name = ci_get_job_name()))
-
-# Stage: Deploy ----------------------------------------------------------------
-if(ci_get_job_name() == "pkgdown" & ci_on_travis()){
-    pkgdown::build_site()
-}
+    add_step(step_run_test_suite(job_name = ci_get_job_name())) %>%
+    add_step(step_deploy(job_name = ci_get_job_name()))
 
 # Stage: After Failure ---------------------------------------------------------
 get_stage("after_failure") %>%
