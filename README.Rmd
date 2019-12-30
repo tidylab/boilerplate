@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   fig.align = "center", 
-  fig.path = ".app/readme/figures/",
+  fig.path = ".app/figures/readme/",
   out.width = "100%"
 )
 .install_package("desc")
@@ -109,9 +109,4 @@ You can install ``r package_name`` by using:
 ```
 install.packages("devtools")
 devtools::install_github("`r package_repo`")
-```
-## Function Dependencies
-
-```{r package-function-dependencies, echo = FALSE, out.width = "100%"}
-plot_function_dependencies(package_name)
 ```

@@ -70,4 +70,4 @@ You can install `template.package` by using:
 
 ## Function Dependencies
 
-<img src=".app/readme/figures/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
+<img src=".app/figures/readme/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;" />
