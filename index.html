@@ -51,15 +51,20 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/tidylab/template.package">
-    <span class="fab fa fab fa-github fa-lg"></span>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
      
+    <span class="caret"></span>
   </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/using-the-template-package.html">Using the Template Package</a>
+    </li>
+  </ul>
 </li>
       </ul>
+<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -77,10 +82,11 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>Boilerplate for ‘tidylab’ Packages</p>
-<hr>
+<div id="boilerplate-for-tidylab-packages" class="section level2">
+<h2 class="hasAnchor">
+<a href="#boilerplate-for-tidylab-packages" class="anchor"></a>Boilerplate for ‘tidylab’ Packages</h2>
 <p><img src="https://i.imgur.com/RLEQkhe.png" width="75%" style="display: block; margin: auto;"></p>
-<!-- Package Description -->
+</div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
@@ -90,38 +96,7 @@
 This is possible as the template comes with:<br>
 * Fully configured test-suite, including code-coverage; and<br>
 * Fully configured continuous-integration (CI) script for Travis.</p>
-<!--- Only relevant for the {boilerplate} package -->
-</div>
-<div id="useage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#useage" class="anchor"></a>Useage</h2>
-<ol>
-<li>Create a new repo on GitHub.</li>
-<li>Use the <a href="https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/"><code>git-flow</code></a> approach in your development cycle.</li>
-<li>Create a new release named <code>inception</code>.</li>
-<li>Copy <code>template.package</code> content to the new reposetory.</li>
-<li>Change the <code>template.package.Rproj</code> file to <code>&lt;package-name&gt;.Rproj</code>.</li>
-<li>Open the <code>DESCRIPTION</code> file, and edit the following fields:</li>
-<li>
-<strong>Package</strong> modify the package name while using the <code>tidylab.</code> prefix.</li>
-<li>
-<strong>Title</strong> modify the package title; use uppercase words with no period (‘.’).</li>
-<li>
-<strong>URL</strong> modify the package URL such that it leads to its GitHub repo.</li>
-<li>
-<strong>BugReports</strong> edit the URL such that it leads to the package issue page.</li>
-<li>
-<strong>Description</strong> modify the package decription.</li>
-<li>In <code>README.Rmd</code> delete the <strong>Useage</strong> Section.</li>
-<li>Render <code>README.Rmd</code> by clicking the <strong>Knit</strong> button.</li>
-<li>Push changed on the <code>inception</code> branch.</li>
-<li>Go to <a href="https://travis-ci.org/account/repositories">Travis website</a>, add the project and enable its integration.</li>
-<li>Decide if you would need binder – an RStudio Server that lets you demonstrate the package. If you do then:</li>
-</ol>
-<!-- end list --><ul>
-<li>Uncomment <em>build-binder</em> under <em>.travis.yml</em>; and</li>
-<li>Uncomment <em>Launch Rstudio Binder</em> from README.Rmd.</li>
-</ul>
+<p>See the <a href="https://tidylab.github.io/template.package/">package website</a> for more information.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -130,19 +105,6 @@ This is possible as the template comes with:<br>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"tidylab/template.package"</span>)</a></code></pre></div>
 </div>
-<div id="function-dependencies" class="section level2">
-<h2 class="hasAnchor">
-<a href="#function-dependencies" class="anchor"></a>Function Dependencies</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">##      checking for file ‘/tmp/RtmpWqUgSN/remotes2e3570096401/datastorm-open-DependenciesGraphs-3c33e2a/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpWqUgSN/remotes2e3570096401/datastorm-open-DependenciesGraphs-3c33e2a/DESCRIPTION’</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">##   ─  preparing ‘DependenciesGraphs’:</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">##   ─  checking for LF line-endings in source and make files and shell scripts</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">##   ─  checking for empty or unneeded directories</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">##   ─  building ‘DependenciesGraphs_0.3.tar.gz’</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">##      </a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">## </a></code></pre></div>
-<p><img src=".app/figures/readme/package-function-dependencies-1.png" width="100%" style="display: block; margin: auto;"></p>
-</div>
 </div>
   </div>
 
@@ -150,8 +112,6 @@ This is possible as the template comes with:<br>
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/tidylab/template.package">https://​github.com/​tidylab/​template.package</a>
-</li>
 <li>Report a bug at <br><a href="https://github.com/tidylab/template.package/issues">https://​github.com/​tidylab/​template.package/​issues</a>
 </li>
 </ul>
@@ -173,6 +133,7 @@ This is possible as the template comes with:<br>
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://tidylab.github.io/template.package/"><img src="https://img.shields.io/badge/Package%20Website-Click--Here-9cf.svg" alt="Package Website"></a></li>
 <li><a href="https://travis-ci.org/tidylab/template.package"><img src="https://travis-ci.org/tidylab/template.package.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://codecov.io/github/tidylab/template.package/?branch=master"><img src="https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg" alt="Code coverage status"></a></li>
 </ul>
