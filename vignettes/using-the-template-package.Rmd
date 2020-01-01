@@ -19,25 +19,60 @@ package_name <- desc_obj$get_field("Package")
 ```{r setup}
 ```
 
-1. Create a new repo on GitHub.
-2. Use the [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/) approach in your development cycle. 
-3. Create a new release named `inception`.
-4. Copy ``r package_name`` content to the new reposetory. [@wickham2015r]
-5. Change the ``r paste0(package_name,".Rproj")`` file to `<package-name>.Rproj`.
-6. Open the `DESCRIPTION` file, and edit the following fields:
-1. **Package** modify the package name while using the `tidylab.` prefix.
-2. **Title** modify the package title; use uppercase words with no period ('.').
-3. **URL** modify the package URL such that it leads to its GitHub repo.
-4. **BugReports** edit the URL such that it leads to the package issue page.
-5. **Description** modify the package decription.
-7. In `README.Rmd` delete the **Useage** Section.
-8. Render `README.Rmd` by clicking the **Knit** button.
-9. Push changed on the `inception` branch.
-10. Go to [Travis website](https://travis-ci.org/account/repositories), add the
-project and enable its integration.
-11. Decide if you would need binder -- an RStudio Server that lets you
-demonstrate the package. If you do then:
-* Uncomment *build-binder* under *.travis.yml*; and
-* Uncomment *Launch Rstudio Binder* from README.Rmd.
+This article describes how to use the template for a new package. The *Overview*
+section presents a recipe that leads to a fully configure package. The rest of
+the sections illustrate some of the steps. For more general information about R
+package development, refer to [@wickham2015r].
 
-# References
+## Overview
+
+The following steps set up:
+
+* Essential configurations for deploying an R package locally and on GitHub; and
+* Information about the package and the development team.
+
+To use the template for a new package, follow the next steps:
+
+1. Choose a package name:
+  * Do use the following characters: letters (uppercase or uppercase), digits
+  and dot ("."); and
+  * Don’t use spaces, underscores or hyphens. Instead, use camelCase or dots to
+  separate words.
+2. Create a new repo on GitHub; name the repo after the package name; 
+3. Copy the content of **template.package** into the new repo;
+4. Delete the `vignettes` folder;
+5. Rename `template.package.Rproj` to `{package-name}.Rproj`;
+6. Update the following fields within the DESCRIPTION file:
+  * **Package**; rename the package name.
+  *	**Title**; describe the package in one line:
+    * It should be plain text (no markup), capitalised like a title, and NOT end
+    in a period; and
+    * Keep it short: listings truncate the title to 65 characters.
+  * **URL**; Add a link pointing at the GitHub pages address of the package:
+    * Use the template: https://{user-name}.github.io/{package-name}/
+    * For example https://tidylab.github.io/template.package/
+  * **BugReports**; edit the URL such that it leads to the package issue page:
+    * Use the template: https://github.com/{user-name}/{package-name}/issues
+    * For example https://github.com/tidylab/template.package/issues
+  * **Date**; replace with the creation date of the package:
+    * The specified date determines the MRAN snapshot date; alternatively 
+    * Use the most recent packages on CRAN by removing that filed.
+  * **Authors** and **Maintainer**: Update persons information;
+  * **Description**; Elaborate the package **Title**:
+    * You can use multiple sentences but you are limited to one paragrap; and
+    * If your description spans multiple lines (and it should!), each line must
+    be no more than 80 characters wide. Indent subsequent lines with 4 spaces
+7. Render the `README.Rmd` file. By default, README.Rmd displays package
+information gathered from the DESCRIPTION file;
+8. Push changes to GitHub;
+9. Connect the GitHub repo to external services:
+  * Go to GitHub user *Settings/Developer settings/Personal access tokens* and
+  generate a token named *GITHUB_PAT*; then
+  *	Go to [Travis website](https://travis-ci.org/), add the project and enable
+  its integration. Add *GITHUB_PAT* as an environment variable; then
+  * Go to [Codecov website](https://codecov.io/gh), add the project and enable
+  its integration.
+
+## Step by Step
+
+## References
