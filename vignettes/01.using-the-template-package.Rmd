@@ -73,6 +73,6 @@ information gathered from the DESCRIPTION file;
   * Go to [Codecov website](https://codecov.io/gh), add the project and enable
   its integration.
 
-## Step by Step
+<!-- ## Step by Step -->
 
 ## References
