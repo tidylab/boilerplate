@@ -1,5 +1,8 @@
 ---
 title: "Using the Template Package"
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
 ---
 
 ```{r, include = FALSE}
@@ -19,7 +22,7 @@ package_name <- desc_obj$get_field("Package")
 1. Create a new repo on GitHub.
 2. Use the [`git-flow`](https://blog.sourcetreeapp.com/2012/08/01/smart-branching-with-sourcetree-and-git-flow/) approach in your development cycle. 
 3. Create a new release named `inception`.
-4. Copy ``r package_name`` content to the new reposetory.
+4. Copy ``r package_name`` content to the new reposetory. [@wickham2015r]
 5. Change the ``r paste0(package_name,".Rproj")`` file to `<package-name>.Rproj`.
 6. Open the `DESCRIPTION` file, and edit the following fields:
 1. **Package** modify the package name while using the `tidylab.` prefix.
@@ -36,3 +39,5 @@ project and enable its integration.
 demonstrate the package. If you do then:
 * Uncomment *build-binder* under *.travis.yml*; and
 * Uncomment *Launch Rstudio Binder* from README.Rmd.
+
+# References
