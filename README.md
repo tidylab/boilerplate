@@ -17,13 +17,19 @@ status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge
 
 ## Overview
 
-Using this template reduces:  
-\* Unnecessary variance between packages configurations; and  
-\* Development time spent on making a barebone package working for the
-first time.  
-This is possible as the template comes with:  
-\* Fully configured test-suite, including code-coverage; and  
-\* Fully configured continuous-integration (CI) script for Travis.
+Any R package may include functions, tests, documentation and data.
+While the content between packages is different, package development
+tools and processes are often similar. `template.package` aims at:  
+\* Letting the R programmer focus on what’s important – developing the
+package content;  
+\* Speeding-up development time by reducing rework time spent on
+development tools setup; and  
+\* Laying the infrastructure needed for some good software development
+practices such as test-driven development.  
+`template.package` includes:  
+\* Fully configured test-suite, including code-coverage;  
+\* Fully configured continuous-integration (CI) script for Travis; and  
+\* Fully configured continuous-development (CD) script for Travis.
 
 See the [package website](https://tidylab.github.io/template.package/)
 for more information.
