@@ -6,17 +6,18 @@ dist: bionic
 
 # meta -------------------------------------------------------------------------
 language: r
+r: 3.6.2
 cache:
   - packages
   - ccache
 latex: false
 
 # multiple R versions ----------------------------------------------------------
-matrix:
-  include:
-  - r: devel
-  - r: oldrel
-  - r: release
+#matrix:
+#  include:
+#  - r: devel
+#  - r: oldrel
+#  - r: release
 
 # environment variables --------------------------------------------------------
 
