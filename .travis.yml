@@ -39,7 +39,7 @@ before_script:
    Date <- trimws(gsub("Date:", "", DESCRIPTION[grepl("Date:", DESCRIPTION)]));
    if(length(Date) == 1) options(repos = paste0("https://mran.microsoft.com/snapshot/", Date));
    if(!require(remotes, quietly = TRUE)) utils::install.packages("remotes");
-   remotes::install_github("ropenscilabs/tic@v0.3.0", dependencies = TRUE, quiet = TRUE);
+   remotes::install_github("ropenscilabs/tic@v0.4.0", dependencies = TRUE, quiet = TRUE);
    print(tic::dsl_load());
    tic::prepare_all_stages();
    tic::before_script()'
