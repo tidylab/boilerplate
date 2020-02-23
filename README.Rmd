@@ -8,15 +8,16 @@ pkgs <- c("desc", "devtools", "usethis", "webshot")
 try(remotes::install_cran(pkgs), silent = TRUE)
 try(webshot::install_phantomjs(), silent = TRUE)
 knitr::opts_chunk$set(
-  echo = TRUE, 
+  echo = FALSE, 
   message = FALSE,
   warning = FALSE,
+  results = 'hide',
   fig.align = "center", 
   out.width = "100%"
 )
 ```
 
-```{r, echo = FALSE, message=FALSE}
+```{r get-info}
 #######################
 ## Get Project Paths ##
 #######################
@@ -55,7 +56,7 @@ pkgdown_src <- generate_shield_src(label = "Package Website", message = "Click-H
 
 # ``r package_name``
 
-```{r add-badges, echo = FALSE, message=FALSE}
+```{r add-badges}
 usethis::use_badge("Package Website", pkgdown_href, pkgdown_src)
 usethis::use_badge("Travis Status", travis_href, travis_src)
 usethis::use_badge("Code Coverage Status", covr_href, covr_src)
@@ -70,7 +71,7 @@ usethis::use_badge("Code Coverage Status", covr_href, covr_src)
 `r desc_obj$get_field("Title")`
 ---
 
-```{r, echo = FALSE, out.width = "75%"}
+```{r, out.width = "75%"}
 knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 ```
 

@@ -1,6 +1,4 @@
 
-    ## <U+2714> Setting active project to 'G:/Shared drives/Development/packages-github/template.package'
-
 # `template.package`
 
 <!-- badges: start -->
@@ -14,8 +12,6 @@ Status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge
 <!-- badges: end -->
 
 ## Boilerplate for ‘tidylab’ Packages
-
-<img src="https://i.imgur.com/RLEQkhe.png" width="75%" style="display: block; margin: auto;" />
 
 ## Overview
 
