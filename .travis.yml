@@ -47,5 +47,22 @@ script: R -q -e 'tic::script()'
 after_success: R -q -e 'tic::after_success()'
 after_failure: R -q -e 'tic::after_failure()'
 after_script: R -q -e 'tic::after_script()'
+before_deploy: R -q -e 'tic::before_deploy()'
+deploy:
 
+R -q -e 'tic::deploy()'
+after_deploy: R -q -e 'tic::after_deploy()'
 # Custom user code -------------------------------------------------------------
+before_deploy: R -q -e 'tic::before_deploy()'
+deploy:
+  provider: script
+  script: R -q -e 'tic::deploy()'
+  local_dir: docs
+  skip_cleanup: true
+  keep-history: true
+  github_token: $GITHUB_PAT
+  target_branch: gh-pages
+  on:
+    all_branches: true
+    #condition: $TRAVIS_JOB_NAME = master
+after_deploy: R -q -e 'tic::after_deploy()'

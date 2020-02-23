@@ -29,7 +29,8 @@ get_stage("after_failure") %>%
 get_stage("before_deploy")
 
 # Stage: Deploy -----------------------------------------------------------
-get_stage("deploy")
+get_stage("deploy") %>%
+    add_step(tic::step_build_pkgdown())
 
 # Stage: After Deploy -----------------------------------------------------
 # get_stage("after_deploy") %>%
