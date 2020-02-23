@@ -25,7 +25,7 @@ env:
   global:
     - MAKEFLAGS="-j 2"
 
-# Stages -----------------------------------------------------------------------
+# stages -----------------------------------------------------------------------
 before_install:
   - echo -e "options(Ncpus = 8, repos = structure(c(CRAN = 'https://cloud.r-project.org/')))" > $HOME/.Rprofile
   - mkdir $HOME/.R && echo -e 'CXX_STD = CXX14\n\nCC=ccache gcc -std=gnu99\nCXX=ccache g++\nCXX11=ccache g++ -std=gnu99\nCXX14=ccache g++ -std=gnu99\nC11=ccache g++\nC14=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
@@ -47,12 +47,6 @@ script: R -q -e 'tic::script()'
 after_success: R -q -e 'tic::after_success()'
 after_failure: R -q -e 'tic::after_failure()'
 after_script: R -q -e 'tic::after_script()'
-before_deploy: R -q -e 'tic::before_deploy()'
-deploy:
-
-R -q -e 'tic::deploy()'
-after_deploy: R -q -e 'tic::after_deploy()'
-# Custom user code -------------------------------------------------------------
 before_deploy: R -q -e 'tic::before_deploy()'
 deploy:
   provider: script

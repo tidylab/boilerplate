@@ -36,17 +36,3 @@ get_stage("deploy") %>%
 # get_stage("after_deploy") %>%
 #     add_step(step_install_cran("covr")) %>%
 #     add_step(step_run_code(covr::package_coverage(type = c("tests", "examples"), quiet = FALSE)))
-
-
-
-
-
-
-
-# # installs dependencies, runs R CMD check, runs covr::codecov()
-# do_package_checks()
-#
-# if (ci_on_travis()) {
-#   # creates pkgdown site and pushes to gh-pages branch
-#   do_pkgdown()
-# }
