@@ -20,12 +20,17 @@ latex: false
 #  - r: release
 
 # environment variables --------------------------------------------------------
-
 env:
   global:
     - MAKEFLAGS="-j 2"
-
 # stages -----------------------------------------------------------------------
+stages:
+  - name: build
+  - name: test
+  - name: deploy
+#    if: branch = master
+
+# jobs -------------------------------------------------------------------------
 before_install:
   - echo -e "options(Ncpus = 8, repos = structure(c(CRAN = 'https://cloud.r-project.org/')))" > $HOME/.Rprofile
   - mkdir $HOME/.R && echo -e 'CXX_STD = CXX14\n\nCC=ccache gcc -std=gnu99\nCXX=ccache g++\nCXX11=ccache g++ -std=gnu99\nCXX14=ccache g++ -std=gnu99\nC11=ccache g++\nC14=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
@@ -60,3 +65,16 @@ deploy:
     all_branches: true
     #condition: $TRAVIS_JOB_NAME = master
 after_deploy: R -q -e 'tic::after_deploy()'
+
+# scripts ----------------------------------------------------------------------
+jobs:
+  include:
+    - stage: "build"
+      name: "build"
+      script: R -q -e 'tic::script()'
+    - stage: "test"
+      name: "test"
+      script: R -q -e 'tic::script()'
+    - stage: "deploy"
+      name: "deploy"
+      script: R -q -e 'tic::script()'
