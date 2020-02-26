@@ -7,7 +7,7 @@
 #' 5. OPTIONAL deploy
 #' 6. OPTIONAL after_deploy
 #'
-library(tic)
+library(tic, warn.conflicts = FALSE)
 source("./AppData/tic/helpers.R")
 
 # Stage: Before Script ----------------------------------------------------

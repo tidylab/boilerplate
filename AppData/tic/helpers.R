@@ -21,8 +21,8 @@ deploy_steps <- function(stage){
 
 # low level steps ---------------------------------------------------------
 add_message <- function(stage, msg){
-    expression <- paste0("message(\"", paste0(msg, collapse = ""),"\")", collapse = "")
-    stage %>% add_code_step(call = expression)
+    expression <- c("stage %>% add_code_step(", paste0("message(\"", paste0(msg, collapse = ""),"\")", collapse = ""), ")")
+    eval(parse(text = expression))
 }
 
 # branches wrappers -------------------------------------------------------
