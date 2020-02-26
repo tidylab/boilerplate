@@ -26,17 +26,6 @@ if("master" %in% ci_get_branch()){
 
 }
 
-
-# if(ci_get_job_name() == "build"){
-#     get_stage("script") %>%
-#         add_step(step_run_code(devtools::document(quiet = TRUE))) %>%
-#         add_step(step_rcmdcheck(error_on = "error"))
-# } else if (tic::ci_get_branch() == "test") {
-#     get_stage("script") %>%
-#         add_step(step_run_code(devtools::load_all(export_all = FALSE))) %>%
-#         add_step(step_run_code(testthat::test_dir("./tests/testthat")))
-# }
-
 # Stage: After Success ----------------------------------------------------
 get_stage("after_success")
 
@@ -48,10 +37,7 @@ get_stage("after_failure") %>%
 get_stage("before_deploy")
 
 # Stage: Deploy -----------------------------------------------------------
-get_stage("deploy") %>%
-    add_step(step_build_pkgdown())
+get_stage("deploy")
 
 # Stage: After Deploy -----------------------------------------------------
-# get_stage("after_deploy") %>%
-#     add_step(step_install_cran("covr")) %>%
-#     add_step(step_run_code(covr::package_coverage(type = c("tests", "examples"), quiet = FALSE)))
+get_stage("after_deploy")
