@@ -1,11 +1,5 @@
-GlobalEnv_funs <- as.vector(lsf.str(envir = .GlobalEnv))
-source(list.files(pattern = "testthat-helpers.R$", recursive = TRUE, full.names = TRUE))
-.setup()
-
-.run_unit_tests()
-.run_component_tests()
-.run_integration_tests()
-.run_coverage_tests()
-
-.cleanup()
-rm(GlobalEnv_funs, list = setdiff(as.vector(lsf.str(envir = .GlobalEnv)), GlobalEnv_funs))
+pkg_name <- eval(parse(text = 'pkgload::pkg_name(dirname(list.files("..", pattern = "DESCRIPTION", recursive = TRUE, full.names = TRUE))[[1]])'))
+library(testthat)
+library(pkg_name, character.only = TRUE)
+test_check(pkg_name)
+rm(pkg_name)

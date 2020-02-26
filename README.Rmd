@@ -3,31 +3,21 @@ output: github_document
 ---
 
 ```{r setup, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
-remotes::install_cran(c("desc", "devtools", "webshot"))
-webshot::install_phantomjs()
+source("./AppData/README/helpers.R")
+pkgs <- c("desc", "devtools", "usethis", "webshot")
+try(remotes::install_cran(pkgs), silent = TRUE)
+try(webshot::install_phantomjs(), silent = TRUE)
 knitr::opts_chunk$set(
-  echo = TRUE, 
+  echo = FALSE, 
   message = FALSE,
   warning = FALSE,
+  results = 'hide',
   fig.align = "center", 
   out.width = "100%"
 )
 ```
 
-```{r helper-functions, echo = FALSE}
-badge_custom <- function(x, y, color, url = "about::blank"){
-    alt <- paste(x)
-    x <- gsub(" ", "%20", x)
-    y <- gsub(" ", "%20", y)
-    x <- gsub("-", "--", x)
-    y <- gsub("-", "--", y)
-    badge <- paste0("![", alt, "](https://img.shields.io/badge/", x, "-",
-                    y, "-", color, ".svg)")
-    if (is.null(url)) return(badge) else paste0("[", badge, "](", url, ")")
-}
-```
-
-```{r, echo = FALSE, message=FALSE}
+```{r get-info}
 #######################
 ## Get Project Paths ##
 #######################
@@ -54,27 +44,34 @@ Sys.setenv(CI_PROJECT_URL = package_url)
 ####################
 ## Construct URLs ##
 ####################
-travis_url <- paste0("https://travis-ci.org/", package_repo)
-pipeline_url <- paste0(travis_url, ".svg?branch=master")
-mybinder_url <- "http://mybinder.org/badge.svg"
+travis_href <- paste0("https://travis-ci.org/", package_repo)
+travis_src <- paste0(travis_href, ".svg?branch=master")
 
-codecov_url <- paste0("https://codecov.io/github/", package_repo, "/", "?branch=master")
-covr_url <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph/badge.svg")
-binder_url <- paste0("https://mybinder.org/v2/gh/", package_repo, "/master?urlpath=rstudio")
+covr_href <- paste0("https://codecov.io/github/", package_repo, "/", "?branch=master")
+covr_src <- paste0("https://codecov.io/gh/", package_repo, "/branch/master/graph/badge.svg")
+
+pkgdown_href <- desc_obj$get_urls()[[1]]
+pkgdown_src <- generate_shield_src(label = "Package Website", message = "Click-Here", color = "9cf")
 ```
 
 # ``r package_name``
 
+```{r add-badges}
+usethis::use_badge("Package Website", pkgdown_href, pkgdown_src)
+usethis::use_badge("Travis Status", travis_href, travis_src)
+usethis::use_badge("Code Coverage Status", covr_href, covr_src)
+```
+
 <!-- badges: start -->
-`r badge_custom("Package Website", "Click-Here", "9cf", desc_obj$get_urls()[[1]])`
-[![Travis build status](`r pipeline_url`)](`r travis_url`)
-[![Code coverage status](`r covr_url`)](`r codecov_url`)
+[![Package Website](https://img.shields.io/badge/Package%20Website-Click--Here-9cf.svg)](https://tidylab.github.io/template.package/)
+[![Travis Status](https://travis-ci.org/tidylab/template.package.svg?branch=master)](https://travis-ci.org/tidylab/template.package)
+[![Code Coverage Status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/template.package/?branch=master)
 <!-- badges: end -->
 
 `r desc_obj$get_field("Title")`
 ---
 
-```{r, echo = FALSE, out.width = "75%"}
+```{r, out.width = "75%"}
 knitr::include_graphics("https://i.imgur.com/RLEQkhe.png")
 ```
 

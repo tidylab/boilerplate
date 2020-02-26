@@ -5,15 +5,13 @@
 
 [![Package
 Website](https://img.shields.io/badge/Package%20Website-Click--Here-9cf.svg)](https://tidylab.github.io/template.package/)
-[![Travis build
-status](https://travis-ci.org/tidylab/template.package.svg?branch=master)](https://travis-ci.org/tidylab/template.package)
-[![Code coverage
-status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/template.package/?branch=master)
+[![Travis
+Status](https://travis-ci.org/tidylab/template.package.svg?branch=master)](https://travis-ci.org/tidylab/template.package)
+[![Code Coverage
+Status](https://codecov.io/gh/tidylab/template.package/branch/master/graph/badge.svg)](https://codecov.io/github/tidylab/template.package/?branch=master)
 <!-- badges: end -->
 
 ## Boilerplate for ‘tidylab’ Packages
-
-<img src="https://i.imgur.com/RLEQkhe.png" width="75%" style="display: block; margin: auto;" />
 
 ## Overview
 

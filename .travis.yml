@@ -1,69 +1,51 @@
+# tic documentation: https://docs.ropensci.org/tic/dev/
+
 # OS ---------------------------------------------------------------------------
 os: linux
 dist: bionic
 
 # meta -------------------------------------------------------------------------
 language: r
+r: 3.6.2
 cache:
   - packages
-  - $HOME/.ccache
+  - ccache
 latex: false
 
+# multiple R versions ----------------------------------------------------------
+#matrix:
+#  include:
+#  - r: devel
+#  - r: oldrel
+#  - r: release
+
+# environment variables --------------------------------------------------------
 env:
   global:
-  - MAKEFLAGS="-j 2"
-
-# multiple versions ------------------------------------------------------------
-r: 3.6.2
-
-# stages -----------------------------------------------------------------------
-stages:
-  - name: build
-  - name: test
-  - name: deploy
-    if: branch = master
+    - MAKEFLAGS="-j 2"
 
 # jobs -------------------------------------------------------------------------
-jobs:
-  include:
-    - stage: "build"
-      name: "build"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "testthat"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "component-tests"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "integration-tests"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "coverage-tests"
-      script: R -q -e 'tic::script()'
-    - stage: "deploy"
-      name: "coverage-report"
-      script: R -q -e 'tic::script()'
-    - stage: "deploy"
-      name: "pkgdown"
-      script: R -q -e 'tic::script()'
-
-# DO NOT CHANGE THE CODE BELOW -------------------------------------------------
- - R -q -e 
-    'DESCRIPTION <- readLines("DESCRIPTION");
-     Date <- trimws(gsub("Date:", "", DESCRIPTION[grepl("Date:", DESCRIPTION)]));
-     if(length(Date) == 1) options(repos = paste0("https://mran.microsoft.com/snapshot/", Date));
-     if(!require(remotes, quietly = TRUE)) utils::install.packages("remotes");
-     remotes::install_deps(dependencies = "Imports", build = FALSE);
-     remotes::install_github("ropenscilabs/tic@v0.3.0", dependencies = TRUE); 
-     print(tic::dsl_load()); 
-     tic::prepare_all_stages()'
- - R -q -e 'tic::before_install()'
-install: R -q -e 'tic::install()'
-before_script: R -q -e 'tic::before_script()'
+before_install:
+  - echo -e "options(Ncpus = 8, repos = structure(c(CRAN = 'https://cloud.r-project.org/')))" > $HOME/.Rprofile
+  - mkdir $HOME/.R && echo -e 'CXX_STD = CXX14\n\nCC=ccache gcc -std=gnu99\nCXX=ccache g++\nCXX11=ccache g++ -std=gnu99\nCXX14=ccache g++ -std=gnu99\nC11=ccache g++\nC14=ccache g++\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
+  - mkdir -p $HOME/.ccache &&  echo -e 'max_size = 5.0G\nsloppiness = include_file_ctime\nhash_dir=false' > $HOME/.ccache/ccache.conf
+install:
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install ccache; fi
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
+before_script:
+  - R -q -e
+   'DESCRIPTION <- readLines("DESCRIPTION");
+   Date <- trimws(gsub("Date:", "", DESCRIPTION[grepl("Date:", DESCRIPTION)]));
+   if(length(Date) == 1) options(repos = paste0("https://mran.microsoft.com/snapshot/", Date));
+   if(!require(remotes, quietly = TRUE)) utils::install.packages("remotes");
+   remotes::install_github("ropenscilabs/tic@v0.4.0", dependencies = TRUE, quiet = TRUE);
+   tic::dsl_load();
+   tic::prepare_all_stages();
+   tic::before_script()'
 script: R -q -e 'tic::script()'
 after_success: R -q -e 'tic::after_success()'
 after_failure: R -q -e 'tic::after_failure()'
+after_script: R -q -e 'tic::after_script()'
 before_deploy: R -q -e 'tic::before_deploy()'
 deploy:
   provider: pages
@@ -74,7 +56,5 @@ deploy:
   target_branch: gh-pages
   on:
     all_branches: true
-    condition: $TRAVIS_JOB_NAME = pkgdown
+    condition: TRAVIS_BRANCH = master
 after_deploy: R -q -e 'tic::after_deploy()'
-after_script: R -q -e 'tic::after_script()'
-# DO NOT CHANGE THE CODE ABOVE -------------------------------------------------
