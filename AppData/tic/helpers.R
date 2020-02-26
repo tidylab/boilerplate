@@ -17,4 +17,11 @@ deploy_steps <- function(stage){
 }
 
 # helper functions --------------------------------------------------------
+is_master_branch <- function() "master" %in% ci_get_branch()
+is_develop_branch <- function() "develop" %in% ci_get_branch()
+is_feature_branch <- function() grepl("feature", ci_get_branch())
+is_hotfix_branch <- function() grepl("hotfix", ci_get_branch())
+is_release_branch <- function() grepl("release", ci_get_branch())
+
+
 ci_get_job_name <- function() tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
