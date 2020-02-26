@@ -20,7 +20,10 @@ deploy_steps <- function(stage){
 }
 
 # low level steps ---------------------------------------------------------
-add_message <- function(stage, msg) stage %>% add_code_step(prepare_call = message(msg))
+add_message <- function(stage, msg){
+    expression <- paste0("message(\"", paste0(msg, collapse = ""),"\")", collapse = "")
+    stage %>% add_code_step(prepare_call = expression)
+}
 
 # branches wrappers -------------------------------------------------------
 is_master_branch <- function() "master" %in% ci_get_branch()
