@@ -34,5 +34,5 @@ is_release_branch <- function() grepl("release", ci_get_branch())
 
 # helper functions --------------------------------------------------------
 ci_get_job_name <- function() tolower(paste0(Sys.getenv("TRAVIS_JOB_NAME"), Sys.getenv("APPVEYOR_JOB_NAME")))
-add_hashtag_line <- function() paste0(rep("#", 80), collapse = "")
+add_hashtag_line <- function() paste0(rep("#", 20), collapse = "")
 
