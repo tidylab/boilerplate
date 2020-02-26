@@ -2,15 +2,15 @@
 build_steps <- function(stage){
     stage %>%
         add_message(c(add_hashtag_line(), "\n## Build\n", add_hashtag_line())) %>%
-        add_step(step_run_code(devtools::document(quiet = TRUE))) %>%
+        add_code_step(devtools::document(quiet = TRUE)) %>%
         add_step(step_rcmdcheck(error_on = "error"))
 }
 
 test_steps <- function(stage){
     stage %>%
         add_message(c(add_hashtag_line(), "\n## Test\n", add_hashtag_line())) %>%
-        add_step(step_run_code(devtools::load_all(export_all = FALSE))) %>%
-        add_step(step_run_code(testthat::test_dir("./tests/testthat")))
+        add_code_step(devtools::load_all(export_all = FALSE)) %>%
+        add_code_step(testthat::test_dir("./tests/testthat"))
 }
 
 deploy_steps <- function(stage){
@@ -20,7 +20,7 @@ deploy_steps <- function(stage){
 }
 
 # low level steps ---------------------------------------------------------
-add_message <- function(stage, msg) stage %>% add_step(step_run_code(message(msg)))
+add_message <- function(stage, msg) stage %>% add_code_step(prepare_call = message(msg))
 
 # branches wrappers -------------------------------------------------------
 is_master_branch <- function() "master" %in% ci_get_branch()
