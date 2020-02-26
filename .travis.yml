@@ -23,12 +23,6 @@ latex: false
 env:
   global:
     - MAKEFLAGS="-j 2"
-# stages -----------------------------------------------------------------------
-stages:
-  - name: build
-  - name: test
-  - name: deploy
-#    if: branch = master
 
 # jobs -------------------------------------------------------------------------
 before_install:
@@ -48,6 +42,7 @@ before_script:
    print(tic::dsl_load());
    tic::prepare_all_stages();
    tic::before_script()'
+script: R -q -e 'tic::script()'
 after_success: R -q -e 'tic::after_success()'
 after_failure: R -q -e 'tic::after_failure()'
 after_script: R -q -e 'tic::after_script()'

@@ -7,7 +7,6 @@
 #' 5. OPTIONAL deploy
 #' 6. OPTIONAL after_deploy
 #'
-source("./AppData/travis/helpers.R")
 
 # Stage: Before Script ----------------------------------------------------
 get_stage("before_script") %>%
@@ -15,15 +14,27 @@ get_stage("before_script") %>%
     add_step(step_run_code(try(devtools::uninstall(), silent = TRUE)))
 
 # Stage: Script -----------------------------------------------------------
-if(ci_get_job_name() == "build"){
-    get_stage("script") %>%
-        add_step(step_run_code(devtools::document(quiet = TRUE))) %>%
-        add_step(step_rcmdcheck(error_on = "error"))
-} else if (tic::ci_get_branch() == "test") {
-    get_stage("script") %>%
-        add_step(step_run_code(devtools::load_all(export_all = FALSE))) %>%
-        add_step(step_run_code(testthat::test_dir("./tests/testthat")))
+if("master" %in% ci_get_branch()){
+    get_stage("script")
+
+} else if ("develop" %in% ci_get_branch()){
+    get_stage("script")
+
+} else if (grepl("feature", ci_get_branch())){
+    get_stage("script")
+
 }
+
+
+# if(ci_get_job_name() == "build"){
+#     get_stage("script") %>%
+#         add_step(step_run_code(devtools::document(quiet = TRUE))) %>%
+#         add_step(step_rcmdcheck(error_on = "error"))
+# } else if (tic::ci_get_branch() == "test") {
+#     get_stage("script") %>%
+#         add_step(step_run_code(devtools::load_all(export_all = FALSE))) %>%
+#         add_step(step_run_code(testthat::test_dir("./tests/testthat")))
+# }
 
 # Stage: After Success ----------------------------------------------------
 get_stage("after_success")
