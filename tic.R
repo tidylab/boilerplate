@@ -7,6 +7,7 @@
 #' 5. OPTIONAL deploy
 #' 6. OPTIONAL after_deploy
 #'
+source("./AppData/tic/helpers.R")
 
 # Stage: Before Script ----------------------------------------------------
 get_stage("before_script") %>%
@@ -15,13 +16,13 @@ get_stage("before_script") %>%
 
 # Stage: Script -----------------------------------------------------------
 if("master" %in% ci_get_branch()){
-    get_stage("script")
+    get_stage("script") %>% build_steps() %>% test_steps() %>% deploy_steps()
 
 } else if ("develop" %in% ci_get_branch()){
-    get_stage("script")
+    get_stage("script") %>% build_steps() %>% test_steps()
 
 } else if (grepl("feature", ci_get_branch())){
-    get_stage("script")
+    get_stage("script") %>% test_steps()
 
 }
 
