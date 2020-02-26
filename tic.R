@@ -12,8 +12,8 @@ source("./AppData/tic/helpers.R")
 
 # Stage: Before Script ----------------------------------------------------
 get_stage("before_script") %>%
-    add_step(step_run_code(remotes::install_deps(dependencies = "Imports", build = FALSE, quiet = TRUE))) %>%
-    add_step(step_run_code(try(devtools::uninstall(), silent = TRUE)))
+    step_run_code(remotes::install_deps(dependencies = "Imports", build = FALSE, quiet = TRUE)) %>%
+    step_run_code(try(devtools::uninstall(), silent = TRUE))
 
 # Stage: Script -----------------------------------------------------------
 if(is_master_branch() | is_hotfix_branch()){
@@ -32,7 +32,7 @@ get_stage("after_success")
 
 # Stage: After Failure ----------------------------------------------------
 get_stage("after_failure") %>%
-    add_step(step_run_code(print(sessioninfo::session_info(include_base = FALSE))))
+    step_run_code(print(sessioninfo::session_info(include_base = FALSE)))
 
 # Stage: Before Deploy ----------------------------------------------------
 get_stage("before_deploy")
