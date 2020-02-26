@@ -36,9 +36,14 @@ get_stage("after_failure") %>%
 
 # Stage: Before Deploy ----------------------------------------------------
 get_stage("before_deploy")
+if(is_master_branch()){
+    get_stage("before_deploy") %>%
+        step_run_code(rmarkdown::render("README.Rmd")) %>% # 1st time adds badges tags
+        step_run_code(rmarkdown::render("README.Rmd")) # 2nd shows badges
+}
 
 # Stage: Deploy -----------------------------------------------------------
-get_stage("deploy")
+get_stage("deploy") # tic deploy is disabled at config.yml
 
 # Stage: After Deploy -----------------------------------------------------
 get_stage("after_deploy")
