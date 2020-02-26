@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compose a Message with an Entity Name and Age — foo • template.package</title>
+<title>Say Hello — hello • template.package</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,9 @@
 
 
 
-<meta property="og:title" content="Compose a Message with an Entity Name and Age — foo" />
-<meta property="og:description" content="Given name and age, when foo is
-called, then a string with that entity details is composed and returned." />
+<meta property="og:title" content="Say Hello — hello" />
+<meta property="og:description" content="This is an example function named 'hello' which prints 'Hello,
+world!'." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +70,7 @@ called, then a string with that entity details is composed and returned." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">template.package</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.20.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.20.9</span>
       </span>
     </div>
 
@@ -113,46 +113,41 @@ called, then a string with that entity details is composed and returned." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compose a Message with an Entity Name and Age</h1>
+    <h1>Say Hello</h1>
     
-    <div class="hidden name"><code>foo.Rd</code></div>
+    <div class="hidden name"><code>hello.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given <code>name</code> and <code>age</code>, when <code>foo</code> is
-called, then a string with that entity details is composed and returned.</p>
+    <p>This is an example function named 'hello' which prints 'Hello,
+world!'.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>foo</span>(<span class='no'>name</span>, <span class='no'>age</span>)</pre>
+    <pre class="usage"><span class='fu'>hello</span>()</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>name</th>
-      <td><p>(<code>character</code>) The name of the entity.</p></td>
-    </tr>
-    <tr>
-      <th>age</th>
-      <td><p>(<code>numeric</code>) The age of the entity.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="nice-to-know"><a class="anchor" href="#nice-to-know"></a>Nice to Know</h2>
 
-    <p>(<code>character</code>) A string with the entity's details.</p>
+    
+
+<p>You can learn more about package authoring with RStudio at:
+<a href='http://r-pkgs.had.co.nz/'>http://r-pkgs.had.co.nz/</a></p>
+<p>Some useful keyboard shortcuts for package authoring:</p><ul>
+<li><p>Install Package: 'Ctrl + Shift + B'</p></li>
+<li><p>Check Package: 'Ctrl + Shift + E'</p></li>
+<li><p>Test Package: 'Ctrl + Shift + T'</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'>foo</span>(<span class='st'>'Earth'</span>, <span class='fl'>4.543e9</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='no'>msg</span>)
+  <span class='fu'>hello</span>()
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
+      <li><a href="#nice-to-know">Nice to Know</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
