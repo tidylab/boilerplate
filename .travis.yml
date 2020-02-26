@@ -59,16 +59,3 @@ deploy:
     all_branches: true
     #condition: $TRAVIS_JOB_NAME = master
 after_deploy: R -q -e 'tic::after_deploy()'
-
-# scripts ----------------------------------------------------------------------
-jobs:
-  include:
-    - stage: "build"
-      name: "build"
-      script: R -q -e 'tic::script()'
-    - stage: "test"
-      name: "test"
-      script: R -q -e 'tic::script()'
-    - stage: "deploy"
-      name: "deploy"
-      script: R -q -e 'tic::script()'
