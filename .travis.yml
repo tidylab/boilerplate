@@ -54,7 +54,4 @@ deploy:
   keep-history: true
   github_token: $GITHUB_PAT
   target_branch: gh-pages
-  #on:
-  #  all_branches: true
-  #  condition: TRAVIS_BRANCH = master
 after_deploy: R -q -e 'tic::after_deploy()'
