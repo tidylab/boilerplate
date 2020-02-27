@@ -12,8 +12,8 @@ source("./AppData/tic/helpers.R")
 
 # Stage: Before Script ----------------------------------------------------
 get_stage("before_script") %>%
-    step_run_code(remotes::install_deps(dependencies = "Imports", build = FALSE, quiet = TRUE)) %>%
-    step_run_code(try(devtools::uninstall(), silent = TRUE))
+    add_code_step(remotes::install_deps(dependencies = "Imports", build = FALSE, quiet = TRUE)) %>%
+    add_code_step(try(devtools::uninstall(), silent = TRUE))
 
 # Stage: Script -----------------------------------------------------------
 if(is_master_branch() | is_hotfix_branch()){
@@ -32,14 +32,14 @@ get_stage("after_success")
 
 # Stage: After Failure ----------------------------------------------------
 get_stage("after_failure") %>%
-    step_run_code(print(sessioninfo::session_info(include_base = FALSE)))
+    add_code_step(print(sessioninfo::session_info(include_base = FALSE)))
 
 # Stage: Before Deploy ----------------------------------------------------
 get_stage("before_deploy")
 if(is_master_branch()){
     get_stage("before_deploy") %>%
-        step_run_code(rmarkdown::render("README.Rmd")) %>% # 1st time adds badges tags
-        step_run_code(rmarkdown::render("README.Rmd")) # 2nd shows badges
+        add_code_step(rmarkdown::render("README.Rmd")) %>% # 1st time adds badges tags
+        add_code_step(rmarkdown::render("README.Rmd")) # 2nd shows badges
 }
 
 # Stage: Deploy -----------------------------------------------------------
